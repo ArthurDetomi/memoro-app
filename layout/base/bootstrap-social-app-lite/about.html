@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Social App - About Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Custom CSS Link -->
+     <link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+
+
+    <!-- Navigation Section Starts Here -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="Social App" style="height: 36px;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Pages
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="register.html">Register</a></li>
+                  <li><a class="dropdown-item" href="login.html">Login</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-disabled="true">Contact</a>
+              </li>
+            </ul>
+
+            <!-- Search Bar Starts  -->
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <!-- Search Bar Ends  -->
+
+            <!-- User Profile Starts  -->
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="images/user.png" alt="Username" style="height: 36px;">
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                    <li><a class="dropdown-item" href="password_change.html">Change Password</a></li>
+                    <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                  </ul>
+                </li>
+              </ul>
+             <!-- User Profile Ends  -->
+
+          </div>
+        </div>
+      </nav>
+     <!-- Navigation Section Ends Here -->
+
+
+     <!-- Main Content Section Starts Here -->
+     <section class="main-content py-4">
+        <div class="container">
+            <div class="row">
+
+                <!-- Profile Detail Section Starts -->
+                <div class="col-md-8">
+                    <!-- Profile Section Starts -->
+                     <div class="card mb-3">
+                        <div class="card-body">
+                            
+                            <div class="row">
+                              <ul class="nav ms-5">
+                                <li class="nav-item">
+                                  <a class="nav-link text-body-secondary" href="profile.html">Posts</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link text-body-secondary tab-active" aria-current="page" href="about.html">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-body-secondary" href="friends.html">Friends</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-body-secondary" href="password_change.html">Change Password</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-body-secondary" href="settings.html">Settings</a>
+                                </li>
+                              </ul>
+                                
+                            </div>
+
+
+                        </div>
+                     </div>
+                    <!-- Profile Section Ends -->
+
+                     <!-- Profile Update Section Starts -->
+                      <div class="card mb-3 p-5">
+                        <h2 class="mb-2">Profile Info</h2>
+                        <hr>
+
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">Profile Picture</label>
+                                <div class="col-sm-10">
+                                <img src="images/user.png" alt="Full Name" height="100px">
+
+                                <input class="form-control" type="file" name="profile_picture" id="formFile">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">First Name</label>
+                                <div class="col-sm-10">
+                                <input type="text" name="first_name" class="form-control" id="firstName" placeholder="First Name">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">Last Name</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">Birth Date</label>
+                                <div class="col-sm-10">
+                                <input type="date" class="form-control" id="birthDate" placeholder="Birth Date">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">Job</label>
+                                <div class="col-sm-10">
+                                <input type="text" name="job" class="form-control" id="job" placeholder="Job Role">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">Living in</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address" placeholder="Living in">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">Email</label>
+                                
+                                <div class="col-sm-10">
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">Short Bio</label>
+                                <div class="col-sm-10">
+                                <textarea name="short_bio" id="" class="form-control" rows="3" placeholder="Tell us about yourself"></textarea>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                <input type="submit" class="form-control btn btn-success btn-lg" value="Update">
+                                </div>
+                            </div>
+                        </form>
+
+                      </div>
+                     <!-- Profile Update Section Ends -->
+
+                    
+                </div>
+                <!-- Profile Detail Section Starts -->
+
+
+                <div class="col-md-4">
+
+                    <!-- People to Follow Section Starts -->
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title fw-bolder">Who to follow</h5>
+
+                          <!-- Recommneded User 1 -->
+                          <div class="row my-3">
+                            <div class="col-2">
+                                <a href="#">
+                                    <img src="images/user1.png" alt="Vijay Thapa" style="height: 45px;">
+                                </a>
+
+                            </div>
+
+                            <div class="col-8">
+                                <strong>Bikash Khadka</strong> <br>
+                                <small class="text-body-secondary">Engineer</small>
+                            </div>
+
+                            <div class="col-2">
+                                <a href="#" class="a-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                      </svg>
+                                </a>
+                            </div>
+                            
+                          </div>
+                          <!-- Recommneded User 1 Ends -->
+
+                          <!-- Recommneded User 2 -->
+                          <div class="row my-3">
+                            <div class="col-2">
+                                <a href="#">
+                                    <img src="images/user2.png" alt="Vijay Thapa" style="height: 45px;">
+                                </a>
+
+                            </div>
+
+                            <div class="col-8">
+                                <strong>Maria</strong> <br>
+                                <small class="text-body-secondary">Entrepreneur</small>
+                            </div>
+
+                            <div class="col-2">
+                                <a href="#" class="a-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                      </svg>
+                                </a>
+                            </div>
+                            
+                          </div>
+                          <!-- Recommneded User 2 Ends -->
+
+                          <!-- Recommneded User 3 -->
+                          <div class="row my-3">
+                            <div class="col-2">
+                                <a href="#">
+                                    <img src="images/user3.png" alt="Vijay Thapa" style="height: 45px;">
+                                </a>
+
+                            </div>
+
+                            <div class="col-8">
+                                <strong>Robin</strong> <br>
+                                <small class="text-body-secondary">Hacker</small>
+                            </div>
+
+                            <div class="col-2">
+                                <a href="#" class="a-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                      </svg>
+                                </a>
+                            </div>
+                            
+                          </div>
+                          <!-- Recommneded User 3 Ends -->
+
+                          <!-- Recommneded User 4 -->
+                          <div class="row my-3">
+                            <div class="col-2">
+                                <a href="#">
+                                    <img src="images/user4.png" alt="Vijay Thapa" style="height: 45px;">
+                                </a>
+
+                            </div>
+
+                            <div class="col-8">
+                                <strong>Rabina</strong> <br>
+                                <small class="text-body-secondary">UI/UX</small>
+                            </div>
+
+                            <div class="col-2">
+                                <a href="#" class="a-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                      </svg>
+                                </a>
+                            </div>
+                            
+                          </div>
+                          <!-- Recommneded User 4 Ends -->
+
+                          <!-- Recommneded User 5 -->
+                          <div class="row my-3">
+                            <div class="col-2">
+                                <a href="#">
+                                    <img src="images/user5.png" alt="Vijay Thapa" style="height: 45px;">
+                                </a>
+
+                            </div>
+
+                            <div class="col-8">
+                                <strong>Manisha</strong> <br>
+                                <small class="text-body-secondary">Skateboard Athlete</small>
+                            </div>
+
+                            <div class="col-2">
+                                <a href="#" class="a-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                      </svg>
+                                </a>
+                            </div>
+                            
+                          </div>
+                          <!-- Recommneded User 5 Ends -->
+                          
+                        </div>
+
+                        <a href="#" class="text-center mb-4 a-link-active">View More</a>
+
+                      </div>
+                     <!-- People to Follow Section Ends -->
+
+
+                     <!-- Interests Section Starts -->
+                     <div class="card mt-3">
+                        <div class="card-body">
+                          <h5 class="card-title fw-bolder mb-3">Interests</h5>
+                          
+                          <a href="#" class="a-link">
+                            <p class="card-text mb-3 interest-tab">Sports <small class="text-body-secondary">(3 Posts)</small></p>
+                          </a>
+
+                          <a href="#" class="a-link">
+                            <p class="card-text mb-3 interest-tab">Entertainmet <small class="text-body-secondary">(10 Posts)</small></p>
+                          </a>
+
+                          <a href="#" class="a-link">
+                            <p class="card-text mb-3 interest-tab">Music <small class="text-body-secondary">(6 Posts)</small></p>
+                          </a>
+
+                          <a href="#" class="a-link">
+                            <p class="card-text mb-3 interest-tab">Politics <small class="text-body-secondary">(7 Posts)</small></p>
+                          </a>
+                          
+                        </div>
+
+                        <a href="#" class="text-center a-link-active mb-4">View All Interests</a>
+                      </div>
+                     <!-- Interests Section Ends -->
+
+
+                </div>
+            </div>
+        </div>
+     </section>
+     <!-- Main Content Section Ends Here -->
+
+
+     <!-- Footer Section Starts Here -->
+     <footer class="text-center p-3">
+        <a href="#" class="a-link me-2">Home</a>
+        <a href="#" class="a-link me-2">About</a>
+        <a href="#" class="a-link me-2">Contact</a>
+     </footer>
+     <!-- Footer Section Ends Here -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

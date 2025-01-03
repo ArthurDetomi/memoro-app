@@ -1,0 +1,45 @@
+/* 
+Theme: Social Media Web App;
+Author: Vijay Thapa;
+Version: 1.0;
+*/
+
+.main-content{
+    background-color: #EFF2F6;
+}
+
+.a-link{
+    text-decoration: none;
+    color: black;
+}
+.a-link:hover{
+    color: #39B47B;
+}
+
+.a-link-active{
+    text-decoration: none;
+    color: #39B47B;
+}
+.a-link-active:hover{
+    color: #34a571;
+}
+
+.interest-tab{
+    background-color: hsl(0, 0%, 95%);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.tab-active{
+    background-color: hsl(0, 0%, 95%);
+    border-radius: 5px;
+}
+
+
+.form-container{
+    border-radius: 20px;
+    padding: 40px;
+    background: #fff;
+    line-height: 2.5;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
