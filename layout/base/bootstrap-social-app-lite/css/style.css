@@ -4,42 +4,66 @@ Author: Vijay Thapa;
 Version: 1.0;
 */
 
-.main-content{
-    background-color: #EFF2F6;
+.main-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  flex: 1; /* Faz o .main-content ocupar o espaço disponível */
+  background-color: #eff2f6;
 }
 
-.a-link{
-    text-decoration: none;
-    color: black;
+.a-link {
+  text-decoration: none;
+  color: black;
 }
-.a-link:hover{
-    color: #39B47B;
-}
-
-.a-link-active{
-    text-decoration: none;
-    color: #39B47B;
-}
-.a-link-active:hover{
-    color: #34a571;
+.a-link:hover {
+  color: #39b47b;
 }
 
-.interest-tab{
-    background-color: hsl(0, 0%, 95%);
-    padding: 5px;
-    border-radius: 5px;
+.a-link-active {
+  text-decoration: none;
+  color: #39b47b;
+}
+.a-link-active:hover {
+  color: #34a571;
 }
 
-.tab-active{
-    background-color: hsl(0, 0%, 95%);
-    border-radius: 5px;
+.a-link-light {
+  text-decoration: none;
+  color: white;
+}
+.a-link-light:hover {
+  color: #39b47b;
 }
 
+.a-link-light-active {
+  text-decoration: none;
+  color: #39b47b;
+}
+.a-link-light-active:hover {
+  color: #34a571;
+}
 
-.form-container{
-    border-radius: 20px;
-    padding: 40px;
-    background: #fff;
-    line-height: 2.5;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+.interest-tab {
+  background-color: hsl(0, 0%, 95%);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.tab-active {
+  background-color: hsl(0, 0%, 95%);
+  border-radius: 5px;
+}
+
+.text-brown {
+  color: #d2691e;
+}
+
+.form-container {
+  border-radius: 20px;
+  padding: 40px;
+  background: #fff;
+  line-height: 2.5;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
