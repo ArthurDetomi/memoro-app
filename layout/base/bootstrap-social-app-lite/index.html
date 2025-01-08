@@ -11,6 +11,12 @@
       crossorigin="anonymous"
     />
 
+    <!-- Font Awesome Link -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+
     <!-- Custom CSS Link -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -35,12 +41,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
-                >Home</a
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="products.html"
+                ><i class="fa fa-home"></i> Página Inicial</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" aria-current="page" href="products.html"
+                ><i class="fa fa-box"></i> Produtos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -50,11 +64,11 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Pages
+                Páginas
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="register.html">Register</a>
+                  <a class="dropdown-item" href="register.html">Registro</a>
                 </li>
                 <li><a class="dropdown-item" href="login.html">Login</a></li>
                 <li><hr class="dropdown-divider" /></li>
@@ -64,7 +78,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-disabled="true">Contact</a>
+              <a class="nav-link" aria-disabled="true">Contato</a>
             </li>
           </ul>
 
@@ -73,11 +87,11 @@
             <input
               class="form-control me-2"
               type="search"
-              placeholder="Search"
-              aria-label="Search"
+              placeholder="Pesquisar"
+              aria-label="Pesquisar"
             />
-            <button class="btn btn-outline-success" type="submit">
-              Search
+            <button class="btn btn-outline-warning" type="submit">
+              Pesquisar
             </button>
           </form>
           <!-- Search Bar Ends  -->
@@ -1019,10 +1033,15 @@
     <!-- Main Content Section Ends Here -->
 
     <!-- Footer Section Starts Here -->
-    <footer class="text-center p-3 bg-dark">
-      <a href="#" class="a-link-light me-2">Home</a>
-      <a href="#" class="a-link-light me-2">About</a>
-      <a href="#" class="a-link-light me-2">Contact</a>
+    <footer class="footer fixed-bottom text-center p-3 bg-dark">
+      <div class="container">
+        <a href="#" class="a-link-light m-2" title="Home"
+          ><i class="fa fa-home"></i>
+        </a>
+        <a href="./products.html" class="a-link-light m-2" title="Produtos"
+          ><i class="fa fa-box"></i>
+        </a>
+      </div>
     </footer>
     <!-- Footer Section Ends Here -->
 

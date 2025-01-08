@@ -42,7 +42,7 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="products.html"
-                ><i class="fa fa-home"></i> Home</a
+                ><i class="fa fa-home"></i> Página Inicial</a
               >
             </li>
             <li class="nav-item">
@@ -54,7 +54,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#">Sobre</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -64,11 +64,11 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Pages
+                Páginas
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="register.html">Register</a>
+                  <a class="dropdown-item" href="register.html">Registro</a>
                 </li>
                 <li><a class="dropdown-item" href="login.html">Login</a></li>
                 <li><hr class="dropdown-divider" /></li>
@@ -78,7 +78,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-disabled="true">Contact</a>
+              <a class="nav-link" aria-disabled="true">Contato</a>
             </li>
           </ul>
 
@@ -87,11 +87,11 @@
             <input
               class="form-control me-2"
               type="search"
-              placeholder="Search"
-              aria-label="Search"
+              placeholder="Pesquisar"
+              aria-label="Pesquisar"
             />
             <button class="btn btn-outline-warning" type="submit">
-              Search
+              Pesquisar
             </button>
           </form>
           <!-- Search Bar Ends  -->
@@ -178,12 +178,12 @@
                       "
                     >
                       <strong>112</strong> <br />
-                      <small class="text-body-secondary">Followers</small>
+                      <small class="text-body-secondary">Seguidores</small>
                     </div>
 
                     <div class="col">
                       <strong>65</strong> <br />
-                      <small class="text-body-secondary">Following</small>
+                      <small class="text-body-secondary">Seguindo</small>
                     </div>
                   </div>
                   <!-- User Stats Section Ends -->
@@ -191,7 +191,7 @@
 
                 <hr />
                 <p class="text-center">
-                  <a href="#" class="a-link-active text-dark">View Profile</a>
+                  <a href="#" class="a-link-active text-dark">Ver Perfil</a>
                 </p>
               </div>
             </div>
@@ -281,13 +281,74 @@
                       <div class="col-12">
                         <div class="form-outline">
                           <label class="form-label" for="form3Example5"
-                            >Imagem</label
+                            >Imagens</label
                           >
-                          <input
-                            type="file"
-                            id="form3Example5"
-                            class="form-control"
-                          />
+                          <div>
+                            <div class="input-group mb-3">
+                              <label
+                                class="input-group-text"
+                                for="inputGroupFile01"
+                                >Adicionar nova imagem</label
+                              >
+                              <input
+                                type="file"
+                                class="form-control"
+                                id="inputGroupFile01"
+                              />
+                            </div>
+                            <div
+                              id="carouselExampleControls"
+                              class="carousel slide"
+                              data-bs-ride="carousel"
+                            >
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img
+                                    src="images/queijo.jpg"
+                                    class="d-block w-100 img-fluid rounded"
+                                    alt="..."
+                                  />
+                                  <button class="delete-btn">
+                                    <i class="fas fa-trash-alt"></i>
+                                  </button>
+                                </div>
+                                <div class="carousel-item">
+                                  <img
+                                    src="images/wine.jpg"
+                                    class="d-block w-100 img-fluid rounded"
+                                    alt="..."
+                                  />
+                                  <button class="delete-btn">
+                                    <i class="fas fa-trash-alt"></i>
+                                  </button>
+                                </div>
+                              </div>
+                              <button
+                                class="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="prev"
+                              >
+                                <span
+                                  class="carousel-control-prev-icon"
+                                  aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button
+                                class="carousel-control-next"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="next"
+                              >
+                                <span
+                                  class="carousel-control-next-icon"
+                                  aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
@@ -391,13 +452,74 @@
                       <div class="col-12">
                         <div class="form-outline">
                           <label class="form-label" for="form3Example5"
-                            >Imagem</label
+                            >Imagens</label
                           >
-                          <input
-                            type="file"
-                            id="form3Example5"
-                            class="form-control"
-                          />
+                          <div>
+                            <div class="input-group mb-3">
+                              <label
+                                class="input-group-text"
+                                for="inputGroupFile01"
+                                >Adicionar nova imagem</label
+                              >
+                              <input
+                                type="file"
+                                class="form-control"
+                                id="inputGroupFile01"
+                              />
+                            </div>
+                            <div
+                              id="carouselExampleControls"
+                              class="carousel slide"
+                              data-bs-ride="carousel"
+                            >
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img
+                                    src="images/queijo.jpg"
+                                    class="d-block w-100 img-fluid rounded"
+                                    alt="..."
+                                  />
+                                  <button class="delete-btn">
+                                    <i class="fas fa-trash-alt"></i>
+                                  </button>
+                                </div>
+                                <div class="carousel-item">
+                                  <img
+                                    src="images/wine.jpg"
+                                    class="d-block w-100 img-fluid rounded"
+                                    alt="..."
+                                  />
+                                  <button class="delete-btn">
+                                    <i class="fas fa-trash-alt"></i>
+                                  </button>
+                                </div>
+                              </div>
+                              <button
+                                class="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="prev"
+                              >
+                                <span
+                                  class="carousel-control-prev-icon"
+                                  aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button
+                                class="carousel-control-next"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="next"
+                              >
+                                <span
+                                  class="carousel-control-next-icon"
+                                  aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
@@ -547,7 +669,7 @@
                     <th>Descrição</th>
                     <th>Volume</th>
                     <th>Quantidade</th>
-                    <th>Actions</th>
+                    <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody class="text-center">
@@ -583,6 +705,14 @@
                         >
                           <i class="fas fa-cookie-bite text-brown"></i>
                         </button>
+                        <a
+                          type="button"
+                          class="btn btn-link btn-sm text-primary"
+                          title="Visualizar"
+                          href="./product.html"
+                        >
+                          <i class="fa fa-eye"></i>
+                        </a>
                         <button
                           type="button"
                           class="btn btn-link btn-sm text-primary"
@@ -636,6 +766,14 @@
                         >
                           <i class="fas fa-cookie-bite text-brown"></i>
                         </button>
+                        <a
+                          type="button"
+                          class="btn btn-link btn-sm text-primary"
+                          title="Visualizar"
+                          href="./product.html"
+                        >
+                          <i class="fa fa-eye"></i>
+                        </a>
                         <button
                           type="button"
                           class="btn btn-link btn-sm text-primary"
@@ -689,6 +827,14 @@
                         >
                           <i class="fas fa-cookie-bite text-brown"></i>
                         </button>
+                        <a
+                          type="button"
+                          class="btn btn-link btn-sm text-primary"
+                          title="Visualizar"
+                          href="./product.html"
+                        >
+                          <i class="fa fa-eye"></i>
+                        </a>
                         <button
                           type="button"
                           class="btn btn-link btn-sm text-primary"
@@ -723,7 +869,7 @@
     <!-- Footer Section Starts Here -->
     <footer class="footer fixed-bottom text-center p-3 bg-dark">
       <div class="container">
-        <a href="#" class="a-link-light m-2" title="Home"
+        <a href="#" class="a-link-light m-2" title="Página Inicial"
           ><i class="fa fa-home"></i>
         </a>
         <a href="#" class="a-link-light m-2" title="Produtos"
