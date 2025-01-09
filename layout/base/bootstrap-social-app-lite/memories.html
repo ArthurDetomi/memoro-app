@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memoro App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome Link -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Modals Sections Start -->
+
+    <!-- Edit memorie Modal Starts -->
+    <div
+      class="modal fade"
+      id="editMemorieModal"
+      tabindex="-1"
+      aria-labelledby="editMemorieModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <form action="">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="editMemorieModalLabel">
+                Editar Memória
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div
+                    id="editMemorieCarousel"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                  >
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <div
+                          style="
+                            position: relative;
+                            width: 500px;
+                            height: 500px;
+                            overflow: hidden;
+                          "
+                        >
+                          <img
+                            src="images/photo-cycle.jpeg"
+                            class="d-block mx-auto"
+                            alt="Imagem 1"
+                            style="width: 100%; height: 100%; object-fit: cover"
+                          />
+                          <button class="delete-btn">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div
+                          style="
+                            position: relative;
+                            width: 500px;
+                            height: 500px;
+                            overflow: hidden;
+                          "
+                        >
+                          <img
+                            src="images/photo-teacher.jpeg"
+                            class="d-block mx-auto"
+                            alt="Imagem 2"
+                            style="width: 100%; height: 100%; object-fit: cover"
+                          />
+                          <button class="delete-btn">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#editMemorieCarousel"
+                      data-bs-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button
+                      class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#editMemorieCarousel"
+                      data-bs-slide="next"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Próxima</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="memorieTitle" class="form-label">Título</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="memorieTitle"
+                      placeholder="Digite o título da memória"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="memorieDescription" class="form-label"
+                      >Descrição</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="memorieDescription"
+                      rows="3"
+                      placeholder="Digite a descrição"
+                    ></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="addImage" class="form-label"
+                      >Adicionar Nova Imagem</label
+                    >
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="addImage"
+                      accept="image/*"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-dark">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Edit memorie Modal Ends -->
+
+    <!-- Register memorie Modal Starts -->
+    <div
+      class="modal fade"
+      id="registerMemorieModal"
+      tabindex="-1"
+      aria-labelledby="registerMemorieModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <form action="">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="registerMemorieModalLabel">
+                Cadastrar Memória
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div
+                    id="registerMemorieCarousel"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                  >
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <div
+                          style="
+                            position: relative;
+                            width: 500px;
+                            height: 500px;
+                            overflow: hidden;
+                          "
+                        >
+                          <img
+                            src="images/photo-cycle.jpeg"
+                            class="d-block mx-auto"
+                            alt="Imagem 1"
+                            style="width: 100%; height: 100%; object-fit: cover"
+                          />
+                          <button class="delete-btn">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div
+                          style="
+                            position: relative;
+                            width: 500px;
+                            height: 500px;
+                            overflow: hidden;
+                          "
+                        >
+                          <img
+                            src="images/photo-teacher.jpeg"
+                            class="d-block mx-auto"
+                            alt="Imagem 2"
+                            style="width: 100%; height: 100%; object-fit: cover"
+                          />
+                          <button class="delete-btn">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#registerMemorieCarousel"
+                      data-bs-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button
+                      class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#registerMemorieCarousel"
+                      data-bs-slide="next"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Próxima</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="memorieTitle" class="form-label">Título</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="memorieTitle"
+                      placeholder="Digite o título da memória"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="memorieDescription" class="form-label"
+                      >Descrição</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="memorieDescription"
+                      rows="3"
+                      placeholder="Digite a descrição"
+                    ></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="addImage" class="form-label"
+                      >Adicionar Nova Imagem</label
+                    >
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="addImage"
+                      accept="image/*"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-dark">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Register memorie Modal Ends -->
+
+    <!-- Remove Product Modal Starts -->
+    <div
+      class="modal fade"
+      id="deleteMemorieModal"
+      tabindex="-1"
+      aria-labelledby="deleteMemorieModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteMemorieModalLabel">
+              Excluir Memória
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Tem certeza que deseja excluir a memória</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <form action="">
+              <button type="submit" class="btn btn-danger">
+                Excluir
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Remove Product Modal Ends-->
+
+    <!-- Modal Sections Ends -->
+
+    <!-- Navigation Section Starts Here -->
+    <nav
+      class="navbar navbar-expand-lg bg-dark sticky-top"
+      data-bs-theme="dark"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/logo.png" alt="Social App" style="height: 36px" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="products.html"
+                ><i class="fa fa-home"></i> Página Inicial</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="products.html"
+                ><i class="fa fa-box"></i> Produtos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="memories.html"
+                ><i class="fa fa-photo-video"></i> Memórias
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Páginas
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="register.html">Registro</a>
+                </li>
+                <li><a class="dropdown-item" href="login.html">Login</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-disabled="true">Contato</a>
+            </li>
+          </ul>
+
+          <!-- Search Bar Starts  -->
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Pesquisar"
+            />
+            <button class="btn btn-outline-warning" type="submit">
+              Pesquisar
+            </button>
+          </form>
+          <!-- Search Bar Ends  -->
+
+          <!-- User Profile Starts  -->
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="images/user.png"
+                  alt="Username"
+                  style="height: 36px"
+                />
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="profile.html">Profile</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="password_change.html"
+                    >Change Password</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">Settings</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- User Profile Ends  -->
+        </div>
+      </div>
+    </nav>
+    <!-- Navigation Section Ends Here -->
+
+    <!-- Main Content Section Starts Here -->
+    <section class="main-content py-4">
+      <div class="container">
+        <div class="row">
+          <!-- Profile Sections Starts -->
+          <div class="col-md-3">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="text-center">
+                  <a href="profile.html" class="text-decoration-none text-dark">
+                    <img
+                      src="images/user.png"
+                      alt="Vijay Thapa"
+                      class="mb-3"
+                      style="height: 60px"
+                    />
+
+                    <h5 class="card-title">Vijay Thapa</h5>
+                  </a>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">
+                    "Software Developer & Content Creator."
+                  </h6>
+
+                  <p class="card-text small text-body-secondary">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+
+                  <!-- User Stats Section Starts -->
+                  <div class="row">
+                    <div class="col">
+                      <strong>199</strong> <br />
+                      <small class="text-body-secondary">Posts</small>
+                    </div>
+
+                    <div
+                      class="col"
+                      style="
+                        border-left: 1px solid black;
+                        border-right: 1px solid black;
+                      "
+                    >
+                      <strong>112</strong> <br />
+                      <small class="text-body-secondary">Followers</small>
+                    </div>
+
+                    <div class="col">
+                      <strong>65</strong> <br />
+                      <small class="text-body-secondary">Following</small>
+                    </div>
+                  </div>
+                  <!-- User Stats Section Ends -->
+                </div>
+                <hr />
+                <p class="text-center">
+                  <a href="#" class="a-link-active text-primary">Ver Perfil</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Profile Sections Ends -->
+
+          <!-- Feed Section Starts -->
+          <div class="col-md-9">
+            <div>
+              <h1>Memorias</h1>
+            </div>
+
+            <div class="mb-3">
+              <button
+                class="btn btn-dark"
+                data-mdb-ripple-init
+                data-bs-toggle="modal"
+                data-bs-target="#registerMemorieModal"
+              >
+                Cadastrar Memória
+              </button>
+            </div>
+
+            <!-- Feed/Post Listing Section Starts -->
+            <div class="card mb-5">
+              <div class="card-body">
+                <!-- Post Header Starts -->
+                <div class="row">
+                  <div class="col-1">
+                    <a href="#">
+                      <img
+                        src="images/user1.png"
+                        alt="User1 Name"
+                        style="height: 45px"
+                      />
+                    </a>
+                  </div>
+
+                  <div class="col-10">
+                    <a href="#" class="fw-bolder a-link">Bikash Khadka</a>
+                    <p class="small text-body-secondary">Engineer</p>
+                  </div>
+
+                  <div class="col-1">
+                    <div class="dropdown dropstart">
+                      <a
+                        href="#"
+                        class="a-link"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        ...
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editMemorieModal"
+                            >Edit</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteMemorieModal"
+                            >Delete</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- Post Header Ends -->
+
+                <!-- Post Content Starts -->
+                <a href="post_details.html" class="text-decoration-none">
+                  <p class="card-text small text-body-secondary">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+
+                  <div
+                    id="carouselTeachers"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                    style="max-width: 1080px; max-height: 1080px"
+                  >
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img
+                          src="images/photo-teacher.jpeg"
+                          class="d-block img-fluid rounded-start"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="images/photo-cycle.jpeg"
+                          class="d-block img-fluid rounded-start"
+                          alt="..."
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#carouselTeachers"
+                      data-bs-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                      class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carouselTeachers"
+                      data-bs-slide="next"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </a>
+                <!-- Post Content Ends -->
+
+                <!-- Post Footer Starts -->
+                <div class="row my-3">
+                  <div class="col">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-chat-quote"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"
+                      />
+                      <path
+                        d="M7.066 6.76A1.665 1.665 0 0 0 4 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z"
+                      />
+                    </svg>
+                    <small>Comments(9)</small>
+                  </div>
+
+                  <div class="col text-end">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-calendar-event"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"
+                      />
+                      <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
+                      />
+                    </svg>
+                    <small>Published Date: 23 June, 2024</small>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-1">
+                    <img
+                      src="images/user1.png"
+                      alt="User1 Full Name"
+                      style="height: 25px"
+                    />
+                  </div>
+
+                  <div class="col-11">
+                    <form action="#">
+                      <textarea
+                        name="add_comment"
+                        placeholder="Type your comment.."
+                        class="form-control mb-3"
+                        id=""
+                      ></textarea>
+                      <input
+                        type="submit"
+                        name="submit"
+                        value="Add Comment"
+                        class="form-control btn btn-dark btn-sm"
+                      />
+                    </form>
+                  </div>
+                </div>
+                <!-- Post Footer Ends -->
+              </div>
+            </div>
+            <!-- Feed/Post Listing Section Ends -->
+          </div>
+          <!-- Feed Section Starts -->
+        </div>
+      </div>
+    </section>
+    <!-- Main Content Section Ends Here -->
+
+    <!-- Footer Section Starts Here -->
+    <footer class="footer fixed-bottom text-center p-3 bg-dark">
+      <div class="container">
+        <a href="#" class="a-link-light m-2" title="Home"
+          ><i class="fa fa-home"></i>
+        </a>
+        <a href="./products.html" class="a-link-light m-2" title="Produtos"
+          ><i class="fa fa-box"></i>
+        </a>
+        <a href="./memories.html" class="a-link-light m-2" title="Memórias"
+          ><i class="fa fa-photo-video"></i>
+        </a>
+      </div>
+    </footer>
+    <!-- Footer Section Ends Here -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
