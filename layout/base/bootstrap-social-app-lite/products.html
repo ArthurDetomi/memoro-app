@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memoro App | Products</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome Link -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation Section Starts Here -->
+    <nav
+      class="navbar navbar-expand-lg bg-dark sticky-top"
+      data-bs-theme="dark"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/logo.png" alt="Social App" style="height: 36px" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="products.html"
+                ><i class="fa fa-home"></i> Página Inicial</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="products.html"
+                ><i class="fa fa-box"></i> Produtos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="memories.html"
+                ><i class="fa fa-photo-video"></i> Memórias
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Páginas
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="register.html">Registro</a>
+                </li>
+                <li><a class="dropdown-item" href="login.html">Login</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-disabled="true">Contato</a>
+            </li>
+          </ul>
+
+          <!-- Search Bar Starts  -->
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Pesquisar"
+            />
+            <button class="btn btn-outline-warning" type="submit">
+              Pesquisar
+            </button>
+          </form>
+          <!-- Search Bar Ends  -->
+
+          <!-- User Profile Starts  -->
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="images/user.png"
+                  alt="Username"
+                  style="height: 36px"
+                />
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="profile.html">Profile</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="password_change.html"
+                    >Change Password</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">Settings</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- User Profile Ends  -->
+        </div>
+      </div>
+    </nav>
+    <!-- Navigation Section Ends Here -->
+
+    <!-- Main Content Section Starts Here -->
+    <section class="main-content py-4">
+      <div class="container">
+        <div class="row">
+          <!-- Profile Sections Starts -->
+          <div class="col-md-3">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="text-center">
+                  <a href="profile.html" class="text-decoration-none text-dark">
+                    <img
+                      src="images/user.png"
+                      alt="Vijay Thapa"
+                      class="mb-3"
+                      style="height: 60px"
+                    />
+
+                    <h5 class="card-title">Vijay Thapa</h5>
+                  </a>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">
+                    "Software Developer & Content Creator."
+                  </h6>
+
+                  <p class="card-text small text-body-secondary">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+
+                  <!-- User Stats Section Starts -->
+                  <div class="row">
+                    <div class="col">
+                      <strong>199</strong> <br />
+                      <small class="text-body-secondary">Posts</small>
+                    </div>
+
+                    <div
+                      class="col"
+                      style="
+                        border-left: 1px solid black;
+                        border-right: 1px solid black;
+                      "
+                    >
+                      <strong>112</strong> <br />
+                      <small class="text-body-secondary">Seguidores</small>
+                    </div>
+
+                    <div class="col">
+                      <strong>65</strong> <br />
+                      <small class="text-body-secondary">Seguindo</small>
+                    </div>
+                  </div>
+                  <!-- User Stats Section Ends -->
+                </div>
+
+                <hr />
+                <p class="text-center">
+                  <a href="#" class="a-link-active text-primary">Ver Perfil</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Profile Sections Ends -->
+
+          <!-- Products Section Starts -->
+          <div class="col-md-9">
+            <h1>Produtos</h1>
+            <div class="d-grid gap-2 d-md-flex mb-4">
+              <button
+                id="myInput"
+                class="btn btn-dark text-light"
+                type="button"
+                data-mdb-ripple-init
+                data-bs-toggle="modal"
+                data-bs-target="#registerProductModal"
+              >
+                Cadastrar Produto
+              </button>
+            </div>
+
+            <!-- Register Product Modal Starts -->
+            <div
+              class="modal fade"
+              id="registerProductModal"
+              tabindex="-1"
+              aria-labelledby="registerProductModalLabel"
+              aria-hidden="true"
+            >
+              <form action="">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1
+                        class="modal-title fs-5"
+                        id="registerProductModalLabel"
+                      >
+                        Cadastro Produto
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                          <label class="form-label" for="form3Example1"
+                            >Nome</label
+                          >
+                          <input
+                            type="text"
+                            id="form3Example1"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                          <label class="form-label" for="form3Example2"
+                            >Descrição</label
+                          >
+                          <input
+                            type="text"
+                            id="form3Example2"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                          <label class="form-label" for="form3Example3"
+                            >Peso</label
+                          >
+                          <input
+                            type="number"
+                            id="form3Example3"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-outline">
+                          <label class="form-label" for="form3Example5"
+                            >Imagens</label
+                          >
+                          <div>
+                            <div class="input-group mb-3">
+                              <label
+                                class="input-group-text"
+                                for="inputGroupFile01"
+                                >Adicionar nova imagem</label
+                              >
+                              <input
+                                type="file"
+                                class="form-control"
+                                id="inputGroupFile01"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 d-flex justify-content-center">
+                        <div
+                          id="imgRegisterProductCarrousel"
+                          class="carousel slide container-img-carrousel"
+                          data-bs-ride="carousel"
+                        >
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                              <div
+                                class="container-img-carrousel d-flex justify-content-center"
+                              >
+                                <img
+                                  src="images/queijo.jpg"
+                                  class="d-block mx-auto img-carrousel"
+                                  alt="..."
+                                />
+                                <button class="delete-btn">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="carousel-item">
+                              <div class="container-img-carrousel">
+                                <img
+                                  src="images/wine.jpg"
+                                  class="d-block mx-auto img-carrousel"
+                                  alt="..."
+                                />
+                                <button class="delete-btn">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <button
+                            class="carousel-control-prev"
+                            type="button"
+                            data-bs-target="#imgRegisterProductCarrousel"
+                            data-bs-slide="prev"
+                          >
+                            <span
+                              class="carousel-control-prev-icon"
+                              aria-hidden="true"
+                            ></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button
+                            class="carousel-control-next"
+                            type="button"
+                            data-bs-target="#imgRegisterProductCarrousel"
+                            data-bs-slide="next"
+                          >
+                            <span
+                              class="carousel-control-next-icon"
+                              aria-hidden="true"
+                            ></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                          <label class="form-label" for="form3Example4"
+                            >Tipo de Produto</label
+                          >
+                          <select
+                            class="form-select"
+                            aria-label="Default select example"
+                          >
+                            <option selected>Tipo de Produto</option>
+                            <option value="1">Vinho</option>
+                            <option value="2">Queijo</option>
+                            <option value="3">Charuto</option>
+                            <option value="4">Café</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cancelar
+                      </button>
+                      <button type="submit" class="btn btn-dark">
+                        Cadastrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Register Product Modal Ends-->
+
+            <!-- Consume Product Modal Starts -->
+            <div
+              class="modal fade"
+              id="consumeProductModal"
+              tabindex="-1"
+              aria-labelledby="consumeProductModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="consumeProductModalLabel">
+                      Consumir Nome do Produto #13546
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">...</div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancelar
+                    </button>
+                    <form action="">
+                      <button type="submit" class="btn btn-dark">
+                        Consumir
+                        <i class="fas fa-cookie-bite text-brown"></i>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Consume Product Modal Ends-->
+
+            <!-- Remove Product Modal Starts -->
+            <div
+              class="modal fade"
+              id="deleteProductModal"
+              tabindex="-1"
+              aria-labelledby="deleteProductModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteProductModalLabel">
+                      Excluir Nome do Produto #13546
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    Tem certeza que deseja remover o {Produto Nome}
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancelar
+                    </button>
+                    <form action="">
+                      <button type="submit" class="btn btn-danger">
+                        Excluir
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Remove Product Modal Ends-->
+
+            <div class="input-group mb-1">
+              <input
+                type="text"
+                class="form-control"
+                id="advanced-search-input"
+                placeholder="phrase in:column1,column2"
+              />
+              <button
+                data-mdb-button-init
+                data-mdb-ripple-init
+                class="btn btn-dark text-light"
+                id="advanced-search-button"
+                type="button"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+
+            <div class="table-responsive mb-5">
+              <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                  <tr class="text-center">
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Volume</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="images/wine.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                        />
+                        <div class="ms-3">
+                          <p class="fw-bold mb-1">Vinho</p>
+                          <p class="text-muted mb-0">Vinho safra 1234</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="fw-normal mb-1">Lorem ipsum dolor sit amet.</p>
+                      <p class="text-muted mb-0">Lorem, ipsum dolor.</p>
+                    </td>
+                    <td>600 ml</td>
+                    <td>10</td>
+                    <td>
+                      <div class="d-flex justify-content-around">
+                        <button
+                          type="button"
+                          class="btn btn-link btn-sm text-warning"
+                          title="Consumir"
+                          data-bs-toggle="modal"
+                          data-bs-target="#consumeProductModal"
+                        >
+                          <i class="fas fa-cookie-bite text-brown"></i>
+                        </button>
+                        <a
+                          type="button"
+                          class="btn btn-link btn-sm text-primary"
+                          title="Visualizar"
+                          href="./product_details.html"
+                        >
+                          <i class="fa fa-eye"></i>
+                        </a>
+                        <button
+                          type="button"
+                          class="btn btn-link btn-sm text-danger"
+                          title="Deletar"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteProductModal"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="images/wine.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                        />
+                        <div class="ms-3">
+                          <p class="fw-bold mb-1">Vinho</p>
+                          <p class="text-muted mb-0">Vinho safra 1234</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="fw-normal mb-1">Lorem ipsum dolor sit amet.</p>
+                      <p class="text-muted mb-0">Lorem, ipsum dolor.</p>
+                    </td>
+                    <td>600 ml</td>
+                    <td>10</td>
+                    <td>
+                      <div class="d-flex justify-content-around">
+                        <button
+                          type="button"
+                          class="btn btn-link btn-sm text-warning"
+                          title="Consumir"
+                          data-bs-toggle="modal"
+                          data-bs-target="#consumeProductModal"
+                        >
+                          <i class="fas fa-cookie-bite text-brown"></i>
+                        </button>
+                        <a
+                          type="button"
+                          class="btn btn-link btn-sm text-primary"
+                          title="Visualizar"
+                          href="./product_details.html"
+                        >
+                          <i class="fa fa-eye"></i>
+                        </a>
+                        <button
+                          type="button"
+                          class="btn btn-link btn-sm text-danger"
+                          title="Deletar"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteProductModal"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="images/wine.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                        />
+                        <div class="ms-3">
+                          <p class="fw-bold mb-1">Vinho</p>
+                          <p class="text-muted mb-0">Vinho safra 1234</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="fw-normal mb-1">Lorem ipsum dolor sit amet.</p>
+                      <p class="text-muted mb-0">Lorem, ipsum dolor.</p>
+                    </td>
+                    <td>600 ml</td>
+                    <td>10</td>
+                    <td>
+                      <div class="d-flex justify-content-around">
+                        <button
+                          type="button"
+                          class="btn btn-link btn-sm text-warning"
+                          title="Consumir"
+                          data-bs-toggle="modal"
+                          data-bs-target="#consumeProductModal"
+                        >
+                          <i class="fas fa-cookie-bite text-brown"></i>
+                        </button>
+                        <a
+                          type="button"
+                          class="btn btn-link btn-sm text-primary"
+                          title="Visualizar"
+                          href="./product_details.html"
+                        >
+                          <i class="fa fa-eye"></i>
+                        </a>
+                        <button
+                          type="button"
+                          class="btn btn-link btn-sm text-danger"
+                          title="Deletar"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteProductModal"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Products Section Ends -->
+        </div>
+      </div>
+    </section>
+    <!-- Main Content Section Ends Here -->
+
+    <!-- Footer Section Starts Here -->
+    <footer class="footer fixed-bottom text-center p-3 bg-dark">
+      <div class="container">
+        <a href="#" class="a-link-light m-2" title="Home"
+          ><i class="fa fa-home"></i>
+        </a>
+        <a href="./profile.html" class="a-link-light m-2" title="Perfil"
+          ><i class="fa fa-user"></i>
+        </a>
+        <a href="./products.html" class="a-link-light m-2" title="Produtos"
+          ><i class="fa fa-box"></i>
+        </a>
+        <a href="./memories.html" class="a-link-light m-2" title="Memórias"
+          ><i class="fa fa-photo-video"></i>
+        </a>
+      </div>
+    </footer>
+    <!-- Footer Section Ends Here -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
