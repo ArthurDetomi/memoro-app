@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,6 +8,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('/register', function () {
-    return view('auth/register');
-});
+Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
+
