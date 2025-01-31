@@ -87,6 +87,7 @@
             <!--Making the form responsive-->
             <section class="col-12 col-sm-6 col-md-4">
                 <form action="{{ route('register') }}" method="post" class="form-container">
+                    @csrf
                     <h3 class="text-center font-weight-bolder">Register</h3>
                     <div class="form-group">
                         <label>Name</label>
@@ -113,13 +114,16 @@
                     </div>
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="password" name="confirm_password" class="form-control"
+                        <input type="password" name="password_confirmation" class="form-control"
                             placeholder="Confirm Password" />
-                        @error('confirm_password')
+                        @error('password_confirmation')
                             <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-dark mt-3">Register</button>
+                    <div class="mt-3">
+                        @include('shared.success-message')
+                    </div>
                     <div class="mt-3">
                         <p>
                             Already have an account?
@@ -132,20 +136,6 @@
     </section>
     <!-- Main Content Section Ends Here -->
 
-    <!-- Footer Section Starts Here -->
-    <footer class="footer fixed-bottom text-center p-3 bg-dark">
-        <div class="container">
-            <a href="#" class="a-link-light m-2" title="Home"><i class="fa fa-home"></i>
-            </a>
-            <a href="./profile.html" class="a-link-light m-2" title="Perfil"><i class="fa fa-user"></i>
-            </a>
-            <a href="./products.html" class="a-link-light m-2" title="Produtos"><i class="fa fa-box"></i>
-            </a>
-            <a href="./memories.html" class="a-link-light m-2" title="Memórias"><i class="fa fa-photo-video"></i>
-            </a>
-        </div>
-    </footer>
-    <!-- Footer Section Ends Here -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
