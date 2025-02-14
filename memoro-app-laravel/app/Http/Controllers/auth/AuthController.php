@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Http\Controllers\auth;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
+class AuthController extends Controller
+{
+    public function register(): View
+    {
+        return view("auth.register");
+    }
+
+    public function store()
+    {
+        $validated = request()->validate(
+            [
+                'name' => 'required|min:3|max:40',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|confirmed|min:8'
+            ]
+        );
+
+        User::create(
+            [
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'password' => Hash::make($validated['password']),
+            ]
+        );
+
+        return redirect()->route('register')->with('success', 'Account created successfully!');
+    }
+
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    public function authenticate(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return back()->with('success', 'Login already successfully');
+        }
+
+        return back()->withErrors([
+            'email',
+            'The provided credentials do not match our records.'
+        ])->onlyInput('email');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return back()->with('success', 'Logged out successfully');
+    }
+}
