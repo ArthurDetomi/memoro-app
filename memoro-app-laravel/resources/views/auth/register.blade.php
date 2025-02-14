@@ -47,7 +47,7 @@
                     <div class="mt-3">
                         <p>
                             Already have an account?
-                            <a href="login.html" class="text-decoration-none">Login</a>
+                            <a href="{{ route('login') }}" class="text-decoration-none">Login</a>
                         </p>
                     </div>
                 </form>
