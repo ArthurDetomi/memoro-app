@@ -15,7 +15,9 @@
                         Inicial</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="products.html"><i class="fa fa-box"></i> Produtos
+                    <a class="nav-link  {{ Route::is('products.index') ? 'active' : '' }}" aria-current="page"
+                        href={{ route('products.index') }}><i class="fa fa-box"></i>
+                        Produtos
                     </a>
                 </li>
                 <li class="nav-item">

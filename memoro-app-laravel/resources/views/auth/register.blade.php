@@ -1,3 +1,5 @@
+@section('title', 'Register')
+
 @extends('layout.layout-auth')
 @section('content')
     <!-- Main Content Section Starts Here -->
