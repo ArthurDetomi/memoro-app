@@ -1,182 +1,204 @@
 <!-- Register Product Modal Starts -->
-<div
-class="modal fade"
-id="registerProductModal"
-tabindex="-1"
-aria-labelledby="registerProductModalLabel"
-aria-hidden="true"
->
-<form action="">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1
-          class="modal-title fs-5"
-          id="registerProductModalLabel"
-        >
-          Cadastro Produto
-        </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <div class="col-12">
-          <div data-mdb-input-init class="form-outline">
-            <label class="form-label" for="form3Example1"
-              >Nome</label
-            >
-            <input
-              type="text"
-              id="form3Example1"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <div class="col-12">
-          <div data-mdb-input-init class="form-outline">
-            <label class="form-label" for="form3Example2"
-              >Descrição</label
-            >
-            <input
-              type="text"
-              id="form3Example2"
-              class="form-control"
-            />
-          </div>
-        </div>
+<div class="modal fade" id="registerProductModal" tabindex="-1" aria-labelledby="registerProductModalLabel"
+    aria-hidden="true">
+    <form action="{{ route('products.store') }}" method="POST">
+        @csrf
 
-        <div class="col-12">
-          <div data-mdb-input-init class="form-outline">
-            <label class="form-label" for="form3Example3"
-              >Peso</label
-            >
-            <input
-              type="number"
-              id="form3Example3"
-              class="form-control"
-            />
-          </div>
-        </div>
-
-        <div class="col-12">
-          <div class="form-outline">
-            <label class="form-label" for="form3Example5"
-              >Imagens</label
-            >
-            <div>
-              <div class="input-group mb-3">
-                <label
-                  class="input-group-text"
-                  for="inputGroupFile01"
-                  >Adicionar nova imagem</label
-                >
-                <input
-                  type="file"
-                  class="form-control"
-                  id="inputGroupFile01"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 d-flex justify-content-center">
-          <div
-            id="imgRegisterProductCarrousel"
-            class="carousel slide container-img-carrousel"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div
-                  class="container-img-carrousel d-flex justify-content-center"
-                >
-                  <img
-                    src="images/queijo.jpg"
-                    class="d-block mx-auto img-carrousel"
-                    alt="..."
-                  />
-                  <button class="delete-btn">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="registerProductModalLabel">
+                        Cadastro Produto
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-              </div>
-              <div class="carousel-item">
-                <div class="container-img-carrousel">
-                  <img
-                    src="images/wine.jpg"
-                    class="d-block mx-auto img-carrousel"
-                    alt="..."
-                  />
-                  <button class="delete-btn">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#imgRegisterProductCarrousel"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#imgRegisterProductCarrousel"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_name">Nome</label>
+                            <input type="text" id="product_name" name="name" class="form-control" />
+                        </div>
+                        @error('name')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_description">Descrição</label>
+                            <input type="text" id="product_description" name="description" class="form-control" />
+                        </div>
+                    </div>
 
-        <div class="col-12">
-          <div data-mdb-input-init class="form-outline">
-            <label class="form-label" for="form3Example4"
-              >Tipo de Produto</label
-            >
-            <select
-              class="form-select"
-              aria-label="Default select example"
-            >
-              <option selected>Tipo de Produto</option>
-              <option value="1">Vinho</option>
-              <option value="2">Queijo</option>
-              <option value="3">Charuto</option>
-              <option value="4">Café</option>
-            </select>
-          </div>
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="unit_of_measure">Unidade de Medida</label>
+                            <select id="unit_of_measure" name="unit_of_measure" class="form-control">
+                                <option value="">Selecione uma opção</option>
+                                <option value="kg">kg (Quilograma)</option>
+                                <option value="g">g (Grama)</option>
+                                <option value="L">L (Litro)</option>
+                                <option value="mL">mL (Mililitro)</option>
+                                <option value="un">un (Unidade)</option>
+                                <option value="cx">cx (Caixa)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_weight">Peso</label>
+                            <input type="number" id="product_weight" name="weight" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_quantity">Quantidade</label>
+                            <input type="number" id="product_quantity" name="quantity" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-outline">
+                            <label class="form-label">Imagens</label>
+                            <div>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="product_image">Adicionar imagem</label>
+                                    <input type="file" class="form-control" id="product_image" name="image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-2">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_type">Tipo de Produto</label>
+                            <select class="form-select" id="product_type" name="type_id"
+                                aria-label="Default select example">
+                                <option selected disabled>Selecione um tipo</option>
+                                @foreach ($products_types as $type)
+                                    <option value="{{ $type->id }}" @selected(old('product_type') == $type->id)>
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_expiration">Validade</label>
+                            <input type="date" id="product_expiration" name="expiration" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_producer">Produtor</label>
+                            <input type="text" id="product_producer" name="producer" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_storage">Armazenamento</label>
+                            <input type="text" id="product_storage" name="storage" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_pairing">Harmonização</label>
+                            <input type="text" id="product_pairing" name="pairing" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_country_region">País/Região</label>
+                            <input type="text" id="product_country_region" name="region" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="product_brand">Marca</label>
+                            <input type="text" id="product_brand" name="brand" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-dark">
+                        Cadastrar
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
-          Cancelar
-        </button>
-        <button type="submit" class="btn btn-dark">
-          Cadastrar
-        </button>
-      </div>
-    </div>
-  </div>
-</form>
+    </form>
 </div>
+
+<script>
+    document.querySelector('#registerProductModal form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let formData = new FormData(this);
+
+        let xhr = new XMLHttpRequest();
+        xhr.open(this.method, this.action, true);
+
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 500) {
+                let response = JSON.parse(xhr.responseText);
+
+                if (response.success) {
+                    alert('Produto cadastrado com sucesso!');
+                    location.reload();
+                } else {
+                    displayErrors(response.errors);
+                    alert('Dados inválidos.');
+                }
+            } else {
+                displayErrors(response.errors);
+                alert('Houve um erro inesperado no envio da requisição.');
+            }
+        };
+
+        xhr.onerror = function(err) {
+            alert('Houve um erro inesperado no envio da requisição.');
+        };
+
+        xhr.send(formData);
+    });
+
+    function displayErrors(errors) {
+        document.querySelectorAll('.is-invalid').forEach(function(element) {
+            element.classList.remove('is-invalid');
+        });
+        document.querySelectorAll('.text-danger').forEach(function(element) {
+            element.remove();
+        });
+
+        for (const field in errors) {
+            const errorMessages = errors[field];
+            const inputField = document.querySelector('[name="' + field + '"]');
+
+            inputField.classList.add('is-invalid');
+
+            const errorSpan = document.createElement('span');
+            errorSpan.classList.add('d-block', 'fs-6', 'text-danger', 'mt-2');
+            errorSpan.textContent = errorMessages.join(', ');
+            inputField.insertAdjacentElement('afterend', errorSpan);
+        }
+    }
+</script>
 <!-- Register Product Modal Ends-->

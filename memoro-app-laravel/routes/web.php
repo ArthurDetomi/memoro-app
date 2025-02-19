@@ -9,4 +9,4 @@ Route::get('/', function () {
 
 
 // Products routes
-Route::resource('products', ProductController::class);
+Route::resource('products', ProductController::class)->middleware('auth');

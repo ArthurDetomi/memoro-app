@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
+use App\Models\Feature;
+use App\Models\Product;
+use App\Models\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -12,7 +17,10 @@ class ProductController extends Controller
      */
     public function index(Request $request): View
     {
-        return view('products.index');
+        $products = Product::all();
+        $products_types = ProductType::all();
+
+        return view('products.index', compact('products_types', 'products'));
     }
 
     /**
@@ -26,9 +34,19 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $validated['user_id'] = Auth::id();
+
+        $product = Product::create($validated);
+
+        if ($product) {
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'errors' => $validated->errors]);
     }
 
     /**
