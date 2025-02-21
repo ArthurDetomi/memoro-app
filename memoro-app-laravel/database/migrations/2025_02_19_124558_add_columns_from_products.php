@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->date('expiration')->nullable()->default(null);
+            $table->date('production_date')->nullable()->default(null);
+            $table->string('pairing')->nullable()->default(null);
             $table->string('producer')->nullable()->default(null);
             $table->string('storage')->nullable()->default(null);
             $table->string('region')->nullable()->default(null);
@@ -31,6 +33,8 @@ return new class extends Migration
             $table->dropColumn('storage');
             $table->dropColumn('region');
             $table->dropColumn('brand');
+            $table->dropColumn('production_date');
+            $table->dropColumn('pairing');
         });
     }
 };

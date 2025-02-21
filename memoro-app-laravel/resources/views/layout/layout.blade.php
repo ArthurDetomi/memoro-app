@@ -11,7 +11,7 @@
 
     <title>@yield('title') | {{ config('app.name') }}</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Font Awesome Link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />

@@ -20,6 +20,13 @@ class Product extends Model
         'producer',
         'storage',
         'region',
-        'brand'
+        'brand',
+        'production_date',
+        'pairing'
     ];
+
+    public function getImageUrl()
+    {
+        return url('storage/' . $this->image);
+    }
 }

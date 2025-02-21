@@ -20,108 +20,43 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="images/wine.jpg" alt="" style="width: 45px; height: 45px"
-                                class="rounded-circle" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Vinho</p>
-                                <p class="text-muted mb-0">Vinho safra 1234</p>
+                <!-- Todo: Adicionar paginação -->
+                @foreach ($products as $product)
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}"
+                                    style="width: 45px; height: 45px" class="rounded-circle" />
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{ $product->name }}</p>
+                                    <p class="text-muted mb-0">{{ $product->brand }}</p>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1">Lorem ipsum dolor sit amet.</p>
-                        <p class="text-muted mb-0">Lorem, ipsum dolor.</p>
-                    </td>
-                    <td>600 ml</td>
-                    <td>10</td>
-                    <td>
-                        <div class="d-flex justify-content-around">
-                            <button type="button" class="btn btn-link btn-sm text-warning" title="Consumir"
-                                data-bs-toggle="modal" data-bs-target="#consumeProductModal">
-                                <i class="fas fa-cookie-bite text-brown"></i>
-                            </button>
-                            <a type="button" class="btn btn-link btn-sm text-primary" title="Visualizar"
-                                href="./product_details.html">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            <button type="button" class="btn btn-link btn-sm text-danger" title="Deletar"
-                                data-bs-toggle="modal" data-bs-target="#deleteProductModal">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="images/wine.jpg" alt="" style="width: 45px; height: 45px"
-                                class="rounded-circle" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Vinho</p>
-                                <p class="text-muted mb-0">Vinho safra 1234</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">{{ $product->description }}</p>
+                            <p class="text-muted mb-0">Lorem, ipsum dolor.</p>
+                        </td>
+                        <td>{{ $product->weight }} {{ $product->unit_of_measure }}</td>
+                        <td>{{ $product->quantity }}</td>
+                        <td>
+                            <div class="d-flex justify-content-around">
+                                <button type="button" class="btn btn-link btn-sm text-warning" title="Consumir"
+                                    data-bs-toggle="modal" data-bs-target="#consumeProductModal">
+                                    <i class="fas fa-cookie-bite text-brown"></i>
+                                </button>
+                                <a type="button" class="btn btn-link btn-sm text-primary" title="Visualizar"
+                                    href="{{ route('products.show', $product->id) }}">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <button type="button" class="btn btn-link btn-sm text-danger" title="Deletar"
+                                    data-bs-toggle="modal" data-bs-target="#deleteProductModal">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1">Lorem ipsum dolor sit amet.</p>
-                        <p class="text-muted mb-0">Lorem, ipsum dolor.</p>
-                    </td>
-                    <td>600 ml</td>
-                    <td>10</td>
-                    <td>
-                        <div class="d-flex justify-content-around">
-                            <button type="button" class="btn btn-link btn-sm text-warning" title="Consumir"
-                                data-bs-toggle="modal" data-bs-target="#consumeProductModal">
-                                <i class="fas fa-cookie-bite text-brown"></i>
-                            </button>
-                            <a type="button" class="btn btn-link btn-sm text-primary" title="Visualizar"
-                                href="./product_details.html">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            <button type="button" class="btn btn-link btn-sm text-danger" title="Deletar"
-                                data-bs-toggle="modal" data-bs-target="#deleteProductModal">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="images/wine.jpg" alt="" style="width: 45px; height: 45px"
-                                class="rounded-circle" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Vinho</p>
-                                <p class="text-muted mb-0">Vinho safra 1234</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1">Lorem ipsum dolor sit amet.</p>
-                        <p class="text-muted mb-0">Lorem, ipsum dolor.</p>
-                    </td>
-                    <td>600 ml</td>
-                    <td>10</td>
-                    <td>
-                        <div class="d-flex justify-content-around">
-                            <button type="button" class="btn btn-link btn-sm text-warning" title="Consumir"
-                                data-bs-toggle="modal" data-bs-target="#consumeProductModal">
-                                <i class="fas fa-cookie-bite text-brown"></i>
-                            </button>
-                            <a type="button" class="btn btn-link btn-sm text-primary" title="Visualizar"
-                                href="./product_details.html">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            <button type="button" class="btn btn-link btn-sm text-danger" title="Deletar"
-                                data-bs-toggle="modal" data-bs-target="#deleteProductModal">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

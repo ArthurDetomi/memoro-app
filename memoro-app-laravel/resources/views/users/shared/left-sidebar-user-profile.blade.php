@@ -4,17 +4,17 @@
         <div class="card-body">
             <div class="text-center">
                 <a href="profile.html" class="text-decoration-none text-dark">
-                    <img src="images/user.png" alt="Vijay Thapa" class="mb-3" style="height: 60px" />
+                    <img src="{{ asset('images/user.png') }}" alt="{{ Auth::user()->name }}" class="mb-3"
+                        style="height: 60px" />
 
-                    <h5 class="card-title">Vijay Thapa</h5>
+                    <h5 class="card-title">{{ Auth::user()->name }}</h5>
                 </a>
                 <h6 class="card-subtitle mb-2 text-body-secondary">
-                    "Software Developer & Content Creator."
+                    <!-- Pode colocar a profissão aqui-->
                 </h6>
 
                 <p class="card-text small text-body-secondary">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    <!-- Pode colocar uma bio aqui -->
                 </p>
 
                 <!-- User Stats Section Starts -->

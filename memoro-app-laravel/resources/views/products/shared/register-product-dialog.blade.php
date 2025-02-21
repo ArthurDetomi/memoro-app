@@ -1,7 +1,7 @@
 <!-- Register Product Modal Starts -->
 <div class="modal fade" id="registerProductModal" tabindex="-1" aria-labelledby="registerProductModalLabel"
     aria-hidden="true">
-    <form action="{{ route('products.store') }}" method="POST">
+    <form enctype="multipart/form-data" action="{{ route('products.store') }}" method="POST">
         @csrf
 
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -60,7 +60,7 @@
 
                     <div class="col-12">
                         <div class="form-outline">
-                            <label class="form-label">Imagens</label>
+                            <label class="form-label">Imagem:</label>
                             <div>
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="product_image">Adicionar imagem</label>
@@ -82,6 +82,14 @@
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="roduct_production_date">Fabricação</label>
+                            <input type="date" id="product_production_date" name="production_date"
+                                class="form-control" />
                         </div>
                     </div>
 

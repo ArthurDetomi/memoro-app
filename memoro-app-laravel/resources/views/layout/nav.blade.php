@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
     <div class="container">
         <a class="navbar-brand" href="index.html">
-            <img src="images/logo.png" alt="Social App" style="height: 36px" />
+            <img src="{{ asset('images/logo.png') }}" alt="Social App" style="height: 36px" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="images/user.png" alt="Username" style="height: 36px" />
+                        <img src="{{ asset('images/user.png') }}" alt="Username" style="height: 36px" />
                     </a>
                     <ul class="dropdown-menu">
                         <li>

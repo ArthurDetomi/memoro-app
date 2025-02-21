@@ -40,6 +40,11 @@ class ProductController extends Controller
 
         $validated['user_id'] = Auth::id();
 
+        if ($request->has('image')) {
+            $imagePath = $request->file('image')->store('product', 'public');
+            $validated['image'] = $imagePath;
+        }
+
         $product = Product::create($validated);
 
         if ($product) {
@@ -52,9 +57,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+        return view('products.show', compact('product'));
     }
 
     /**
