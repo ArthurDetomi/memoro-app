@@ -10,3 +10,5 @@ Route::get('/', function () {
 
 // Products routes
 Route::resource('products', ProductController::class)->middleware('auth');
+
+Route::put('/products/{product}/consume', [ProductController::class, 'consume'])->name('products.consume');

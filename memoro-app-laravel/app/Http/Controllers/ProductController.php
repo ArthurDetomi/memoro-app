@@ -91,8 +91,23 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', value: "Product with name $product->name deleted successfully!");
+    }
+
+    public function consume(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'quantity' => ['required', 'integer', 'min:1', 'max:' . $product->quantity],
+        ]);
+
+        $quantity = $validated['quantity'];
+
+        $product->update(['quantity' => $product->quantity - $quantity]);
+
+        return redirect()->route('products.index')->with('success', "Product with name $product->name consumed successfully!");
     }
 }

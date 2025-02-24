@@ -19,11 +19,9 @@
                         </button>
                     </div>
 
+                    @include('shared.success-message')
+
                     @include('products.shared.register-product-dialog')
-
-                    @include('products.shared.consume-product-dialog')
-
-                    @include('products.shared.delete-product-dialog')
 
                     @include('products.shared.table-products')
                 </div>

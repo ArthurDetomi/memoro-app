@@ -42,7 +42,7 @@
                         <td>
                             <div class="d-flex justify-content-around">
                                 <button type="button" class="btn btn-link btn-sm text-warning" title="Consumir"
-                                    data-bs-toggle="modal" data-bs-target="#consumeProductModal">
+                                    data-bs-toggle="modal" data-bs-target="#consumeProductModal-{{ $product->id }}">
                                     <i class="fas fa-cookie-bite text-brown"></i>
                                 </button>
                                 <a type="button" class="btn btn-link btn-sm text-primary" title="Visualizar"
@@ -50,12 +50,16 @@
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 <button type="button" class="btn btn-link btn-sm text-danger" title="Deletar"
-                                    data-bs-toggle="modal" data-bs-target="#deleteProductModal">
+                                    data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                    data-bs-toggle="modal" data-bs-target="#deleteProductModal-{{ $product->id }}">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </td>
                     </tr>
+
+                    @include('products.shared.consume-product-dialog')
+                    @include('products.shared.delete-product-dialog')
                 @endforeach
             </tbody>
         </table>
