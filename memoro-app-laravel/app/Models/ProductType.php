@@ -12,4 +12,13 @@ class ProductType extends Model
      * @var string
      */
     protected $table = 'products_types';
+
+    protected $fillable = [
+        'name'
+    ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

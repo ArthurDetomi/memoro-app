@@ -10,8 +10,14 @@
             <div class="row">
                 @include('users.shared.left-sidebar-user-profile')
 
+
+
                 <!-- Specified Product Section Starts -->
                 <div class="col-12 col-md-9 bg-white rounded-start p-4 shadow-sm">
+                    <div class="row">
+                        @include('shared.success-message')
+                    </div>
+
                     <div class="row">
                         <!-- Imagem do Produto -->
                         <div class="col-12 col-sm-4 text-center text-sm-start mb-3 mb-sm-0">
@@ -39,12 +45,12 @@
                         <div class="col-12 col-sm-8">
                             <div class="d-flex align-items-center">
                                 <h3 class="fw-bold me-2">{{ $product->name }}</h3>
-                                <button type="button" class="btn btn-link btn-sm text-primary" title="Editar"
-                                    data-bs-toggle="modal" data-bs-target="#editProductModal">
+                                <a href="{{ route('products.edit', $product->id) }}"
+                                    class="btn btn-link btn-sm text-primary" title="Editar">
                                     <i class="fas fa-edit"></i>
-                                </button>
+                                </a>
                             </div>
-                            <p class="text-muted">Tipo: Vinho Tinto</p>
+                            <p class="text-muted">Tipo: {{ $product->type->name }}</p>
                             <p class="text-muted">Origem: {{ $product->region }}</p>
                             <p class="text-muted">Marca: {{ $product->brand }}</p>
                             <p class="text-muted">Fabricação: {{ $product->production_date }}</p>
@@ -70,7 +76,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Specified Product Section Ends -->
             </div>
         </div>

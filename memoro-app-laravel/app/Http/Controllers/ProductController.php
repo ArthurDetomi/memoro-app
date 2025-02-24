@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Feature;
 use App\Models\Product;
 use App\Models\ProductType;
@@ -17,7 +18,10 @@ class ProductController extends Controller
      */
     public function index(Request $request): View
     {
-        $products = Product::all();
+        $user = Auth::user();
+
+        $products = $user->products;
+
         $products_types = ProductType::all();
 
         return view('products.index', compact('products_types', 'products'));
@@ -65,17 +69,23 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        $products_types = ProductType::all();
+
+        return view('products.edit', compact('product', 'products_types'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $validated = $request->validated();
+
+        $product->update($validated);
+
+        return redirect()->route('products.show', $product)->with('success', 'Update product successfully');
     }
 
     /**
