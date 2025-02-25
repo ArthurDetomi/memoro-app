@@ -1,12 +1,15 @@
 <!-- Products table Starts-->
 <div>
-    <div class="input-group mb-1">
-        <input type="text" class="form-control" id="advanced-search-input" placeholder="phrase in:column1,column2" />
-        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark text-light" id="advanced-search-button"
-            type="button">
-            <i class="fa fa-search"></i>
-        </button>
-    </div>
+    <form action="{{ route('products.index') }}" method="GET">
+        <div class="input-group mb-1">
+            <input name="search" type="text" class="form-control" id="advanced-search-input"
+                placeholder="Pesquise por nome do produto ou tipo..." />
+            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark text-light" id="advanced-search-button"
+                type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </form>
 
     <div class="table-responsive mb-5">
         <table class="table align-middle mb-0 bg-white">
@@ -35,7 +38,7 @@
                         </td>
                         <td>
                             <p class="fw-normal mb-1">{{ $product->description }}</p>
-                            <p class="text-muted mb-0">Lorem, ipsum dolor.</p>
+                            <p class="text-muted mb-0">{{ $product->type->name }}</p>
                         </td>
                         <td>{{ $product->weight }} {{ $product->unit_of_measure }}</td>
                         <td>{{ $product->quantity }}</td>
@@ -63,6 +66,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mt-1">
+            {{ $products->links() }}
+        </div>
     </div>
 </div>
 <!-- Products table Ends-->
