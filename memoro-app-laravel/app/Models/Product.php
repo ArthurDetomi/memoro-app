@@ -28,6 +28,10 @@ class Product extends Model
         'pairing'
     ];
 
+    protected $with = [
+        'type'
+    ];
+
     public function getImageUrl()
     {
         return url('storage/' . $this->image);
