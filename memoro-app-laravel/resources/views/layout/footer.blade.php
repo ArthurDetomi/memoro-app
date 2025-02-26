@@ -7,8 +7,10 @@
         </a>
         <a href="{{ route('products.index') }}" class="a-link-light m-2" title="Produtos"><i class="fa fa-box"></i>
         </a>
-        <a href="./memories.html" class="a-link-light m-2" title="Memórias"><i class="fa fa-photo-video"></i>
+        <a href="{{ route('memories.index') }}" class="a-link-light m-2" title="Memórias"><i
+                class="fa fa-photo-video"></i>
         </a>
     </div>
 </footer>
 <!-- Footer Section Ends Here -->
+memories.html

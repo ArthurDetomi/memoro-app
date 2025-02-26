@@ -21,7 +21,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="memories.html"><i class="fa fa-photo-video"></i>
+                    <a class="nav-link {{ Route::is('memories.index') ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('memories.index') }}"><i class="fa fa-photo-video"></i>
                         Memórias
                     </a>
                 </li>
