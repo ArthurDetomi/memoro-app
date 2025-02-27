@@ -165,9 +165,9 @@
         xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
 
         xhr.onload = function() {
-            if (xhr.status >= 200 && xhr.status < 500) {
-                let response = JSON.parse(xhr.responseText);
+            let response = JSON.parse(xhr.responseText);
 
+            if (xhr.status >= 200 && xhr.status < 500) {
                 if (response.success) {
                     alert('Produto cadastrado com sucesso!');
                     location.reload();

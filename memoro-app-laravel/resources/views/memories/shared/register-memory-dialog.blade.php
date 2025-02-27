@@ -49,8 +49,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="addImage" class="form-label">Adicionar Nova Imagem</label>
-                                <input type="file" class="form-control" id="addImage" name="images[]"
-                                    accept="image/*" />
+                                <input type="file" class="form-control" id="addImage" name="images"
+                                    accept="image/*" multiple />
                             </div>
                         </div>
                     </div>
@@ -71,8 +71,11 @@
         const modal = document.getElementById('registerMemorieModal');
         const carouselInner = document.getElementById('carousel-inner');
 
+        let selectedImages = [];
+
         modal.addEventListener('hidden.bs.modal', function() {
             carouselInner.innerHTML = ''; // Limpa todas as imagens do carrossel
+            selectedImages = [];
             document.getElementById('addImage').value = ''; // Limpa o input de arquivo
         });
 
@@ -82,6 +85,8 @@
             const file = event.target.files[0];
 
             if (file) {
+                selectedImages.push(file);
+
                 const reader = new FileReader();
 
                 reader.onload = function(e) {
@@ -108,6 +113,12 @@
                     deleteBtn.classList.add('delete-btn');
                     deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
                     deleteBtn.onclick = function() {
+                        const index = selectedImages.indexOf(file);
+
+                        if (index > -1) {
+                            selectedImages.splice(index, 1);
+                        }
+
                         carouselItem.remove();
                         if (carouselInner.children.length > 0) {
                             carouselInner.children[0].classList.add('active');
@@ -120,8 +131,82 @@
                     carouselInner.appendChild(carouselItem);
                 };
 
-                reader.readAsDataURL(file); // Converte a imagem para base64
+                reader.readAsDataURL(file);
             }
         });
+
+
+        document.querySelector('#registerMemorieModal form').addEventListener('submit', function(
+            event) {
+            event.preventDefault();
+
+            let xhr = new XMLHttpRequest();
+            xhr.open(this.method, this.action, true);
+
+            console.log(this.method, this.action);
+
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+            xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]')
+                .content);
+
+            xhr.setRequestHeader('Accept', 'application/json');
+
+            let formData = new FormData(this);
+
+            selectedImages.forEach((file) => {
+                formData.append('images[]', file);
+            })
+
+            formData.forEach((value, key) => {
+                console.log(key, value);
+            });
+
+            xhr.onload = function() {
+                let response = JSON.parse(xhr.responseText);
+
+                if (xhr.status >= 200 && xhr.status < 500) {
+                    if (response.success) {
+                        alert('Memória cadastrada com sucesso!');
+                        location.reload();
+                    } else {
+                        displayErrors(response.errors);
+                        alert('Dados inválidos.');
+                    }
+                } else {
+                    displayErrors(response.errors);
+                    alert('Houve um erro inesperado no envio da requisição.');
+                }
+            }
+
+            xhr.onerror = function(err) {
+                console.log(err);
+                alert('Houve um erro inesperado no envio da requisição.');
+            };
+
+            xhr.send(formData);
+        });
+
+        function displayErrors(errors) {
+            document.querySelectorAll('.is-invalid').forEach(function(element) {
+                element.classList.remove('is-invalid');
+            });
+            document.querySelectorAll('.text-danger').forEach(function(element) {
+                element.remove();
+            });
+
+            for (const field in errors) {
+                const errorMessages = errors[field];
+                const inputField = document.querySelector('[name="' + field + '"]');
+
+                inputField.classList.add('is-invalid');
+
+                const errorSpan = document.createElement('span');
+                errorSpan.classList.add('d-block', 'fs-6', 'text-danger', 'mt-2');
+                errorSpan.textContent = errorMessages.join(', ');
+                inputField.insertAdjacentElement('afterend', errorSpan);
+            }
+        }
+
     });
 </script>

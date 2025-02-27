@@ -53,7 +53,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return back()->with('success', 'Login already successfully');
+            return redirect()->route('memories.index')->with('success', 'Login already successfully');
         }
 
         return back()->withErrors([

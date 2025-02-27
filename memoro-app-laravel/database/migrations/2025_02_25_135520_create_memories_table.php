@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('memories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable(false)->constrained(table: 'users', indexName: 'memories_user_id')->cascadeOnDelete();
-            $table->text('comment')->nullable()->default(null);
+            $table->string('title', 255)->nullable(false);
+            $table->string('description', 255)->nullable()->default(null);
             $table->timestamps();
         });
     }

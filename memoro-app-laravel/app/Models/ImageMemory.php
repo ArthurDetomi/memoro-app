@@ -12,4 +12,11 @@ class ImageMemory extends Model
      * @var string
      */
     protected $table = 'images_memories';
+
+    protected $fillable = ['memory_id', 'image', 'caption'];
+
+    public function memory()
+    {
+        return $this->belongsTo(Memory::class, 'memory_id');
+    }
 }
