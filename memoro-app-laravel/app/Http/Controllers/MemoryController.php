@@ -17,7 +17,11 @@ class MemoryController extends Controller
      */
     public function index()
     {
-        return view('memories.index');
+        $user = Auth::user();
+
+        $memories = $user->memories()->orderBy('created_at', 'DESC')->get();
+
+        return view('memories.index', compact('memories'));
     }
 
     /**
@@ -73,17 +77,17 @@ class MemoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Memory $memory)
     {
-        //
+        return view('memories.show', compact('memory'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Memory $memory)
     {
-        //
+        return view('memories.edit', compact('memory'));
     }
 
     /**

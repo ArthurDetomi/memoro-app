@@ -19,4 +19,9 @@ class ImageMemory extends Model
     {
         return $this->belongsTo(Memory::class, 'memory_id');
     }
+
+    public function getImageUrl()
+    {
+        return url('storage/' . $this->image);
+    }
 }

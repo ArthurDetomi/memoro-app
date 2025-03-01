@@ -23,4 +23,9 @@ class Memory extends Model
     {
         return $this->hasMany(ImageMemory::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
