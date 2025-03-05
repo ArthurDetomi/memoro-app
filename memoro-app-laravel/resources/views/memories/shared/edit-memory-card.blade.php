@@ -15,7 +15,11 @@
 
         <!-- Card Body -->
         <div class="card-body">
-            <form action="">
+            <form id="editMemoryForm" action="{{ route('memories.update', $memory->id) }}" method="POST"
+                enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
+
                 <div class="row">
                     <!-- Carousel Section -->
                     <div class="col-md-6">
@@ -59,7 +63,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="addImage" class="form-label">Adicionar Nova Imagem</label>
-                            <input type="file" class="form-control" id="addImage" accept="image/*" />
+                            <input type="file" class="form-control" id="addImage" accept="image/*" name="images" />
                         </div>
                     </div>
                 </div>
@@ -131,4 +135,87 @@
             reader.readAsDataURL(file);
         }
     });
+
+
+    async function getImageFile(imgElement) {
+        const response = await fetch(imgElement.src);
+        const blob = await response.blob();
+
+        const urlParts = imgElement.src.split('/');
+        const fileName = urlParts[urlParts.length - 1] || 'image.jpg';
+
+        return new File([blob], fileName, {
+            type: blob.type
+        });
+    }
+
+    document.getElementById('editMemoryForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        let carouselInner = document.getElementById('carousel-inner');
+
+        let imagesFiles = await Promise.all(
+            Array.from(carouselInner.querySelectorAll('img')).map(async img => {
+                return await getImageFile(img);
+            })
+        );
+
+        let formData = new FormData(this);
+
+        formData.append('_method', 'PUT');
+
+        imagesFiles.forEach(file => {
+            formData.append('images[]', file);
+        });
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.open(this.method, this.action, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.setRequestHeader('X-CSRF-TOKEN', formData.get('_token'));
+
+        xhr.onload = function() {
+            let response = JSON.parse(xhr.responseText);
+
+            if (xhr.status >= 200 && xhr.status < 500) {
+                if (response.success) {
+                    alert('Memória cadastrada com sucesso!');
+                    location.reload();
+                } else {
+                    displayErrors(response.errors);
+                    alert('Dados inválidos.');
+                }
+            } else {
+                displayErrors(response.errors);
+                alert('Houve um erro inesperado no envio da requisição.');
+            }
+        };
+
+        xhr.onerror = function(err) {
+            alert('Houve um erro inesperado no envio da requisição.');
+        };
+
+        xhr.send(formData);
+    });
+
+    function displayErrors(errors) {
+        document.querySelectorAll('.is-invalid').forEach(function(element) {
+            element.classList.remove('is-invalid');
+        });
+        document.querySelectorAll('.text-danger').forEach(function(element) {
+            element.remove();
+        });
+
+        for (const field in errors) {
+            const errorMessages = errors[field];
+            const inputField = document.querySelector('[name="' + field + '"]');
+
+            inputField.classList.add('is-invalid');
+
+            const errorSpan = document.createElement('span');
+            errorSpan.classList.add('d-block', 'fs-6', 'text-danger', 'mt-2');
+            errorSpan.textContent = errorMessages.join(', ');
+            inputField.insertAdjacentElement('afterend', errorSpan);
+        }
+    }
 </script>

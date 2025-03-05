@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMemoryRequest;
+use App\Http\Requests\UpdateMemoryRequest;
 use App\Models\ImageMemory;
 use App\Models\Memory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class MemoryController extends Controller
 {
@@ -93,9 +95,48 @@ class MemoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateMemoryRequest $request, Memory $memory)
     {
-        //
+        $validated = $request->validated();
+
+        DB::beginTransaction();
+
+        try {
+            $memory->update([
+                'title' => $validated['title'],
+                'description' => $validated['description']
+            ]);
+
+            if (request()->has('images')) {
+                foreach ($memory->images as $image) {
+                    Storage::disk('public')->delete($image->image);
+                    $image->delete();
+                }
+
+                $imageData = [];
+
+                foreach ($request->file('images') as $imageFile) {
+                    $path = $imageFile->store('memories', 'public');
+
+                    $imageData[] = [
+                        'memory_id' => $memory->id,
+                        'image' => $path,
+                        'caption' => null,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+
+                ImageMemory::insert($imageData);
+            }
+
+            DB::commit();
+
+            return response()->json(['success' => true, 'message' => 'Memória atualizada com sucesso!']);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => 'Erro ao salvar memória.', 'error' => $e->getMessage()], 500);
+        }
     }
 
     /**

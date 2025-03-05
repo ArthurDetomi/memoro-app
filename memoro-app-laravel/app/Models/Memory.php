@@ -11,7 +11,8 @@ class Memory extends Model
     protected $fillable = [
         'user_id',
         'description',
-        'title'
+        'title',
+        'images'
     ];
 
 

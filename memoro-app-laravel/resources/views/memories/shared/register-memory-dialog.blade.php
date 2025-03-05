@@ -143,24 +143,19 @@
             let xhr = new XMLHttpRequest();
             xhr.open(this.method, this.action, true);
 
-            console.log(this.method, this.action);
-
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-            xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]')
-                .content);
+            let formData = new FormData(this);
+
+            xhr.setRequestHeader('X-CSRF-TOKEN', formData.get('_token'));
 
             xhr.setRequestHeader('Accept', 'application/json');
 
-            let formData = new FormData(this);
 
             selectedImages.forEach((file) => {
                 formData.append('images[]', file);
             })
 
-            formData.forEach((value, key) => {
-                console.log(key, value);
-            });
 
             xhr.onload = function() {
                 let response = JSON.parse(xhr.responseText);
@@ -180,7 +175,6 @@
             }
 
             xhr.onerror = function(err) {
-                console.log(err);
                 alert('Houve um erro inesperado no envio da requisição.');
             };
 
