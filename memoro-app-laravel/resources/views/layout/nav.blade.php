@@ -1,7 +1,7 @@
 <!-- Navigation Section Starts Here -->
 <nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="#">
             <img src="{{ asset('images/logo.png') }}" alt="Social App" style="height: 36px" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -60,39 +60,40 @@
                 </button>
             </form>
             <!-- Search Bar Ends  -->
-
-            <!-- User Profile Starts  -->
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="{{ asset('images/user.png') }}" alt="Username" style="height: 36px" />
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="profile.html">Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="password_change.html">Change Password</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="settings.html">Settings</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        @auth()
+            @auth
+                <!-- User Profile Starts  -->
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="{{ Auth::user()->getImageUrl() }}" alt="Username" style="height: 36px" />
+                        </a>
+                        <ul class="dropdown-menu">
                             <li>
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <button class="dropdown-item" type="submit">Logout</button>
-                                </form>
+                                <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">Profile</a>
                             </li>
-                        @endauth
-                    </ul>
-                </li>
-            </ul>
-            <!-- User Profile Ends  -->
+                            <li>
+                                <a class="dropdown-item" href="password_change.html">Change Password</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="settings.html">Settings</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            @auth()
+                                <li>
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <button class="dropdown-item" type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            @endauth
+                        </ul>
+                    </li>
+                </ul>
+                <!-- User Profile Ends  -->
+            @endauth
         </div>
     </div>
 </nav>

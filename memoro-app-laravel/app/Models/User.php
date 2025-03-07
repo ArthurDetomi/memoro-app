@@ -22,6 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
+        'country',
+        'short_bio',
+        'profession',
+        'birth_date'
     ];
 
     /**
@@ -55,5 +60,14 @@ class User extends Authenticatable
     public function memories(): HasMany
     {
         return $this->hasMany(Memory::class);
+    }
+
+    public function getImageUrl()
+    {
+        if ($this->image) {
+            return url('storage/' . $this->image);
+        }
+
+        return asset('images/user.png');
     }
 }

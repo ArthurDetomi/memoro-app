@@ -4,13 +4,13 @@
         <div class="card-body">
             <div class="text-center">
                 <a href="profile.html" class="text-decoration-none text-dark">
-                    <img src="{{ asset('images/user.png') }}" alt="{{ Auth::user()->name }}" class="mb-3"
-                        style="height: 60px" />
+                    <img src={{ Auth::user()->getImageUrl() }} alt="{{ Auth::user()->name }}"
+                        alt="{{ Auth::user()->name }}" class="mb-3" style="height: 60px" />
 
                     <h5 class="card-title">{{ Auth::user()->name }}</h5>
                 </a>
                 <h6 class="card-subtitle mb-2 text-body-secondary">
-                    <!-- Pode colocar a profissão aqui-->
+                    {{ Auth::user()->profession }}
                 </h6>
 
                 <p class="card-text small text-body-secondary">
@@ -43,7 +43,7 @@
 
             <hr />
             <p class="text-center">
-                <a href="#" class="a-link-active text-primary">Ver Perfil</a>
+                <a href="{{ route('users.show', Auth::id()) }}" class="a-link-active text-primary">Ver Perfil</a>
             </p>
         </div>
     </div>

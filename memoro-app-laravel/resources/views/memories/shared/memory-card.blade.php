@@ -4,13 +4,14 @@
         <!-- Post Header Starts -->
         <div class="row">
             <div class="col-1">
-                <a href="#">
-                    <img src="{{ asset('images/user1.png') }}" alt="{{ $memory->user->name }}" style="height: 45px" />
+                <a href="{{ route('users.show', $memory->user->id) }}">
+                    <img src="{{ $memory->user->getImageUrl() }}" alt="{{ $memory->user->name }}" style="height: 45px" />
                 </a>
             </div>
 
             <div class="col-10">
-                <a href="#" class="fw-bolder a-link">{{ $memory->user->name }}</a>
+                <a href="{{ route('users.show', $memory->user->id) }}"
+                    class="fw-bolder a-link">{{ $memory->user->name }}</a>
                 <p class="small text-body-secondary">
                     <!-- Pode colocar a profissão do usuário por exemplo futuramente-->
                 </p>
@@ -92,7 +93,7 @@
 
         <div class="row">
             <div class="col-1">
-                <img src="{{ asset('images/user1.png') }}" alt="User1 Full Name" style="height: 25px" />
+                <img src="{{ $memory->user->getImageUrl() }}" alt="User1 Full Name" style="height: 25px" />
             </div>
 
             <div class="col-11">

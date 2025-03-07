@@ -179,7 +179,7 @@
 
             if (xhr.status >= 200 && xhr.status < 500) {
                 if (response.success) {
-                    alert('Memória cadastrada com sucesso!');
+                    alert('Memória atualizada com sucesso!');
                     location.reload();
                 } else {
                     displayErrors(response.errors);
