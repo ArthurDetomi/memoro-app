@@ -14,10 +14,16 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" name="email" class="form-control" placeholder="Enter email" />
+                        @error('email')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" name="password" class="form-control" placeholder="Password" />
+                        @error('password')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-dark mt-3">Login</button>
                     <div class="mt-3">
