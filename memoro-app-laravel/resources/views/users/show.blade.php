@@ -81,24 +81,31 @@
                                     </div>
                                 </div>
 
-                                <div class="col-1">
-                                    <div class="dropdown dropstart">
-                                        <a href="#" class="a-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                            ...
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="about.html">Edit Profile</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="password_change.html">Change Password</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="settings.html">Settings</a>
-                                            </li>
-                                        </ul>
+                                @if (Auth::id() == $user->id)
+                                    <div class="col-1">
+                                        <div class="dropdown dropstart">
+                                            <a href="#" class="a-link" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                ...
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('users.edit', $user->id) }}">Edit Profile</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('users.password.edit', $user->id) }}">Change
+                                                        Password</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('users.settings', parameters: $user->id) }}">Settings</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
 
                             @if (Auth::id() == $user->id)
@@ -111,11 +118,13 @@
                                         </li>
 
                                         <li class="nav-item">
-                                            <a class="nav-link text-body-secondary" href="password_change.html">Change
+                                            <a class="nav-link text-body-secondary"
+                                                href="{{ route('users.password.edit', $user->id) }}">Change
                                                 Password</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link text-body-secondary" href="settings.html">Settings</a>
+                                            <a class="nav-link text-body-secondary"
+                                                href="{{ route('users.settings', $user->id) }}">Settings</a>
                                         </li>
                                     </ul>
                                 </div>

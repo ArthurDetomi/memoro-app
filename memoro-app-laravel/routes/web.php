@@ -21,4 +21,7 @@ Route::resource('users', UserController::class)->middleware('auth');
 Route::controller(UserController::class)->group(function () {
     Route::get('/users/{user}/changepassword', 'getUpdatePasswordPage')->name('users.password.edit');
     Route::put('/users/{user}/changepassword', 'updatePassword')->name('users.password.update');
+
+    Route::get('/users/{user}/settings', 'settings')->name('users.settings');
+    Route::put('/users/{user}/deactivate', 'deactivate')->name('users.deactivate');
 });

@@ -51,6 +51,16 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            if (!$user->is_active) {
+                Auth::logout();
+
+                return back()->withErrors([
+                    'email' => 'Your account is inactive. Please contact support.'
+                ])->onlyInput('email');
+            }
+
             $request->session()->regenerate();
 
             return redirect()->route('memories.index')->with('success', 'Login already successfully');
@@ -69,6 +79,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return back()->with('success', 'Logged out successfully');
+        return redirect()->route('login')->with('success', 'Logged out successfully');
     }
 }

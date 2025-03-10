@@ -92,6 +92,27 @@ class UserController extends Controller
         return back()->with('success', 'Changed password successfully!');
     }
 
+    public function settings(User $user)
+    {
+        return  view('users.settings', compact('user'));
+    }
+
+    public function deactivate(Request $request)
+    {
+        $user = Auth::user();
+
+        $user->update([
+            'is_active' => false
+        ]);
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Your account has been deactivated.');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

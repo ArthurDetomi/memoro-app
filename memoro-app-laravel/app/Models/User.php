@@ -26,7 +26,8 @@ class User extends Authenticatable
         'country',
         'short_bio',
         'profession',
-        'birth_date'
+        'birth_date',
+        'is_active'
     ];
 
     /**

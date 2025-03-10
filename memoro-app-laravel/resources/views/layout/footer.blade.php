@@ -13,4 +13,3 @@
     </div>
 </footer>
 <!-- Footer Section Ends Here -->
-memories.html

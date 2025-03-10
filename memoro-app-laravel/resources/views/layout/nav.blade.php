@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="products.html"><i class="fa fa-home"></i> Página
+                    <a class="nav-link" aria-current="page" href="#"><i class="fa fa-home"></i> Página
                         Inicial</a>
                 </li>
                 <li class="nav-item">
@@ -73,10 +73,11 @@
                                 <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">Profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="password_change.html">Change Password</a>
+                                <a class="dropdown-item" href="{{ route('users.password.edit', Auth::id()) }}">Change
+                                    Password</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                <a class="dropdown-item" href="{{ route('users.settings', Auth::id()) }}">Settings</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider" />
