@@ -1,0 +1,40 @@
+version: '3'
+
+networks:
+  banco:
+
+
+services:
+  app_laravel:
+    image: php:8.3.11-cli
+    restart: always
+    working_dir: /memoro-app-laravel
+    command: bash ./app.sh
+    depends_on:
+      - db
+    ports:
+      - 80:80
+    volumes:
+      - ./memoro-app-laravel:/memoro-app-laravel
+    environment:
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_HOST: db
+      DB_PASSWORD: ${DB_PASSWORD}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+    networks:
+      - banco
+  db:
+    image: mysql:8.4.2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - banco
+
+  volumes:
+    mysql_data:
