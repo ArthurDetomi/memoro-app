@@ -20,7 +20,7 @@ jobs:
 
             cat <<EOF > .env
             APP_ENV=production
-            APP_DEBUG=${{ secrets.APP_DEBUG }}
+            APP_DEBUG=false
             DB_HOST=${{ secrets.DB_HOST }}
             DB_DATABASE=${{ secrets.DB_DATABASE }}
             DB_USERNAME=${{ secrets.DB_USERNAME }}
