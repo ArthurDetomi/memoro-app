@@ -5,12 +5,12 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
 docker-php-ext-install pdo pdo_mysql mbstring zip gd
 
-chown -R www-data:www-data /ideas-project/storage
-chown -R www-data:www-data /ideas-project/bootstrap/cache
-chmod -R 775 /ideas-project/storage
-chmod -R 775 /ideas-project/bootstrap/cache
+chown -R www-data:www-data /memoro-app-laravel/storage
+chown -R www-data:www-data /memoro-app-laravel/bootstrap/cache
+chmod -R 775 /memoro-app-laravel/storage
+chmod -R 775 /memoro-app-laravel/bootstrap/cache
 
-sleep 20
+sleep 60
 
 composer install
 
