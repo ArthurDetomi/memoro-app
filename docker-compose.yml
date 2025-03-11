@@ -3,7 +3,7 @@ networks:
 
 
 services:
-  app_laravel:
+  memoro_app:
     image: php:8.3.11-cli
     restart: always
     working_dir: /memoro-app-laravel
