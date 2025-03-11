@@ -34,5 +34,5 @@ services:
     networks:
       - banco
 
-  volumes:
-    mysql_data:
+volumes:
+  mysql_data:
