@@ -1,4 +1,4 @@
-apt update && apt install -y curl unzip default-mysql-client
+apt update && apt install -y curl unzip default-mysql-client git libonig-dev
 
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
