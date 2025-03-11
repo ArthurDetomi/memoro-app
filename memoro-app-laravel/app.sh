@@ -1,5 +1,5 @@
 #!/bin/bash
-apt update && apt install -y curl unzip git default-mysql-client
+apt update && apt install -y curl unzip git default-mysql-client php-zip
 
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -7,12 +7,15 @@ docker-php-ext-install pdo pdo_mysql mbstring zip gd
 
 chown -R www-data:www-data /memoro-app-laravel/storage
 chown -R www-data:www-data /memoro-app-laravel/bootstrap/cache
+chown -R www-data:www-data /memoro-app-laravel/vendor
+
 chmod -R 775 /memoro-app-laravel/storage
 chmod -R 775 /memoro-app-laravel/bootstrap/cache
+chmod -R 775 /memoro-app-laravel/vendor
 
 sleep 10
 
-composer install --no-interaction --prefer-dist
+composer install --no-interaction --prefer-dist -vvv
 
 php artisan migrate
 
