@@ -5,7 +5,7 @@ apt update && apt install -y curl unzip default-mysql-client git zip
 
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-docker-php-ext-install pdo pdo_mysql mbstring zip gd
+docker-php-ext-install pdo pdo_mysql mbstring zip gd 
 
 chown -R www-data:www-data /memoro-app-laravel/storage
 chown -R www-data:www-data /memoro-app-laravel/bootstrap/cache
