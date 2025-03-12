@@ -12,13 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->date('expiration')->nullable()->default(null);
             $table->date('production_date')->nullable()->default(null);
-            $table->string('pairing')->nullable()->default(null);
-            $table->string('producer')->nullable()->default(null);
             $table->string('storage')->nullable()->default(null);
             $table->string('region')->nullable()->default(null);
-            $table->string('brand')->nullable()->default(null);
         });
     }
 
@@ -28,13 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('expiration');
-            $table->dropColumn('producer');
             $table->dropColumn('storage');
             $table->dropColumn('region');
-            $table->dropColumn('brand');
             $table->dropColumn('production_date');
-            $table->dropColumn('pairing');
         });
     }
 };
