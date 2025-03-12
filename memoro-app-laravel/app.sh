@@ -1,7 +1,7 @@
 sed -i 's|http|https|g' /etc/apt/sources.list /etc/apt/sources.list.d/*
 sed -i 's|http|https|g' /etc/apt/sources.list.d/ubuntu.sources
 
-apt update && apt install -y curl unzip default-mysql-client git
+apt update && apt install -y curl unzip default-mysql-client git zip
 
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
