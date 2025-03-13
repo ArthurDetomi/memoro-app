@@ -47,7 +47,7 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required', 'min:8']
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -63,7 +63,7 @@ class AuthController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('memories.index')->with('success', 'Login already successfully');
+            return redirect()->route('memories.index')->with('success', 'Logged in successfully');
         }
 
         return back()->withErrors([
