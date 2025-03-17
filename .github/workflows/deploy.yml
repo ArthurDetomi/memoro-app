@@ -30,7 +30,7 @@ jobs:
             MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
             EOF
 
-            git pull origin main
+            git pull --force  origin main
 
             sudo docker compose down
             sudo docker compose up -d
