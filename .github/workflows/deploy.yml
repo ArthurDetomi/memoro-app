@@ -18,6 +18,10 @@ jobs:
           script: |
             cd memoro-app/
 
+            git pull --force  origin main
+
+            cp .env-prod .env
+
             cat <<EOF > .env
             APP_ENV=production
             APP_DEBUG=false
@@ -29,8 +33,6 @@ jobs:
             MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}
             MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
             EOF
-
-            git pull --force  origin main
 
             sudo docker compose down
             sudo docker compose up -d
