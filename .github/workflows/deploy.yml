@@ -18,6 +18,8 @@ jobs:
           script: |
             cd memoro-app/
 
+            git stash
+
             git pull --force  origin main
 
             cp memoro-app-laravel/.env-prod memoro-app-laravel/.env
