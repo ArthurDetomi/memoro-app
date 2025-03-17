@@ -17,28 +17,7 @@
                     <!-- Pode colocar uma bio aqui -->
                 </p>
 
-                <!-- User Stats Section Starts -->
-                <div class="row">
-                    <div class="col">
-                        <strong>199</strong> <br />
-                        <small class="text-body-secondary">Posts</small>
-                    </div>
-
-                    <div class="col"
-                        style="
-                            border-left: 1px solid black;
-                            border-right: 1px solid black;
-                        ">
-                        <strong>112</strong> <br />
-                        <small class="text-body-secondary">Seguidores</small>
-                    </div>
-
-                    <div class="col">
-                        <strong>65</strong> <br />
-                        <small class="text-body-secondary">Seguindo</small>
-                    </div>
-                </div>
-                <!-- User Stats Section Ends -->
+                <!-- User Stats Section {Pode adicionar futuramente} -->
             </div>
 
             <hr />
