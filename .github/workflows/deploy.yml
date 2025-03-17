@@ -20,7 +20,7 @@ jobs:
 
             git pull --force  origin main
 
-            cp .env-prod .env
+            cp memoro-app-laravel/.env-prod memoro-app-laravel/.env
 
             cat <<EOF > .env
             APP_ENV=production
