@@ -10,6 +10,7 @@ use App\Models\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -74,6 +75,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        Gate::authorize('view', $product);
+
         return view('products.show', compact('product'));
     }
 
@@ -82,6 +85,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        Gate::authorize('update', $product);
+
         $products_types = ProductType::all();
 
         return view('products.edit', compact('product', 'products_types'));
@@ -92,6 +97,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
+        Gate::authorize('update', $product);
+
         $validated = $request->validated();
 
         $product->update($validated);
@@ -104,6 +111,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        Gate::authorize('delete', $product);
+
         $product->delete();
 
         return redirect()->route('products.index')->with('success', value: "Product with name $product->name deleted successfully!");
@@ -111,6 +120,8 @@ class ProductController extends Controller
 
     public function consume(Request $request, Product $product)
     {
+        Gate::authorize('update', $product);
+
         $validated = $request->validate([
             'quantity' => ['required', 'integer', 'min:1', 'max:' . $product->quantity],
         ]);

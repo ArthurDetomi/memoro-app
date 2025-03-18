@@ -177,10 +177,14 @@
         xhr.onload = function() {
             let response = JSON.parse(xhr.responseText);
 
-            if (xhr.status >= 200 && xhr.status < 500) {
+            if (xhr.status == 403) {
+                displayErrors(response.errors);
+                alert("You don't have permission for it.");
+            } else if (xhr.status >= 200 && xhr.status < 500) {
                 if (response.success) {
                     alert('Memória atualizada com sucesso!');
-                    location.reload();
+
+                    window.location.href = response.redirect;
                 } else {
                     displayErrors(response.errors);
                     alert('Dados inválidos.');
