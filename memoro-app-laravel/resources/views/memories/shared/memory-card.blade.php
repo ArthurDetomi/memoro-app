@@ -27,8 +27,12 @@
                             <a class="dropdown-item" href="{{ route('memories.edit', $memory->id) }}">Edit</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                data-bs-target="#deleteMemorieModal">Delete</a>
+                            <form action="{{ route('memories.destroy', $memory->id) }}" method="POST">
+                                @csrf
+                                @method('delete')
+
+                                <button type="submit" class="dropdown-item">Delete</button>
+                            </form>
                         </li>
                     </ul>
                 </div>

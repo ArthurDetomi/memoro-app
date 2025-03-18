@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class MemoryController extends Controller
 {
@@ -81,6 +82,8 @@ class MemoryController extends Controller
      */
     public function show(Memory $memory)
     {
+        Gate::authorize('view', $memory);
+
         return view('memories.show', compact('memory'));
     }
 
@@ -89,6 +92,8 @@ class MemoryController extends Controller
      */
     public function edit(Memory $memory)
     {
+        Gate::authorize('update', $memory);
+
         return view('memories.edit', compact('memory'));
     }
 
@@ -97,6 +102,8 @@ class MemoryController extends Controller
      */
     public function update(UpdateMemoryRequest $request, Memory $memory)
     {
+        Gate::authorize('update', $memory);
+
         $validated = $request->validated();
 
         DB::beginTransaction();
@@ -132,7 +139,7 @@ class MemoryController extends Controller
 
             DB::commit();
 
-            return response()->json(['success' => true, 'message' => 'Memória atualizada com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Memória atualizada com sucesso!', 'redirect' => route('memories.show', $memory)]);
         } catch (\Exception $ex) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => 'Erro ao salvar memória.', 'error' => $e->getMessage()], 500);
@@ -142,8 +149,25 @@ class MemoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Memory $memory)
     {
-        //
+        Gate::authorize('delete', $memory);
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($memory->images as $image) {
+                Storage::disk('public')->delete($image->image);
+            }
+
+            $memory->delete();
+
+            DB::commit();
+
+            return redirect()->route('memories.index')->with('success', 'Memory deleted successfully!');
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return redirect()->route('memories.index')->withErrors(['error' => 'Error deleting memory']);
+        }
     }
 }

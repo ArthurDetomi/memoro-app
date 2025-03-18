@@ -162,7 +162,7 @@
 
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-        xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+        xhr.setRequestHeader('X-CSRF-TOKEN', formData.get('_token'));
 
         xhr.onload = function() {
             let response = JSON.parse(xhr.responseText);

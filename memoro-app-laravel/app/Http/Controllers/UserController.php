@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -37,6 +38,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        Gate::authorize('view', $user);
+
         return view('users.show', compact('user'));
     }
 
@@ -45,6 +48,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        Gate::authorize('update', $user);
+
         return view('users.edit', compact('user'));
     }
 
@@ -53,6 +58,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        Gate::authorize('update', $user);
+
         $validated = $request->validated();
 
         if ($request->has('image')) {
@@ -69,6 +76,8 @@ class UserController extends Controller
 
     public function getUpdatePasswordPage(User $user)
     {
+        Gate::authorize('update', $user);
+
         return view('users.change-password', compact('user'));
     }
 
