@@ -44,14 +44,14 @@
                 </li>
             </ul>
 
-            <!-- Search Bar Starts  -->
+            <!-- Search Bar Starts
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar" />
+               <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar" />
                 <button class="btn btn-outline-warning" type="submit">
                     Pesquisar
                 </button>
             </form>
-            <!-- Search Bar Ends  -->
+            Search Bar Ends  -->
             @auth
                 <!-- User Profile Starts  -->
                 <ul class="navbar-nav mb-2 mb-lg-0">
