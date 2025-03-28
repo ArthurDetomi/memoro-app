@@ -16,21 +16,19 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo -u www-data bash
             cd /var/www/html/memoro-app/memoro-app-laravel
-            php artisan down
 
-            git pull origin main
+            sudo -u www-data php artisan down
 
-            composer install --no-dev --optimize-autoloader
+            sudo -u www-data git pull origin main
 
-            php artisan migrate
-            php artisan cache:clear
-            php artisan config:clear
-            php artisan route:clear
-            php artisan view:clear
+            csudo -u www-data composer install --no-dev --optimize-autoloader
 
-            exit 
+            sudo -u www-data php artisan migrate
+            sudo -u www-data php artisan cache:clear
+            sudo -u www-data php artisan config:clear
+            sudo -u www-data php artisan route:clear
+            sudo -u www-data php artisan view:clear
 
             sudo systemctl restart apache2
 
