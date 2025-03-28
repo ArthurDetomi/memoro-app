@@ -1,7 +1,7 @@
 <!-- Navigation Section Starts Here -->
 <nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('memories.index') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Social App" style="height: 36px" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -10,11 +10,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('memories.index') }}"><i
-                            class="fa fa-home"></i> Página
-                        Inicial</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link  {{ Route::is('products.index') ? 'active' : '' }}" aria-current="page"
                         href={{ route('products.index') }}><i class="fa fa-box"></i>
