@@ -1,40 +1,37 @@
-# name: Deploy Laravel
+name: Deploy Laravel
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Conectar à VM e fazer deploy
-#         uses: appleboy/ssh-action@v0.1.7
-#         with:
-#           host: ${{ secrets.SSH_HOST }}
-#           username: ${{ secrets.SSH_USER }}
-#           key: ${{ secrets.SSH_PRIVATE_KEY }}
-#           script: |
-#             cd memoro-app/
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conectar à VM e fazer deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo -u www-data bash
+            cd /var/www/html/memoro-app/memoro-app-laravel
+            php artisan down
 
-#             git stash
+            git pull origin main
 
-#             git pull --force  origin main
+            composer install --no-dev --optimize-autoloader
 
-#             cp memoro-app-laravel/.env-prod memoro-app-laravel/.env
+            php artisan migrate
+            php artisan cache:clear
+            php artisan config:clear
+            php artisan route:clear
+            php artisan view:clear
 
-#             cat <<EOF > .env
-#             APP_ENV=production
-#             APP_DEBUG=false
-#             DB_HOST=${{ secrets.DB_HOST }}
-#             DB_DATABASE=${{ secrets.DB_DATABASE }}
-#             DB_USERNAME=${{ secrets.DB_USERNAME }}
-#             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-#             MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}
-#             MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}
-#             MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
-#             EOF
+            exit 
 
-#             sudo docker compose down
-#             sudo docker compose up -d
+            sudo systemctl restart apache2
+
+            sudo -u www-data php artisan up
