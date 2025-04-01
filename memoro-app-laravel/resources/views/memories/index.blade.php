@@ -14,21 +14,24 @@
                 <!-- Feed Section Starts -->
                 <div class="col-md-6">
                     <div>
-                        <h1>Memorias</h1>
+                        <h1><i class="fa fa-photo-video"></i> Memorias</h1>
                     </div>
 
                     <div class="mb-3">
-                        <button class="btn btn-dark" data-mdb-ripple-init data-bs-toggle="modal"
-                            data-bs-target="#registerMemorieModal">
-                            Cadastrar Memória
+                        <button class="btn btn-dark rounded-circle" data-mdb-ripple-init data-bs-toggle="modal"
+                            data-bs-target="#registerMemorieModal" title="Cadastrar memória">
+                            <i class="fas fa-plus"></i>
                         </button>
                     </div>
 
                     @include('shared.success-message')
 
-                    @foreach ($memories as $memory)
+                    @forelse ($memories as $memory)
                         @include('memories.shared.memory-card')
-                    @endforeach
+
+                    @empty
+                        <p>Que tal começar a registrar suas memórias agora? 🌟</p>
+                    @endforelse
                 </div>
                 <!-- Feed Section Starts -->
 
