@@ -11,6 +11,8 @@
 
                 <!-- Feed Section Starts -->
                 <div class="col-md-6">
+                    @include('shared.success-message')
+
                     @include('memories.shared.memory-card')
                 </div>
             </div>

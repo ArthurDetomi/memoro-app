@@ -4,7 +4,6 @@
 
 @section('content')
 
-    @include('memories.shared.register-memory-dialog')
     <!-- Main Content Section Starts Here -->
     <section class="main-content py-4">
         <div class="container">
@@ -14,14 +13,14 @@
                 <!-- Feed Section Starts -->
                 <div class="col-md-6">
                     <div>
-                        <h1><i class="fa fa-photo-video"></i> Memorias</h1>
+                        <h1><i class="fa fa-photo-video"></i> Memórias</h1>
                     </div>
 
                     <div class="mb-3">
-                        <button class="btn btn-dark rounded-circle" data-mdb-ripple-init data-bs-toggle="modal"
-                            data-bs-target="#registerMemorieModal" title="Cadastrar memória">
+                        <a class="btn btn-dark rounded-circle" data-mdb-ripple-init href="{{ route('memories.create') }}"
+                            title="Cadastrar memória">
                             <i class="fas fa-plus"></i>
-                        </button>
+                        </a>
                     </div>
 
                     @include('shared.success-message')

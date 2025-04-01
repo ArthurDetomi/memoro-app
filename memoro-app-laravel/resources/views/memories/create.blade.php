@@ -11,7 +11,8 @@
 
                 <!-- Feed Section Starts -->
                 <div class="col-md-9">
-                    <!-- Colocar formulário de cadastro -->
+                    @include('shared.error-message')
+                    @include('memories.shared.submit-memory-card')
                 </div>
             </div>
         </div>
