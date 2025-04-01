@@ -9,6 +9,9 @@
                 </label>
                 <input type="text" class="form-control" id="memorieTitle" name="title"
                     placeholder="Digite o título da memória" required>
+                @error('title')
+                    <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -17,6 +20,9 @@
                 </label>
                 <textarea class="form-control" id="memorieDescription" name="description" rows="3"
                     placeholder="Digite a descrição"></textarea>
+                @error('description')
+                    <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -25,6 +31,9 @@
                 </label>
                 <input type="file" class="form-control" id="addImage" name="images[]" accept="image/*" multiple
                     required>
+                @error('images[]')
+                    <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-dark">Salvar</button>
