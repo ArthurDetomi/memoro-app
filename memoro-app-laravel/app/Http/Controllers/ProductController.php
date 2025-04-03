@@ -44,7 +44,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $products_types = ProductType::all();
+
+        return view('products.create', compact('products_types'));
     }
 
     /**
@@ -61,13 +63,9 @@ class ProductController extends Controller
             $validated['image'] = $imagePath;
         }
 
-        $product = Product::create($validated);
+        Product::create($validated);
 
-        if ($product) {
-            return response()->json(['success' => true]);
-        }
-
-        return response()->json(['success' => false, 'errors' => $validated->errors]);
+        return redirect()->route('products.index')->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**

@@ -34,7 +34,13 @@ class Product extends Model
 
     public function getImageUrl()
     {
-        return url('storage/' . $this->image);
+        if ($this->image) {
+            return url('storage/' . $this->image);
+        }
+
+        $typeName = $this->type->name;
+
+        return asset("images/products/$typeName.png");
     }
 
     public function type()
