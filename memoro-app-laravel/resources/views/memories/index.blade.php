@@ -12,12 +12,9 @@
 
                 <!-- Feed Section Starts -->
                 <div class="col-md-6">
-                    <div>
-                        <h1><i class="fa fa-photo-video"></i> Memórias</h1>
-                    </div>
-
-                    <div class="mb-3">
-                        <a class="btn btn-dark rounded-circle" data-mdb-ripple-init href="{{ route('memories.create') }}"
+                    <div class="d-flex align-items-center mb-3">
+                        <h1><i class="fa fa-photo-video"></i> Memórias </h1>
+                        <a class="btn btn-dark rounded-circle ms-2" data-mdb-ripple-init href="{{ route('memories.create') }}"
                             title="Cadastrar memória">
                             <i class="fas fa-plus"></i>
                         </a>

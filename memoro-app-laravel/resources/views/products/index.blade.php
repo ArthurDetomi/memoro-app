@@ -10,13 +10,17 @@
                 @include('users.shared.left-sidebar-user-profile')
 
                 <!-- Products Section Starts -->
-                <div class="col-md-9">
-                    <h1>Produtos</h1>
-                    <div class="d-grid gap-2 d-md-flex mb-4">
-                        <button id="myInput" class="btn btn-dark text-light" type="button" data-mdb-ripple-init
-                            data-bs-toggle="modal" data-bs-target="#registerProductModal">
-                            Cadastrar Produto
-                        </button>
+                <!--   <a class="btn btn-dark rounded-circle" data-mdb-ripple-init href="{{ route('memories.create') }}"
+                                                                    title="Cadastrar memória">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </a> -->
+
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <h1 class="m-0"><i class="fa fa-box me-2"></i> Produtos</h1>
+                        <a class="btn btn-dark rounded-circle text-light ms-3" title="Cadastrar Produto">
+                            <i class="fas fa-plus"></i>
+                        </a>
                     </div>
 
                     @include('shared.success-message')

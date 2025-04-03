@@ -24,14 +24,15 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="{{ route('memories.edit', $memory->id) }}">Edit</a>
+                            <a class="dropdown-item" title="Edit"
+                                href="{{ route('memories.edit', $memory->id) }}">Edit</a>
                         </li>
                         <li>
                             <form action="{{ route('memories.destroy', $memory->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
 
-                                <button type="submit" class="dropdown-item">Delete</button>
+                                <button type="submit" class="dropdown-item" title="Delete">Delete</button>
                             </form>
                         </li>
                     </ul>
