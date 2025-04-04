@@ -23,20 +23,24 @@ class ProductController extends Controller
 
         $query = $user->products()->orderBy('created_at', 'DESC');
 
-        if (request()->has('search')) {
-            $search = request()->get('search', '');
+        if ($request->has('search')) {
+            $search = $request->get('search', '');
 
-            $query->where('name', 'like', "%$search%")
-                ->orWhereHas('type', function ($q) use ($search) {
-                    $q->where('name', 'like', "%$search%");
-                });
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                    ->orWhereHas('type', function ($q2) use ($search) {
+                        $q2->where('name', 'like', "%$search%");
+                    });
+            });
         }
 
         $products = $query->paginate(5);
 
         $products_types = ProductType::all();
 
-        return view('products.index', compact('products_types', 'products'));
+        $hasProductsRegistered = $user->products()->exists();
+
+        return view('products.index', compact('products_types', 'products', 'hasProductsRegistered'));
     }
 
     /**

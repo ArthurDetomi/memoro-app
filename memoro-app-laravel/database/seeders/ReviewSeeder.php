@@ -21,11 +21,6 @@ class ReviewSeeder extends Seeder
                 'product_type' => null
             ],
             [
-                'name' => 'avaliação geral',
-                'is_default' => true,
-                'product_type' => null
-            ],
-            [
                 'name' => 'finalização',
                 'is_default' => true,
                 'product_type' => null

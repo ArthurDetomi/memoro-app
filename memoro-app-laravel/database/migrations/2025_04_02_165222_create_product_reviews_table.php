@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->nullable(false)->constrained(table: 'products', indexName: 'product_reviews_products_id')->cascadeOnDelete();
             $table->foreignId('review_id')->nullable(false)->constrained(table: 'reviews', indexName: 'product_reviews_reviews_id')->cascadeOnDelete();
-            $table->decimal('rating', 3, 2)->nullable(false);
+            $table->unsignedTinyInteger('rating')->nullable(false);
             $table->string('comment', 255)->nullable();
             $table->timestamps();
         });

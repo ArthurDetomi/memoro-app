@@ -1,20 +1,3 @@
-<style>
-    .star-rating {
-        display: flex;
-        gap: 5px;
-    }
-
-    .star-rating label {
-        font-size: 24px;
-        color: #ccc;
-        cursor: pointer;
-    }
-
-    .star-rating input:checked~label {
-        color: gold;
-    }
-</style>
-
 <div class="card mb-5">
     <div class="card-body">
         <h1 class="mb-4"><i class="fas fa-box"></i> Cadastro Produto</h1>
@@ -151,45 +134,8 @@
                 @enderror
             </div>
 
-            <div class="mb-3 d-flex align-items-center">
-                <label class="form-label me-2">Review de Sabor</label>
-                <div class="star-rating d-flex">
-                    <input type="radio" name="flavor_review" id="star1" value="0" hidden>
-                    <label for="star1"><i class="fas fa-solid fa-star"></i></label>
-
-                    <input type="radio" name="flavor_review" id="star2" value="1" hidden>
-                    <label for="star2"><i class="fas fa-solid fa-star"></i></label>
-
-                    <input type="radio" name="flavor_review" id="star3" value="2" hidden>
-                    <label for="star3"><i class="fas fa-solid fa-star"></i></label>
-
-                    <input type="radio" name="flavor_review" id="star4" value="3" hidden>
-                    <label for="star4"><i class="fas fa-solid fa-star"></i></label>
-                </div>
-            </div>
-
-
-
-
             <button type="submit" class="btn btn-dark">Cadastrar</button>
             <a href="{{ route('products.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </div>
-
-<script>
-    document.querySelectorAll('.star-rating input').forEach(radio => {
-        radio.addEventListener('change', function() {
-            let allStars = Array.from(document.querySelectorAll('.star-rating label'));
-            let selectedValue = parseInt(this.value);
-
-            // Resetando todas as estrelas para a cor padrão
-            allStars.forEach(star => star.style.color = 'rgb(204, 204, 204)');
-
-            // Pintando apenas as estrelas até a selecionada
-            for (let i = 0; i <= selectedValue; i++) {
-                allStars[i].style.color = 'gold';
-            }
-        });
-    });
-</script>

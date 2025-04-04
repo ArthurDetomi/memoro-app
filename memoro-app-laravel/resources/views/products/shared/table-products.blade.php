@@ -1,17 +1,17 @@
 <!-- Products table Starts-->
 <div>
-    @if (count($products) > 0)
+
+    @if ($hasProductsRegistered)
         <form action="{{ route('products.index') }}" method="GET">
             <div class="input-group mb-1">
                 <input name="search" type="text" class="form-control" id="advanced-search-input"
-                    placeholder="Pesquise por nome do produto ou tipo..." />
+                    placeholder="Pesquise por nome do produto ou tipo..." value="{{ request('search') }}" />
                 <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark text-light"
                     id="advanced-search-button" type="submit">
                     <i class="fa fa-search"></i>
                 </button>
             </div>
         </form>
-
 
         <div class="table-responsive mb-5">
             <table class="table align-middle mb-0 bg-white">
@@ -26,7 +26,7 @@
                 </thead>
                 <tbody class="text-center">
                     <!-- Todo: Adicionar paginação -->
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -67,7 +67,12 @@
 
                         @include('products.shared.consume-product-dialog')
                         @include('products.shared.delete-product-dialog')
-                    @endforeach
+
+                    @empty
+                        <tr>
+                            <td colspan="100%">Nenhum produto encontrado. Tente ajustar os termos da sua busca.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
             <div class="mt-1">
