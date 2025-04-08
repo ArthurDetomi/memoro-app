@@ -46,6 +46,10 @@
                             <td>{{ $product->quantity }}</td>
                             <td>
                                 <div class="d-flex justify-content-around">
+                                    <a type="button" class="btn btn-link btn-sm text-warning" title="Avaliar"
+                                        href="{{ route('products.review', $product->id) }}">
+                                        <i class="fas fa fa-star"></i>
+                                    </a>
                                     <button type="button" class="btn btn-link btn-sm text-warning" title="Consumir"
                                         data-bs-toggle="modal"
                                         data-bs-target="#consumeProductModal-{{ $product->id }}">

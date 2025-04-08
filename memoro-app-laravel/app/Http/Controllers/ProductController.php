@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Feature;
 use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Http\Request;

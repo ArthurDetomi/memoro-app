@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ProductReviewController extends Controller
@@ -9,9 +11,16 @@ class ProductReviewController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Product $product)
     {
-        //
+        $reviews = Review::where(function ($q) use ($product) {
+            $q->where('product_type_id', $product->type_id)
+                ->orWhere('product_type_id', null);
+        })->orderBy('name')->get();
+
+        $productReviewMap = $product->reviews()->get()->keyBy('review_id');
+
+        return view('productReview.index', compact('product', 'reviews', 'productReviewMap'));
     }
 
     /**
@@ -27,7 +36,7 @@ class ProductReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
