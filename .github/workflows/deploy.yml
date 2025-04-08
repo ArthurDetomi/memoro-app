@@ -18,18 +18,18 @@ jobs:
           script: |
             cd /var/www/html/memoro-app/memoro-app-laravel
 
-            sudo -u www-data php artisan down
+            php artisan down
 
-            sudo -u www-data git pull origin main
+            git pull origin main
 
-            csudo -u www-data composer install --no-dev --optimize-autoloader
+            composer install --no-dev --optimize-autoloader
 
-            sudo -u www-data php artisan migrate
-            sudo -u www-data php artisan cache:clear
-            sudo -u www-data php artisan config:clear
-            sudo -u www-data php artisan route:clear
-            sudo -u www-data php artisan view:clear
+            php artisan migrate
+            php artisan cache:clear
+            php artisan config:clear
+            php artisan route:clear
+            php artisan view:clear
 
             sudo systemctl restart apache2
 
-            sudo -u www-data php artisan up
+            php artisan up
