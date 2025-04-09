@@ -25,7 +25,8 @@ class Product extends Model
         'region',
         'brand',
         'production_date',
-        'pairing'
+        'pairing',
+        'average_rating'
     ];
 
     protected $with = [

@@ -21,6 +21,16 @@
         <h1 class="mb-4"><i class="fas fa fa-star"></i> Avaliar Produto</h1>
         <form enctype="multipart/form-data" action="{{ route('products.review.store', $product) }}" method="POST">
             @csrf
+
+            @if ($errors->has('reviews'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first('reviews') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+
+
             <!-- Exibindo reviews -->
             @foreach ($reviews as $review)
                 <div class="mb-3">
@@ -29,13 +39,17 @@
                             {{ ucfirst($review->name) }}
                         </label>
 
+                        @php
+                            $existingRating = optional($productReviewMap[$review->id] ?? null)->rating;
+                        @endphp
+
                         <div class="star-rating d-flex">
                             @for ($i = 1; $i <= 5; $i++)
                                 <input type="radio" name="reviews[{{ $review->id }}]" id="{{ "$review->name-$i" }}"
-                                    value="{{ $i }}" hidden>
+                                    value="{{ $i }}" hidden {{ $existingRating == $i ? 'checked' : '' }}>
                                 <label for="{{ "$review->name-$i" }}"><i class="fas fa-solid fa-star"></i></label>
 
-                                @error('{{ "$review->name-$i" }}')
+                                @error("reviews.{$review->id}")
                                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             @endfor
@@ -43,7 +57,11 @@
                     </div>
 
                     <textarea name="reviews_comments[{{ $review->id }}]" class="form-control mt-2"
-                        placeholder="Comentário sobre {{ $review->name }}..."></textarea>
+                        placeholder="Comentário sobre {{ $review->name }}...">{{ $productReviewMap[$review->id]->comment ?? '' }}</textarea>
+                    @error("reviews_comments.{$review->id}")
+                        <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                    @enderror
+
                 </div>
             @endforeach
 
@@ -55,22 +73,26 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.star-rating').forEach(container => {
+            const radios = container.querySelectorAll('input[type="radio"]');
+            const labels = container.querySelectorAll('label');
 
-        document.querySelectorAll('.star-rating input').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const parentElement = this.parentElement;
+            const checked = container.querySelector('input[type="radio"]:checked');
 
-                let allStars = Array.from(parentElement.querySelectorAll('.star-rating label'));
-
-                let selectedValue = parseInt(this.value);
-
-                // Colocando cor padrão 'cinza'
-                allStars.forEach(star => star.style.color = 'rgb(204, 204, 204)');
-
-                // Mudar a cor somente até o valor selecionado
-                for (let i = 0; i < selectedValue; i++) {
-                    allStars[i].style.color = 'gold';
+            if (checked) {
+                const selectedValue = parseInt(checked.value);
+                for (let i = 0; i < labels.length; i++) {
+                    labels[i].style.color = i < selectedValue ? 'gold' : '#ccc';
                 }
+            }
+
+            radios.forEach((radio, index) => {
+                radio.addEventListener('change', function() {
+                    const selectedValue = parseInt(this.value);
+                    for (let i = 0; i < labels.length; i++) {
+                        labels[i].style.color = i < selectedValue ? 'gold' : '#ccc';
+                    }
+                });
             });
         });
     });

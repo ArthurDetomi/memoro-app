@@ -20,6 +20,7 @@
                         <th>Nome</th>
                         <th>Descrição</th>
                         <th>Volume</th>
+                        <th>Avaliação</th>
                         <th>Quantidade</th>
                         <th>Ações</th>
                     </tr>
@@ -43,10 +44,26 @@
                                 <p class="text-muted mb-0">{{ $product->type->name }}</p>
                             </td>
                             <td>{{ $product->weight }} {{ $product->unit_of_measure }}</td>
+                            <td>
+                                @if ($product->average_rating)
+                                    @php
+                                        $averageRating = round($product->average_rating);
+                                    @endphp
+
+                                    <span class="text-warning">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <i class="fas fa-star{{ $i <= floor($averageRating) ? '' : '-o' }}"></i>
+                                        @endfor
+                                        <small class="text-muted">({{ $averageRating }})</small>
+                                    </span>
+                                @else
+                                    ---
+                                @endif
+                            </td>
                             <td>{{ $product->quantity }}</td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <a type="button" class="btn btn-link btn-sm text-warning" title="Avaliar"
+                                    <a type="button" class="btn btn-link btn-sm text-dark" title="Avaliar"
                                         href="{{ route('products.review', $product->id) }}">
                                         <i class="fas fa fa-star"></i>
                                     </a>

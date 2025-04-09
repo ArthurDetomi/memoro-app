@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\StoreProductReviewRequest;
 use App\Models\Product;
+use App\Models\ProductReview;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductReviewController extends Controller
 {
@@ -32,11 +36,32 @@ class ProductReviewController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource or update case exists in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductReviewRequest $request, Product $product)
     {
-        dd($request->all());
+
+        $validated = $request->validated();
+
+        $reviewsMap = $validated['reviews'];
+        $reviewCommentsMap = $validated['reviews_comments'];
+
+        foreach ($reviewsMap as $reviewId => $rating) {
+            // Essa query pode ser melhorada, para que não tenha query dentro de um for, mas vou considerar que seria uma otimização prematura
+            ProductReview::updateOrCreate(
+                [
+                    'product_id' => $product->id,
+                    'review_id' => $reviewId,
+                    'rating' => $rating,
+                    'comment' => $reviewCommentsMap[$reviewId]
+                ]
+            );
+        }
+
+        $product->average_rating = $product->reviews()->avg('rating');
+        $product->save();
+
+        return redirect()->route('products.index')->with('success', "Produto $product->name avaliado com sucesso!");
     }
 
     /**
