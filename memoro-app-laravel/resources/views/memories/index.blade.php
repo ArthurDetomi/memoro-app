@@ -4,7 +4,6 @@
 
 @section('content')
 
-    @include('memories.shared.register-memory-dialog')
     <!-- Main Content Section Starts Here -->
     <section class="main-content py-4">
         <div class="container">
@@ -13,22 +12,22 @@
 
                 <!-- Feed Section Starts -->
                 <div class="col-md-6">
-                    <div>
-                        <h1>Memorias</h1>
-                    </div>
-
-                    <div class="mb-3">
-                        <button class="btn btn-dark" data-mdb-ripple-init data-bs-toggle="modal"
-                            data-bs-target="#registerMemorieModal">
-                            Cadastrar Memória
-                        </button>
+                    <div class="d-flex align-items-center mb-3">
+                        <h1><i class="fa fa-photo-video"></i> Memórias </h1>
+                        <a class="btn btn-dark rounded-circle ms-2" data-mdb-ripple-init href="{{ route('memories.create') }}"
+                            title="Cadastrar memória">
+                            <i class="fas fa-plus"></i>
+                        </a>
                     </div>
 
                     @include('shared.success-message')
 
-                    @foreach ($memories as $memory)
+                    @forelse ($memories as $memory)
                         @include('memories.shared.memory-card')
-                    @endforeach
+
+                    @empty
+                        <p>Que tal começar a registrar suas memórias agora? 🌟</p>
+                    @endforelse
                 </div>
                 <!-- Feed Section Starts -->
 

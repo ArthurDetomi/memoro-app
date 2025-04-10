@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Feature;
 use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
@@ -23,20 +22,24 @@ class ProductController extends Controller
 
         $query = $user->products()->orderBy('created_at', 'DESC');
 
-        if (request()->has('search')) {
-            $search = request()->get('search', '');
+        if ($request->has('search')) {
+            $search = $request->get('search', '');
 
-            $query->where('name', 'like', "%$search%")
-                ->orWhereHas('type', function ($q) use ($search) {
-                    $q->where('name', 'like', "%$search%");
-                });
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                    ->orWhereHas('type', function ($q2) use ($search) {
+                        $q2->where('name', 'like', "%$search%");
+                    });
+            });
         }
 
         $products = $query->paginate(5);
 
         $products_types = ProductType::all();
 
-        return view('products.index', compact('products_types', 'products'));
+        $hasProductsRegistered = $user->products()->exists();
+
+        return view('products.index', compact('products_types', 'products', 'hasProductsRegistered'));
     }
 
     /**
@@ -44,7 +47,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $products_types = ProductType::all();
+
+        return view('products.create', compact('products_types'));
     }
 
     /**
@@ -61,13 +66,9 @@ class ProductController extends Controller
             $validated['image'] = $imagePath;
         }
 
-        $product = Product::create($validated);
+        Product::create($validated);
 
-        if ($product) {
-            return response()->json(['success' => true]);
-        }
-
-        return response()->json(['success' => false, 'errors' => $validated->errors]);
+        return redirect()->route('products.index')->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**

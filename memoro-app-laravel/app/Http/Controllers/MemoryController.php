@@ -30,7 +30,10 @@ class MemoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request) {}
+    public function create(Request $request)
+    {
+        return view('memories.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -70,10 +73,12 @@ class MemoryController extends Controller
 
             DB::commit();
 
-            return response()->json(['success' => true, 'message' => 'Memória salva com sucesso!']);
+            return redirect()->route('memories.show', $memory)->with('success', 'Memória cadastrada com sucesso!');
         } catch (\Exception $ex) {
             DB::rollBack();
-            return response()->json(['success' => false, 'message' => 'Erro ao salvar memória.', 'error' => $e->getMessage()], 500);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Ocorreu um erro ao cadastrar a memória. Tente novamente.');
         }
     }
 

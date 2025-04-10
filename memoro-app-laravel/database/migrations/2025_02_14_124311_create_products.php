@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', length: 255)->nullable(false);
             $table->string('image', length: 255)->nullable()->default(null);
             $table->foreignId('user_id')->nullable(false)->constrained(table: 'users', indexName: 'products_user_id')->cascadeOnDelete();
-            $table->foreignId('type_id')->nullable(false)->constrained(table: 'products_types', indexName: 'products_products_types_id')->cascadeOnDelete();
+            $table->foreignId('type_id')->nullable(value: false)->constrained(table: 'products_types', indexName: 'products_products_types_id')->cascadeOnDelete();
             $table->string('description', length: 255)->nullable()->default(null);
             $table->date('expiration')->nullable()->default(null);
             $table->string('producer', length: 255)->nullable()->default(null);

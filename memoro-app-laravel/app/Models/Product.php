@@ -25,7 +25,8 @@ class Product extends Model
         'region',
         'brand',
         'production_date',
-        'pairing'
+        'pairing',
+        'average_rating'
     ];
 
     protected $with = [
@@ -34,7 +35,13 @@ class Product extends Model
 
     public function getImageUrl()
     {
-        return url('storage/' . $this->image);
+        if ($this->image) {
+            return url('storage/' . $this->image);
+        }
+
+        $typeName = $this->type->name;
+
+        return asset("images/products/$typeName.png");
     }
 
     public function type()
@@ -42,8 +49,8 @@ class Product extends Model
         return $this->belongsTo(ProductType::class);
     }
 
-    public function products(): HasMany
+    public function reviews(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(ProductReview::class);
     }
 }

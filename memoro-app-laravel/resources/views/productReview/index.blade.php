@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('title', 'Memory Detail')
+@section('title', 'Product Create')
 
 @section('content')
     <!-- Main Content Section Starts Here -->
@@ -10,10 +10,9 @@
                 @include('users.shared.left-sidebar-user-profile')
 
                 <!-- Feed Section Starts -->
-                <div class="col-md-6">
-                    @include('shared.success-message')
-
-                    @include('memories.shared.memory-card')
+                <div class="col-md-9">
+                    @include('shared.error-message')
+                    @include('productReview.shared.submit-product-review')
                 </div>
             </div>
         </div>
