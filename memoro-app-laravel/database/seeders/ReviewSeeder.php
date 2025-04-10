@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class ReviewSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeds, adding all defaults reviews
      */
     public function run(): void
     {
