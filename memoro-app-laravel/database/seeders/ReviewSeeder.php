@@ -52,11 +52,9 @@ class ReviewSeeder extends Seeder
             ['name' => 'firmeza', 'is_default' => true, 'product_type' => 'Charuto'],
 
             ['name' => 'textura', 'is_default' => true, 'product_type' => 'Queijo'],
-            ['name' => 'aroma', 'is_default' => true, 'product_type' => 'Vinho'],
             ['name' => 'fragrância', 'is_default' => true, 'product_type' => 'Café'],
             ['name' => 'queima', 'is_default' => true, 'product_type' => 'Charuto'],
 
-            ['name' => 'acidez', 'is_default' => true, 'product_type' => 'Vinho'],
             ['name' => 'sabor', 'is_default' => true, 'product_type' => 'Café'],
 
             ['name' => 'cinza', 'is_default' => true, 'product_type' => 'Charuto'],
