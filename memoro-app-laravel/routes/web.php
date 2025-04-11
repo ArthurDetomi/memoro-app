@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ImageMemoryController;
 use App\Http\Controllers\MemoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MemoryController::class, 'index'])->middleware('auth');
@@ -16,6 +18,9 @@ Route::put('/products/{product}/consume', [ProductController::class, 'consume'])
 Route::get('/products/{product}/review', [ProductReviewController::class, 'index'])->name('products.review')->middleware('auth');
 Route::post('/products/{product}/review', [ProductReviewController::class, 'store'])->name('products.review.store')->middleware('auth');
 
+
+Route::delete('/imageMemories/{imageMemory}', [ImageMemoryController::class, 'destroy'])->name('imageMemories.destroy');
+Route::post('/memories/{memory}/images', [ImageMemoryController::class, 'store'])->name('imageMemories.store');
 
 Route::resource('memories', MemoryController::class)->middleware('auth');
 
