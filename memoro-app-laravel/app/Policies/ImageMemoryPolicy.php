@@ -2,11 +2,12 @@
 
 namespace App\Policies;
 
+use App\Models\ImageMemory;
 use App\Models\Memory;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class MemoryPolicy
+class ImageMemoryPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,39 +20,41 @@ class MemoryPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Memory $memory): bool
-    {
-        return $user->id == $memory->user_id;
-    }
-
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
+    public function view(User $user, ImageMemory $imageMemory): bool
     {
         return false;
     }
 
     /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user, Memory $memory): bool
+    {
+        return $user->id == $memory->user_id;
+    }
+
+    /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Memory $memory): bool
+    public function update(User $user, ImageMemory $imageMemory): bool
     {
-        return $user->id === $memory->user_id;
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Memory $memory): bool
+    public function delete(User $user, ImageMemory $imageMemory): bool
     {
-        return $user->id === $memory->user_id;
+        $memory = $imageMemory->memory;
+
+        return $user->id == $memory->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Memory $memory): bool
+    public function restore(User $user, ImageMemory $imageMemory): bool
     {
         return false;
     }
@@ -59,7 +62,7 @@ class MemoryPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Memory $memory): bool
+    public function forceDelete(User $user, ImageMemory $imageMemory): bool
     {
         return false;
     }

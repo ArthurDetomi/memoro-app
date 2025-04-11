@@ -2,11 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Memory;
+use App\Models\Product;
+use App\Models\ProductReview;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class MemoryPolicy
+class ProductReviewPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,39 +20,39 @@ class MemoryPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Memory $memory): bool
-    {
-        return $user->id == $memory->user_id;
-    }
-
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
+    public function view(User $user, ProductReview $productReview): bool
     {
         return false;
     }
 
     /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user, Product $product): bool
+    {
+        return $user->id === $product->user_id;
+    }
+
+    /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Memory $memory): bool
+    public function update(User $user, ProductReview $productReview): bool
     {
-        return $user->id === $memory->user_id;
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Memory $memory): bool
+    public function delete(User $user, ProductReview $productReview): bool
     {
-        return $user->id === $memory->user_id;
+        return false;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Memory $memory): bool
+    public function restore(User $user, ProductReview $productReview): bool
     {
         return false;
     }
@@ -59,7 +60,7 @@ class MemoryPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Memory $memory): bool
+    public function forceDelete(User $user, ProductReview $productReview): bool
     {
         return false;
     }

@@ -9,7 +9,6 @@ use App\Models\Memory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
@@ -111,44 +110,12 @@ class MemoryController extends Controller
 
         $validated = $request->validated();
 
-        DB::beginTransaction();
+        $memory->update([
+            'title' => $validated['title'],
+            'description' => $validated['description']
+        ]);
 
-        try {
-            $memory->update([
-                'title' => $validated['title'],
-                'description' => $validated['description']
-            ]);
-
-            if (request()->has('images')) {
-                foreach ($memory->images as $image) {
-                    Storage::disk('public')->delete($image->image);
-                    $image->delete();
-                }
-
-                $imageData = [];
-
-                foreach ($request->file('images') as $imageFile) {
-                    $path = $imageFile->store('memories', 'public');
-
-                    $imageData[] = [
-                        'memory_id' => $memory->id,
-                        'image' => $path,
-                        'caption' => null,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-                }
-
-                ImageMemory::insert($imageData);
-            }
-
-            DB::commit();
-
-            return response()->json(['success' => true, 'message' => 'Memória atualizada com sucesso!', 'redirect' => route('memories.show', $memory)]);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return response()->json(['success' => false, 'message' => 'Erro ao salvar memória.', 'error' => $e->getMessage()], 500);
-        }
+        return redirect()->back()->with('success', 'Informações da memória foram atualizadas com sucesso!');
     }
 
     /**

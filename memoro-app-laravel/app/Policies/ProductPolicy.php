@@ -21,7 +21,7 @@ class ProductPolicy
      */
     public function view(User $user, Product $product): bool
     {
-        return $user->id == $product->user_id;
+        return $user->id === $product->user_id;
     }
 
     /**
@@ -37,7 +37,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $product): bool
     {
-        return $user->id == $product->user_id;
+        return $user->id === $product->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product): bool
     {
-        return $user->id == $product->user_id;
+        return $user->id === $product->user_id;
     }
 
     /**
