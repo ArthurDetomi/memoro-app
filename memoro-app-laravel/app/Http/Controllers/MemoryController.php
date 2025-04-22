@@ -6,6 +6,7 @@ use App\Http\Requests\StoreMemoryRequest;
 use App\Http\Requests\UpdateMemoryRequest;
 use App\Models\ImageMemory;
 use App\Models\Memory;
+use App\Models\ProductMemory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +32,24 @@ class MemoryController extends Controller
      */
     public function create(Request $request)
     {
-        return view('memories.create');
+        $user = Auth::user();
+
+        $query = $user->products()->orderBy('created_at', 'DESC');
+
+        if ($request->has('search')) {
+            $search = $request->get('search', '');
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                    ->orWhereHas('type', function ($q2) use ($search) {
+                        $q2->where('name', 'like', "%$search%");
+                    });
+            });
+        }
+
+        $products = $query->paginate(5);
+
+        return view('memories.create', compact('products'));
     }
 
     /**
@@ -69,6 +87,21 @@ class MemoryController extends Controller
 
                 ImageMemory::insert($imageData);
             }
+
+            $products =  $validated['products'];
+
+            $productMemoriesData = [];
+
+            foreach ($products as $productId) {
+                $productMemoriesData[] = [
+                    'product_id' => $productId,
+                    'memory_id' => $memory->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+
+            ProductMemory::insert($productMemoriesData);
 
             DB::commit();
 

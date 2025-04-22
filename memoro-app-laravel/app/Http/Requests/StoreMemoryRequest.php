@@ -26,6 +26,17 @@ class StoreMemoryRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'images' => ['required', 'array', 'min:1'],
             'images.*' => ['image'],
+            'products' => ['required', 'array', 'min:1'],
+            'products.*' => ['integer', 'exists:products,id']
+        ];
+    }
+
+
+    public function messages(): array
+    {
+        return [
+            'products.required' => 'Você precisa selecionar pelo menos um produto.',
+            'reviews.min' => 'Você precisa selecionar pelo menos um item.',
         ];
     }
 }

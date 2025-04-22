@@ -12,4 +12,9 @@ class ProductMemory extends Model
      * @var string
      */
     protected $table = 'products_memories';
+
+    protected $fillable = [
+        'product_id',
+        'memory_id',
+    ];
 }
