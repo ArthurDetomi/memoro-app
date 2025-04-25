@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ProductMemory extends Model
 {
@@ -17,4 +18,13 @@ class ProductMemory extends Model
         'product_id',
         'memory_id',
     ];
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function memories(): BelongsToMany
+    {
+        return $this->belongsToMany(Memory::class);
+    }
 }
