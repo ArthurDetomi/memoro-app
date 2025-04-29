@@ -34,20 +34,7 @@ class MemoryController extends Controller
     {
         $user = Auth::user();
 
-        $query = $user->products()->orderBy('created_at', 'DESC');
-
-        if ($request->has('search')) {
-            $search = $request->get('search', '');
-
-            $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%$search%")
-                    ->orWhereHas('type', function ($q2) use ($search) {
-                        $q2->where('name', 'like', "%$search%");
-                    });
-            });
-        }
-
-        $products = $query->paginate(5);
+        $products = $user->products()->orderBy('created_at', 'DESC')->get();
 
         return view('memories.create', compact('products'));
     }
@@ -131,7 +118,20 @@ class MemoryController extends Controller
     {
         Gate::authorize('update', $memory);
 
-        return view('memories.edit', compact('memory'));
+        $user = Auth::user();
+
+        $products = $user->products()->with('memories')->get();
+
+        $relatedProducts = $products->filter(function ($product) use ($memory) {
+            return $product->memories->contains($memory->id);
+        });
+
+
+        $unrelatedProducts = $products->reject(function ($product) use ($memory) {
+            return $product->memories->contains($memory->id);
+        });
+
+        return view('memories.edit', compact('memory', 'relatedProducts', 'unrelatedProducts'));
     }
 
     /**

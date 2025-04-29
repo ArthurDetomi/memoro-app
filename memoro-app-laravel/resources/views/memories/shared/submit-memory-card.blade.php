@@ -29,22 +29,8 @@
             <!-- Produtos relacionados -->
             <div class="mb-4">
                 <label class="form-label">
-                    Produtos Relacionados
+                    Produtos Relacionados<span class="text-danger">*</span>
                 </label>
-
-                <!-- Campo de busca -->
-                <div class="input-group mb-3">
-                    <input id="searchInput" name="search" type="text" class="form-control"
-                        placeholder="Buscar produtos..." value="{{ request('search') }}">
-                    <a href="{{ route('memories.create') }}?search=" id="searchLink" class="btn btn-outline-secondary">
-                        <i class="fas fa-search"></i>
-                    </a>
-
-                    @error('search')
-                        <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
-                    @enderror
-                </div>
-
 
                 @if ($errors->has('products'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -118,11 +104,6 @@
                             @endforelse
                         </tbody>
                     </table>
-
-                    <!-- Paginação padrão do Laravel -->
-                    <div class="mt-3">
-                        {{ $products->links() }}
-                    </div>
                 </div>
             </div>
 

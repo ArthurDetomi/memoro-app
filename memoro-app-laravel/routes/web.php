@@ -3,6 +3,7 @@
 use App\Http\Controllers\ImageMemoryController;
 use App\Http\Controllers\MemoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductMemoryController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\UserController;
 
@@ -21,6 +22,10 @@ Route::post('/products/{product}/review', [ProductReviewController::class, 'stor
 
 Route::delete('/imageMemories/{imageMemory}', [ImageMemoryController::class, 'destroy'])->name('imageMemories.destroy');
 Route::post('/memories/{memory}/images', [ImageMemoryController::class, 'store'])->name('imageMemories.store');
+
+Route::post('/memories/{memory}/products', [ProductMemoryController::class, 'store'])->name('productMemories.store');
+Route::delete('/memories/{memory}/products/{product}', [ProductMemoryController::class, 'destroy'])->name('productMemories.destroy');
+
 
 Route::resource('memories', MemoryController::class)->middleware('auth');
 
