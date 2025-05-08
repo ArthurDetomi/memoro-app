@@ -35,3 +35,22 @@
 ## 🎯 Objetivo
 
 Proporcionar aos colecionadores uma plataforma elegante e funcional para registrar, organizar e reviver experiências com seus produtos mais preciosos — tornando o consumo um ritual e uma memória.
+
+📌 Planos Futuros
+O Memoro ainda está evoluindo, e algumas ideias para o futuro incluem:
+
+🌐 Rede Social Integrada
+Criar uma comunidade onde os usuários possam se conectar, seguir perfis, curtir e comentar memórias uns dos outros — tornando a experiência ainda mais social e compartilhável.
+
+🤖 Inteligência Artificial
+Utilizar IA para identificar produtos automaticamente a partir de fotos, facilitando o cadastro e organização do estoque com o mínimo de esforço do usuário.
+
+Perfeito! Você pode adicionar esse link no seu README de forma clara e acessível, mostrando que há um pitch preparado para apresentação. Aqui vai a seção que você pode incluir, por exemplo logo após a introdução ou no final do README:
+
+---
+
+## 🗣️ Elevator Pitch
+
+Quer entender rapidamente o que é o **Memoro**?
+
+📄 [Clique aqui para ver o elevator pitch](./docs/elevator-pitch.txt)
