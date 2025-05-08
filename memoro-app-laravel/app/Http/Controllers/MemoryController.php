@@ -22,7 +22,7 @@ class MemoryController extends Controller
     {
         $user = Auth::user();
 
-        $memories = $user->memories()->orderBy('created_at', 'DESC')->get();
+        $memories = $user->memories()->with(['products', 'user'])->orderBy('created_at', 'DESC')->get();
 
         return view('memories.index', compact('memories'));
     }
@@ -75,20 +75,22 @@ class MemoryController extends Controller
                 ImageMemory::insert($imageData);
             }
 
-            $products =  $validated['products'];
+            if (request()->has('products')) {
+                $products =  $validated['products'];
 
-            $productMemoriesData = [];
+                $productMemoriesData = [];
 
-            foreach ($products as $productId) {
-                $productMemoriesData[] = [
-                    'product_id' => $productId,
-                    'memory_id' => $memory->id,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
+                foreach ($products as $productId) {
+                    $productMemoriesData[] = [
+                        'product_id' => $productId,
+                        'memory_id' => $memory->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+
+                ProductMemory::insert($productMemoriesData);
             }
-
-            ProductMemory::insert($productMemoriesData);
 
             DB::commit();
 

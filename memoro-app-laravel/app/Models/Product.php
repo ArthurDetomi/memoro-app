@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 
 class Product extends Model
@@ -57,5 +58,14 @@ class Product extends Model
     public function memories(): BelongsToMany
     {
         return $this->belongsToMany(Memory::class, "products_memories", "product_id", "memory_id");
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($product) {
+            if ($product->image) {
+                Storage::disk('public')->delete($product->image);
+            }
+        });
     }
 }

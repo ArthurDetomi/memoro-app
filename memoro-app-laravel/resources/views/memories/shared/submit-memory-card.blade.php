@@ -111,8 +111,7 @@
                 <label for="addImage" class="form-label">
                     Adicionar Imagens<span class="text-danger">*</span>
                 </label>
-                <input type="file" class="form-control" id="addImage" name="images[]" accept="image/*" multiple
-                    required>
+                <input type="file" class="form-control" id="addImage" name="images[]" accept="image/*" multiple>
                 @error('images[]')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror

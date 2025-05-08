@@ -23,8 +23,8 @@ class StoreMemoryRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
-            'images' => ['required', 'array', 'min:1'],
+            'description' => ['nullable', 'string', 'max:255'],
+            'images' => ['array'],
             'images.*' => ['image'],
             'products' => ['required', 'array', 'min:1'],
             'products.*' => ['integer', 'exists:products,id']

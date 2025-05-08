@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
@@ -101,6 +103,17 @@ class ProductController extends Controller
         Gate::authorize('update', $product);
 
         $validated = $request->validated();
+
+        if ($validated['image'] != NULL) {
+            $oldImagePath = $product->image;
+
+            $imagePath = $request->file('image')->store('product', 'public');
+            $validated['image'] = $imagePath;
+
+            if ($oldImagePath) {
+                Storage::disk('public')->delete($oldImagePath);
+            }
+        }
 
         $product->update($validated);
 

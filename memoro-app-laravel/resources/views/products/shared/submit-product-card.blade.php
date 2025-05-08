@@ -6,7 +6,8 @@
 
             <div class="mb-3">
                 <label for="product_name" class="form-label">Nome<span class="text-danger">*</span></label>
-                <input type="text" id="product_name" name="name" class="form-control" required />
+                <input type="text" id="product_name" name="name" class="form-control" required
+                    value="{{ old('name') }}" />
                 @error('name')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -31,7 +32,8 @@
 
             <div class="mb-3">
                 <label for="product_weight" class="form-label">Peso<span class="text-danger">*</span></label>
-                <input type="number" id="product_weight" name="weight" class="form-control" required />
+                <input type="number" id="product_weight" name="weight" class="form-control" required
+                    value="{{ old('weight') }}" />
                 @error('weight')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -39,8 +41,8 @@
 
             <div class="mb-3">
                 <label for="product_quantity" class="form-label">Quantidade<span class="text-danger">*</span></label>
-                <input type="number" id="product_quantity" name="quantity" class="form-control" min="0"
-                    required />
+                <input type="number" id="product_quantity" name="quantity" class="form-control" min="0" required
+                    value="{{ old('quantity') }}" />
                 @error('quantity')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -63,7 +65,8 @@
 
             <div class="mb-3">
                 <label for="product_description" class="form-label">Descrição</label>
-                <input type="text" id="product_description" name="description" class="form-control" />
+                <input type="text" id="product_description" name="description" class="form-control"
+                    value="{{ old('description') }}" />
                 @error('description')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -80,7 +83,8 @@
 
             <div class="mb-3">
                 <label for="product_production_date" class="form-label">Fabricação</label>
-                <input type="date" id="product_production_date" name="production_date" class="form-control" />
+                <input type="date" id="product_production_date" name="production_date" class="form-control"
+                    value="{{ old('production_date') }}" />
                 @error('production_date')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -88,7 +92,8 @@
 
             <div class="mb-3">
                 <label for="product_expiration" class="form-label">Validade</label>
-                <input type="date" id="product_expiration" name="expiration" class="form-control" />
+                <input type="date" id="product_expiration" name="expiration" class="form-control"
+                    value="{{ old('expiration') }}" />
                 @error('expiration')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -96,7 +101,8 @@
 
             <div class="mb-3">
                 <label for="product_producer" class="form-label">Produtor</label>
-                <input type="text" id="product_producer" name="producer" class="form-control" />
+                <input type="text" id="product_producer" name="producer" class="form-control"
+                    value="{{ old('producer') }}" />
                 @error('producer')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -104,7 +110,8 @@
 
             <div class="mb-3">
                 <label for="product_storage" class="form-label">Armazenamento</label>
-                <input type="text" id="product_storage" name="storage" class="form-control" />
+                <input type="text" id="product_storage" name="storage" class="form-control"
+                    value="{{ old('storage') }}" />
                 @error('storage')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -112,7 +119,8 @@
 
             <div class="mb-3">
                 <label for="product_pairing" class="form-label">Harmonização</label>
-                <input type="text" id="product_pairing" name="pairing" class="form-control" />
+                <input type="text" id="product_pairing" name="pairing" class="form-control"
+                    value="{{ old('pairing') }}" />
                 @error('pairing')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -120,7 +128,8 @@
 
             <div class="mb-3">
                 <label for="product_country_region" class="form-label">País/Região</label>
-                <input type="text" id="product_country_region" name="region" class="form-control" />
+                <input type="text" id="product_country_region" name="region" class="form-control"
+                    value="{{ old('region') }}" />
                 @error('region')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -128,7 +137,8 @@
 
             <div class="mb-3">
                 <label for="product_brand" class="form-label">Marca</label>
-                <input type="text" id="product_brand" name="brand" class="form-control" />
+                <input type="text" id="product_brand" name="brand" class="form-control"
+                    value="{{ old('brand') }}" />
                 @error('brand')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror

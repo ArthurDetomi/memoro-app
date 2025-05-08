@@ -66,8 +66,11 @@
                     <div class="card h-100 border-0 shadow-sm rounded-4 position-relative">
                         <div class="position-relative">
                             <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}"
-                                class="card-img-top rounded-top-4" style="height: 180px; object-fit: cover;">
-                            <form action="#" method="POST" class="position-absolute top-0 end-0 m-2">
+                                class="card-img-top rounded-top-4 img-fluid d-block w-100"
+                                style="height: auto; max-height: 180px; object-fit: cover;">
+
+                            <form action="{{ route('productMemories.destroy', [$memory->id, $product->id]) }}"
+                                method="POST" class="position-absolute top-0 end-0 m-2">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger rounded-circle shadow-sm"

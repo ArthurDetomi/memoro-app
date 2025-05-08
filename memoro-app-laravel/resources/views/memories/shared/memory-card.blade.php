@@ -72,10 +72,37 @@
         </a>
         <!-- Post Content Ends -->
 
+        <!-- Produtos relacionados -->
+        @if ($memory->products->count() > 0)
+            <h6 class="mt-4">Produtos relacionados:</h6>
+
+            <div class="d-flex overflow-auto gap-3 py-2">
+                @foreach ($memory->products as $product)
+                    <div class="text-center flex-shrink-0" style="width: 60px;">
+                        <a href="{{ route('products.show', $product->id) }}">
+                            <img src="{{ $product->getImageUrl() }}" class="img-fluid rounded shadow-sm"
+                                style="height: 45px; object-fit: cover;" alt="{{ $product->name }}">
+                        </a>
+
+                        @php
+                            $avg = round($product->average_rating ?? 0);
+                        @endphp
+
+                        <div class="text-warning small mt-1">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <i class="fas fa-star{{ $i <= $avg ? '' : '-o' }}"></i>
+                            @endfor
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
+        <!-- Fim produtos relacionados-->
+
         <!-- Post Footer Starts -->
         <div class="row my-3">
             <!-- No futuro pode adicionar comentários -->
-
             <div class="col text-end">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-calendar-event" viewBox="0 0 16 16">
