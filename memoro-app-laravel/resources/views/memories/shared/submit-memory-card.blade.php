@@ -9,7 +9,7 @@
                     Título<span class="text-danger">*</span>
                 </label>
                 <input type="text" class="form-control" id="memorieTitle" name="title"
-                    placeholder="Digite o título da memória" required>
+                    placeholder="Digite o título da memória" required value="{{ old('title') }}">
                 @error('title')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -20,7 +20,7 @@
                     Descrição
                 </label>
                 <textarea class="form-control" id="memorieDescription" name="description" rows="3"
-                    placeholder="Digite a descrição"></textarea>
+                    placeholder="Digite a descrição">{{ old('description') }}</textarea>
                 @error('description')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
@@ -123,22 +123,3 @@
         </form>
     </div>
 </div>
-<script>
-    document.getElementById('searchLink').addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const search = document.getElementById('searchInput').value;
-
-        window.location.href = `/memories/create?search=${encodeURIComponent(search)}`;
-    });
-
-    document.getElementById('searchInput').addEventListener('keydown', (e) => {
-        if (e.key == 'Enter') {
-            e.preventDefault();
-
-            const search = document.getElementById('searchInput').value;
-
-            window.location.href = `/memories/create?search=${encodeURIComponent(search)}`;
-        }
-    });
-</script>
