@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreImageMemoryRequest;
 use App\Models\ImageMemory;
 use App\Models\Memory;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -38,12 +37,6 @@ class ImageMemoryController extends Controller
     public function destroy(ImageMemory $imageMemory)
     {
         Gate::authorize('delete', $imageMemory);
-
-        $memory = $imageMemory->memory;
-
-        if ($memory->images()->count() <= 1) {
-            return redirect()->back()->with('error', 'A imagem não pode ser excluída. Uma memória deve ter pelo menos uma imagem.');
-        }
 
         Storage::disk('public')->delete($imageMemory->image);
 

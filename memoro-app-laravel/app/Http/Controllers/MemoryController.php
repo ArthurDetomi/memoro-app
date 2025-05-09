@@ -6,6 +6,7 @@ use App\Http\Requests\StoreMemoryRequest;
 use App\Http\Requests\UpdateMemoryRequest;
 use App\Models\ImageMemory;
 use App\Models\Memory;
+use App\Models\ProductMemory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ class MemoryController extends Controller
     {
         $user = Auth::user();
 
-        $memories = $user->memories()->orderBy('created_at', 'DESC')->get();
+        $memories = $user->memories()->with(['products', 'user'])->orderBy('created_at', 'DESC')->get();
 
         return view('memories.index', compact('memories'));
     }
@@ -31,7 +32,11 @@ class MemoryController extends Controller
      */
     public function create(Request $request)
     {
-        return view('memories.create');
+        $user = Auth::user();
+
+        $products = $user->products()->orderBy('created_at', 'DESC')->get();
+
+        return view('memories.create', compact('products'));
     }
 
     /**
@@ -70,6 +75,23 @@ class MemoryController extends Controller
                 ImageMemory::insert($imageData);
             }
 
+            if (request()->has('products')) {
+                $products =  $validated['products'];
+
+                $productMemoriesData = [];
+
+                foreach ($products as $productId) {
+                    $productMemoriesData[] = [
+                        'product_id' => $productId,
+                        'memory_id' => $memory->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+
+                ProductMemory::insert($productMemoriesData);
+            }
+
             DB::commit();
 
             return redirect()->route('memories.show', $memory)->with('success', 'Memória cadastrada com sucesso!');
@@ -98,7 +120,20 @@ class MemoryController extends Controller
     {
         Gate::authorize('update', $memory);
 
-        return view('memories.edit', compact('memory'));
+        $user = Auth::user();
+
+        $products = $user->products()->with('memories')->get();
+
+        $relatedProducts = $products->filter(function ($product) use ($memory) {
+            return $product->memories->contains($memory->id);
+        });
+
+
+        $unrelatedProducts = $products->reject(function ($product) use ($memory) {
+            return $product->memories->contains($memory->id);
+        });
+
+        return view('memories.edit', compact('memory', 'relatedProducts', 'unrelatedProducts'));
     }
 
     /**

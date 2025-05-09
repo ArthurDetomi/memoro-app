@@ -30,7 +30,8 @@ class UpdateProductRequest extends FormRequest
             'storage' => 'nullable|string|max:255',
             'region' => 'nullable|string|max:255',
             'brand' => 'nullable|string|max:255',
-            'pairing' => 'nullable|string|max:255'
+            'pairing' => 'nullable|string|max:255',
+            'image' => 'nullable|image',
         ];
     }
 }
