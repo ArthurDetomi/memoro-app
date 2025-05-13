@@ -146,4 +146,10 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', "Product with name $product->name consumed successfully!");
     }
+
+    public function settings()
+    {
+        // TODO: Criar um novo gate
+        return view('products.settings.index');
+    }
 }

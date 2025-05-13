@@ -11,18 +11,22 @@
 
                 <div class="col-md-6">
                     <div class="d-flex align-items-center mb-3">
-                        <h1 class="m-0"><i class="fa fa-box me-2"></i> Produtos</h1>
-                        <a class="btn btn-dark rounded-circle text-light ms-3" href="{{ route('products.create') }}"
-                            title="Cadastrar Produto">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                        <a class="btn btn-dark rounded-circle text-light ms-3" title="Configurações"
-                            href="{{ route('productsfeature.index') }}"><i class="fas fa-cog"></i></a>
+                        <h1 class="m-0"><i class="fas fa-cog"></i> Configurações</h1>
                     </div>
 
                     @include('shared.success-message')
 
-                    @include('products.shared.table-products')
+
+
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            @include('products.settings.shared.nav')
+
+                            @include('productFeature.shared.submit-feature')
+                        </div>
+                    </div>
+
+
                 </div>
                 <!-- Products Section Ends -->
             </div>

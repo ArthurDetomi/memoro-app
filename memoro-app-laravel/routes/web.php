@@ -3,11 +3,17 @@
 use App\Http\Controllers\ImageMemoryController;
 use App\Http\Controllers\MemoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductFeatureController;
 use App\Http\Controllers\ProductMemoryController;
 use App\Http\Controllers\ProductReviewController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
+
+Route::get('/productfeature/settings', [ProductFeatureController::class, 'index'])->name('productsfeature.index')->middleware('auth');
+
+Route::get('/reviews/settings', [ReviewController::class, 'index'])->name('review.index')->middleware('auth');
 
 Route::get('/', [MemoryController::class, 'index'])->middleware('auth');
 
