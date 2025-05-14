@@ -8,13 +8,12 @@ use App\Models\ProductType;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ReviewController extends Controller
 {
     public function index(Request $request)
     {
-        // TODO: Falta gate
-
         $productTypeId = $request->input('product_type_id');
 
         $productsTypes = ProductType::all();
@@ -34,8 +33,6 @@ class ReviewController extends Controller
 
     public function store(StoreReviewRequest $request)
     {
-        // TODO: Falta gate
-
         $validated = $request->validated();
 
         $validated['user_id'] = Auth::id();
@@ -47,7 +44,7 @@ class ReviewController extends Controller
 
     public function destroy(Review $review)
     {
-        // TODO: Falta gate
+        Gate::authorize('delete', $review);
 
         foreach ($review->productReviews as $productReview) {
             $product = $productReview->product;
