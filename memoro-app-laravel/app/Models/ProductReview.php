@@ -15,9 +15,9 @@ class ProductReview extends Model
         'review_id'
     ];
 
-    public function products(): BelongsTo
+    public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
 

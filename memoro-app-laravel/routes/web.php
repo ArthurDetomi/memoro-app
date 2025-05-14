@@ -3,11 +3,19 @@
 use App\Http\Controllers\ImageMemoryController;
 use App\Http\Controllers\MemoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductFeatureController;
 use App\Http\Controllers\ProductMemoryController;
 use App\Http\Controllers\ProductReviewController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
+
+Route::get('/reviews/settings', [ReviewController::class, 'index'])->name('reviews.index')->middleware('auth');
+
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
+
+Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy')->middleware('auth');
 
 Route::get('/', [MemoryController::class, 'index'])->middleware('auth');
 
