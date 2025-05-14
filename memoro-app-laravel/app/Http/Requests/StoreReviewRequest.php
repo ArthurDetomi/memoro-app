@@ -22,7 +22,7 @@ class StoreReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_type_id' => ['exists:products_types,id'],
+            'product_type_id' => ['nullable', 'exists:products_types,id'],
             'name' => ['required', 'string', 'max:255'],
         ];
     }
