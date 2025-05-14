@@ -17,10 +17,14 @@ class ProductReviewController extends Controller
      */
     public function index(Product $product)
     {
-        $reviews = Review::where(function ($q) use ($product) {
-            $q->where('product_type_id', $product->type_id)
-                ->orWhere('product_type_id', null);
-        })->orderBy('name')->get();
+        $reviews = Review::where('user_id', '=', Auth::id())
+            ->orWhereNull('user_id')
+            ->where(function ($q) use ($product) {
+                $q->where('product_type_id', $product->type_id)
+                    ->orWhere('product_type_id', null);
+            })
+            ->orderBy('name')
+            ->get();
 
         $productReviewMap = $product->reviews()->get()->keyBy('review_id');
 

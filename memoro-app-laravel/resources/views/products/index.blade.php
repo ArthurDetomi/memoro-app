@@ -17,7 +17,7 @@
                             <i class="fas fa-plus"></i>
                         </a>
                         <a class="btn btn-dark rounded-circle text-light ms-3" title="Configurações"
-                            href="{{ route('productsfeature.index') }}"><i class="fas fa-cog"></i></a>
+                            href="{{ route('reviews.index') }}"><i class="fas fa-cog"></i></a>
                     </div>
 
                     @include('shared.success-message')

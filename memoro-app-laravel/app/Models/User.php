@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Memory::class);
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function getImageUrl()
     {
         if ($this->image) {

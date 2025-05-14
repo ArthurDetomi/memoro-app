@@ -11,9 +11,11 @@ use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/productfeature/settings', [ProductFeatureController::class, 'index'])->name('productsfeature.index')->middleware('auth');
+Route::get('/reviews/settings', [ReviewController::class, 'index'])->name('reviews.index')->middleware('auth');
 
-Route::get('/reviews/settings', [ReviewController::class, 'index'])->name('review.index')->middleware('auth');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
+
+Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy')->middleware('auth');
 
 Route::get('/', [MemoryController::class, 'index'])->middleware('auth');
 
