@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Feature;
 use App\Models\Product;
+use App\Models\ProductFeature;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 class ProductController extends Controller
@@ -80,7 +84,15 @@ class ProductController extends Controller
     {
         Gate::authorize('view', $product);
 
-        return view('products.show', compact('product'));
+        $features = Feature::with('user')
+            ->where('user_id', '=', Auth::id())
+            ->where('type_id', $product->type_id)
+            ->orderByRaw('user_id IS NULL')
+            ->get();
+
+        $productFeatureMap = $product->features()->get()->keyBy('feature_id');
+
+        return view('products.show', compact('product', 'features', 'productFeatureMap'));
     }
 
     /**
@@ -92,7 +104,17 @@ class ProductController extends Controller
 
         $products_types = ProductType::all();
 
-        return view('products.edit', compact('product', 'products_types'));
+        $features = Feature::with('user')
+            ->where('user_id', '=', Auth::id())
+            ->where('type_id', $product->type_id)
+            ->orderByRaw('user_id IS NULL')
+            ->get();
+
+        $productFeatureMap = $product->features()->get()->keyBy('feature_id');
+
+        //dd($features, $productFeatureMap);
+
+        return view('products.edit', compact('product', 'products_types', 'features', 'productFeatureMap'));
     }
 
     /**
@@ -104,20 +126,45 @@ class ProductController extends Controller
 
         $validated = $request->validated();
 
-        if ($validated['image'] != NULL) {
-            $oldImagePath = $product->image;
+        DB::transaction(function () use ($request, $product, &$validated) {
+            if (request()->has('image')) {
+                $oldImagePath = $product->image;
 
-            $imagePath = $request->file('image')->store('product', 'public');
-            $validated['image'] = $imagePath;
+                $imagePath = $request->file('image')->store('product', 'public');
+                $validated['image'] = $imagePath;
 
-            if ($oldImagePath) {
-                Storage::disk('public')->delete($oldImagePath);
+                if ($oldImagePath) {
+                    Storage::disk('public')->delete($oldImagePath);
+                }
             }
-        }
 
-        $product->update($validated);
+            $features = Feature::with('user')
+                ->where('user_id', '=', Auth::id())
+                ->where('type_id', $product->type_id)
+                ->get();
 
-        return redirect()->route('products.show', $product)->with('success', 'Update product successfully');
+
+            foreach ($features as $feature) {
+                $nameFeatureForm = Str::slug($feature->name);
+
+
+                if (request()->has($nameFeatureForm)) {
+                    ProductFeature::updateOrCreate(
+                        [
+                            'product_id' => $product->id,
+                            'feature_id' => $feature->id
+                        ],
+                        [
+                            'value' => request()->get($nameFeatureForm),
+                        ]
+                    );
+                }
+            }
+
+            $product->update($validated);
+        });
+
+        return redirect()->route('products.show', $product)->with('success', 'Produto atualizado com sucesso.');
     }
 
     /**

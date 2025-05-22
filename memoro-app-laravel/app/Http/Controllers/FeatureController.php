@@ -18,10 +18,7 @@ class FeatureController extends Controller
         $productsTypes = ProductType::all();
 
         $features = Feature::with('user')
-            ->where(function ($query) {
-                $query->where('user_id', Auth::id())
-                    ->orWhereNull('user_id');
-            })
+            ->where('user_id', '=', Auth::id())
             ->where('type_id', $productTypeId)
             ->orderByRaw('user_id IS NULL')
             ->get();

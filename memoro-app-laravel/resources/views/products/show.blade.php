@@ -61,6 +61,12 @@
                                 Harmonização: {{ $product->pairing }}
                             </p>
 
+                            @foreach ($features as $feature)
+                                <p class="text-muted">
+                                    {{ $feature->name }}: {{ $productFeatureMap[$feature->id]->value ?? null }}
+                                </p>
+                            @endforeach
+
                             <!-- Informações Pessoais -->
                             <div class="mt-4">
                                 <p class="text-secondary">

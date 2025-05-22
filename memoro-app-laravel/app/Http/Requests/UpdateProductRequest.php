@@ -23,7 +23,6 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'type_id' => 'required|integer|exists:products_types,id',
             'quantity' => 'required|integer|min:0',
             'expiration' => 'nullable|date',
             'producer' => 'nullable|string|max:255',

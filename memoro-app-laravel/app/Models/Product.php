@@ -55,6 +55,11 @@ class Product extends Model
         return $this->hasMany(ProductReview::class);
     }
 
+    public function features(): HasMany
+    {
+        return $this->hasMany(ProductFeature::class);
+    }
+
     public function memories(): BelongsToMany
     {
         return $this->belongsToMany(Memory::class, "products_memories", "product_id", "memory_id");

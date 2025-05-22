@@ -34,8 +34,7 @@
                             <div class="col-12 col-sm-8">
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Nome do Produto</label>
-                                    <input type="text" class="form-control" name="name" value="{{ $product->name }}"
-                                        required>
+                                    <input type="text" class="form-control" name="name" value="{{ $product->name }}">
 
                                     @error('name')
                                         <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
@@ -44,7 +43,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Tipo</label>
-                                    <select class="form-select" name="type_id">
+                                    <select class="form-select" disabled>
                                         @foreach ($products_types as $type)
                                             <option value="{{ $type->id }}"
                                                 {{ $type->id == $product->type_id ? 'selected' : '' }}>
@@ -116,6 +115,17 @@
                                         <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                                     @enderror
                                 </div>
+
+                                @foreach ($features as $feature)
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ $feature->name }}</label>
+                                        <input type="text" class="form-control" name="{{ Str::slug($feature->name) }}"
+                                            value="{{ $productFeatureMap[$feature->id]->value ?? null }}">
+                                        @error($feature->name)
+                                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                @endforeach
 
                                 <!-- Informações Pessoais -->
                                 <div class="mt-4">
