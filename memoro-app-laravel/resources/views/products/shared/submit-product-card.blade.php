@@ -4,6 +4,8 @@
         <form enctype="multipart/form-data" action="{{ route('products.store') }}" method="POST">
             @csrf
 
+            <input name="type_id" hidden readonly value="{{ $productType->id }}">
+
             <div class="mb-3">
                 <label for="product_name" class="form-label">Nome<span class="text-danger">*</span></label>
                 <input type="text" id="product_name" name="name" class="form-control" required
@@ -44,21 +46,6 @@
                 <input type="number" id="product_quantity" name="quantity" class="form-control" min="0" required
                     value="{{ old('quantity') }}" />
                 @error('quantity')
-                    <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="mb-3">
-                <label for="product_type" class="form-label">Tipo de Produto<span class="text-danger">*</span></label>
-                <select class="form-select" id="product_type" name="type_id" required>
-                    <option selected disabled>Selecione um tipo</option>
-                    @foreach ($products_types as $type)
-                        <option value="{{ $type->id }}" @selected(old('product_type') == $type->id)>
-                            {{ $type->name }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('type_id')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
             </div>
@@ -143,6 +130,22 @@
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
             </div>
+
+            @foreach ($features as $feature)
+                @php
+                    $featureNameForm = Str::slug($feature->name);
+                @endphp
+
+                <div class="mb-3">
+                    <label for="{{ $featureNameForm }}" class="form-label">{{ $feature->name }}</label>
+                    <input type="text" id="{{ $featureNameForm }}" name="{{ $featureNameForm }}"
+                        class="form-control" value="{{ old($featureNameForm) }}" />
+
+                    @error($featureNameForm)
+                        <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                    @enderror
+                </div>
+            @endforeach
 
             <button type="submit" class="btn btn-dark">Cadastrar</button>
             <a href="{{ route('products.index') }}" class="btn btn-secondary">Cancelar</a>

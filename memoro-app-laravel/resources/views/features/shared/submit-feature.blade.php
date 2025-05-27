@@ -19,15 +19,18 @@
     @csrf
     <input type="hidden" name="type_id" value="{{ request('type_id') }}" required readonly>
 
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Nova característica" name="name" required>
-        @error('name')
-            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
-        @enderror
+    <div class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                placeholder="Nova característica" name="name" required>
+            <button class="btn btn-dark" type="submit" title="Cadastrar">
+                <i class="fas fa-check"></i>
+            </button>
+        </div>
 
-        <button class="btn btn-dark" type="submit" title="Cadastrar">
-            <i class="fas fa-check"></i>
-        </button>
+        @error('name')
+            <div class="text-danger small mt-1">{{ $message }}</div>
+        @enderror
     </div>
 </form>
 

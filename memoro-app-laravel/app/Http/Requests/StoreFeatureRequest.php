@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+
 
 class StoreFeatureRequest extends FormRequest
 {
@@ -23,7 +26,14 @@ class StoreFeatureRequest extends FormRequest
     {
         return [
             'type_id' => ['nullable', 'exists:products_types,id'],
-            'name' => ['required', 'string', 'max:255'],
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('features')->where(function ($query) {
+                    return $query->where('user_id', Auth::id());
+                })
+            ],
         ];
     }
 }

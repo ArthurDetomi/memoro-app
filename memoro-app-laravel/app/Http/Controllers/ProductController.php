@@ -48,14 +48,27 @@ class ProductController extends Controller
         return view('products.index', compact('products_types', 'products', 'hasProductsRegistered'));
     }
 
+    public function selectType()
+    {
+        $productTypes = ProductType::all();
+
+        return view('products.select-type-for-create', compact('productTypes'));
+    }
+
+    public function handleSelectType() {}
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createWithType(ProductType $productType)
     {
-        $products_types = ProductType::all();
+        $features = Feature::with('user')
+            ->where('user_id', '=', Auth::id())
+            ->where('type_id', $productType->id)
+            ->orderByRaw('user_id IS NULL')
+            ->get();
 
-        return view('products.create', compact('products_types'));
+        return view('products.create', compact('productType', 'features'));
     }
 
     /**
@@ -67,12 +80,38 @@ class ProductController extends Controller
 
         $validated['user_id'] = Auth::id();
 
-        if ($request->has('image')) {
-            $imagePath = $request->file('image')->store('product', 'public');
-            $validated['image'] = $imagePath;
-        }
+        DB::transaction(function () use ($request, &$validated) {
+            if ($request->has('image')) {
+                $imagePath = $request->file('image')->store('product', 'public');
+                $validated['image'] = $imagePath;
+            }
 
-        Product::create($validated);
+            $product = Product::create($validated);
+
+            $features = Feature::with('user')
+                ->where('user_id', '=', Auth::id())
+                ->where('type_id', $validated['type_id'])
+                ->get();
+
+
+            $productFeatures = [];
+
+            foreach ($features as $feature) {
+                $nameFeatureForm = Str::slug($feature->name);
+
+
+                if (request()->has($nameFeatureForm)) {
+                    $productFeatures[] = [
+                        'product_id' => $product->id,
+                        'feature_id' => $feature->id,
+                        'value' => $request->get($nameFeatureForm)
+                    ];
+                }
+            }
+
+            ProductFeature::insert($productFeatures);
+        });
+
 
         return redirect()->route('products.index')->with('success', 'Produto cadastrado com sucesso!');
     }
@@ -111,8 +150,6 @@ class ProductController extends Controller
             ->get();
 
         $productFeatureMap = $product->features()->get()->keyBy('feature_id');
-
-        //dd($features, $productFeatureMap);
 
         return view('products.edit', compact('product', 'products_types', 'features', 'productFeatureMap'));
     }
