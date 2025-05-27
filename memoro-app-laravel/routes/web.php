@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\ImageMemoryController;
 use App\Http\Controllers\MemoryController;
 use App\Http\Controllers\ProductController;
@@ -12,10 +13,10 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/reviews/settings', [ReviewController::class, 'index'])->name('reviews.index')->middleware('auth');
-
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
-
 Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy')->middleware('auth');
+
+Route::resource('features', FeatureController::class)->middleware('auth');
 
 Route::get('/', [MemoryController::class, 'index'])->middleware('auth');
 
@@ -27,6 +28,9 @@ Route::put('/products/{product}/consume', [ProductController::class, 'consume'])
 Route::get('/products/{product}/review', [ProductReviewController::class, 'index'])->name('products.review')->middleware('auth');
 Route::post('/products/{product}/review', [ProductReviewController::class, 'store'])->name('products.review.store')->middleware('auth');
 
+// Cadastro de produtos com duas etapas
+Route::get('/products/create/select-type', [ProductController::class, 'selectType'])->name('products.select_type')->middleware('auth');
+Route::get('/products/type/{productType}/create', [ProductController::class, 'createWithType'])->name('products.create_with_type');
 
 Route::delete('/imageMemories/{imageMemory}', [ImageMemoryController::class, 'destroy'])->name('imageMemories.destroy');
 Route::post('/memories/{memory}/images', [ImageMemoryController::class, 'store'])->name('imageMemories.store');

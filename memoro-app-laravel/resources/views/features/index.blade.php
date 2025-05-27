@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('title', 'Avaliações')
+@section('title', 'Características')
 
 @section('content')
     <!-- Main Content Section Starts Here -->
@@ -22,7 +22,7 @@
                         <div class="card-body">
                             @include('products.settings.shared.nav')
 
-                            @include('review.shared.submit-review')
+                            @include('features.shared.submit-feature')
                         </div>
                     </div>
 

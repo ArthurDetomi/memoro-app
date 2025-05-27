@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Feature;
 use App\Models\Product;
+use App\Models\ProductFeature;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 class ProductController extends Controller
@@ -44,14 +48,27 @@ class ProductController extends Controller
         return view('products.index', compact('products_types', 'products', 'hasProductsRegistered'));
     }
 
+    public function selectType()
+    {
+        $productTypes = ProductType::all();
+
+        return view('products.select-type-for-create', compact('productTypes'));
+    }
+
+    public function handleSelectType() {}
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createWithType(ProductType $productType)
     {
-        $products_types = ProductType::all();
+        $features = Feature::with('user')
+            ->where('user_id', '=', Auth::id())
+            ->where('type_id', $productType->id)
+            ->orderByRaw('user_id IS NULL')
+            ->get();
 
-        return view('products.create', compact('products_types'));
+        return view('products.create', compact('productType', 'features'));
     }
 
     /**
@@ -63,12 +80,38 @@ class ProductController extends Controller
 
         $validated['user_id'] = Auth::id();
 
-        if ($request->has('image')) {
-            $imagePath = $request->file('image')->store('product', 'public');
-            $validated['image'] = $imagePath;
-        }
+        DB::transaction(function () use ($request, &$validated) {
+            if ($request->has('image')) {
+                $imagePath = $request->file('image')->store('product', 'public');
+                $validated['image'] = $imagePath;
+            }
 
-        Product::create($validated);
+            $product = Product::create($validated);
+
+            $features = Feature::with('user')
+                ->where('user_id', '=', Auth::id())
+                ->where('type_id', $validated['type_id'])
+                ->get();
+
+
+            $productFeatures = [];
+
+            foreach ($features as $feature) {
+                $nameFeatureForm = Str::slug($feature->name);
+
+
+                if (request()->has($nameFeatureForm)) {
+                    $productFeatures[] = [
+                        'product_id' => $product->id,
+                        'feature_id' => $feature->id,
+                        'value' => $request->get($nameFeatureForm)
+                    ];
+                }
+            }
+
+            ProductFeature::insert($productFeatures);
+        });
+
 
         return redirect()->route('products.index')->with('success', 'Produto cadastrado com sucesso!');
     }
@@ -80,7 +123,15 @@ class ProductController extends Controller
     {
         Gate::authorize('view', $product);
 
-        return view('products.show', compact('product'));
+        $features = Feature::with('user')
+            ->where('user_id', '=', Auth::id())
+            ->where('type_id', $product->type_id)
+            ->orderByRaw('user_id IS NULL')
+            ->get();
+
+        $productFeatureMap = $product->features()->get()->keyBy('feature_id');
+
+        return view('products.show', compact('product', 'features', 'productFeatureMap'));
     }
 
     /**
@@ -92,7 +143,15 @@ class ProductController extends Controller
 
         $products_types = ProductType::all();
 
-        return view('products.edit', compact('product', 'products_types'));
+        $features = Feature::with('user')
+            ->where('user_id', '=', Auth::id())
+            ->where('type_id', $product->type_id)
+            ->orderByRaw('user_id IS NULL')
+            ->get();
+
+        $productFeatureMap = $product->features()->get()->keyBy('feature_id');
+
+        return view('products.edit', compact('product', 'products_types', 'features', 'productFeatureMap'));
     }
 
     /**
@@ -104,20 +163,45 @@ class ProductController extends Controller
 
         $validated = $request->validated();
 
-        if ($validated['image'] != NULL) {
-            $oldImagePath = $product->image;
+        DB::transaction(function () use ($request, $product, &$validated) {
+            if (request()->has('image')) {
+                $oldImagePath = $product->image;
 
-            $imagePath = $request->file('image')->store('product', 'public');
-            $validated['image'] = $imagePath;
+                $imagePath = $request->file('image')->store('product', 'public');
+                $validated['image'] = $imagePath;
 
-            if ($oldImagePath) {
-                Storage::disk('public')->delete($oldImagePath);
+                if ($oldImagePath) {
+                    Storage::disk('public')->delete($oldImagePath);
+                }
             }
-        }
 
-        $product->update($validated);
+            $features = Feature::with('user')
+                ->where('user_id', '=', Auth::id())
+                ->where('type_id', $product->type_id)
+                ->get();
 
-        return redirect()->route('products.show', $product)->with('success', 'Update product successfully');
+
+            foreach ($features as $feature) {
+                $nameFeatureForm = Str::slug($feature->name);
+
+
+                if (request()->has($nameFeatureForm)) {
+                    ProductFeature::updateOrCreate(
+                        [
+                            'product_id' => $product->id,
+                            'feature_id' => $feature->id
+                        ],
+                        [
+                            'value' => request()->get($nameFeatureForm),
+                        ]
+                    );
+                }
+            }
+
+            $product->update($validated);
+        });
+
+        return redirect()->route('products.show', $product)->with('success', 'Produto atualizado com sucesso.');
     }
 
     /**

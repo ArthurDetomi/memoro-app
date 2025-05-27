@@ -3,8 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
-class UpdateProductRequest extends FormRequest
+
+class StoreFeatureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +25,15 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'quantity' => 'required|integer|min:0',
-            'expiration' => 'nullable|date',
-            'producer' => 'nullable|string|max:255',
-            'storage' => 'nullable|string|max:255',
-            'region' => 'nullable|string|max:255',
-            'brand' => 'nullable|string|max:255',
-            'pairing' => 'nullable|string|max:255',
-            'image' => 'nullable|image',
+            'type_id' => ['nullable', 'exists:products_types,id'],
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('features')->where(function ($query) {
+                    return $query->where('user_id', Auth::id());
+                })
+            ],
         ];
     }
 }

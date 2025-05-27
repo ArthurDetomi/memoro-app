@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReviewRequest;
-use App\Models\Product;
 use App\Models\ProductType;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -24,7 +23,7 @@ class ReviewController extends Controller
                     ->orWhereNull('user_id');
             })
             ->where('product_type_id', $productTypeId)
-            ->orderByRaw('user_id IS NULL') // globais por último
+            ->orderByRaw('user_id IS NULL')
             ->get();
 
 
