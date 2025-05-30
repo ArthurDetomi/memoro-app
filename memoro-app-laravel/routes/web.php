@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\ImageMemoryController;
 use App\Http\Controllers\MemoryController;
@@ -50,3 +51,6 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/users/{user}/settings', 'settings')->name('users.settings');
     Route::put('/users/{user}/deactivate', 'deactivate')->name('users.deactivate');
 })->middleware('auth');
+
+
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');

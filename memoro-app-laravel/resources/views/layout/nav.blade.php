@@ -11,6 +11,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
+                    <a class="nav-link  {{ Route::is('dashboard') ? 'active' : '' }}" aria-current="page"
+                        href={{ route('dashboard') }}><i class="fa fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link  {{ Route::is('products.index') ? 'active' : '' }}" aria-current="page"
                         href={{ route('products.index') }}><i class="fa fa-box"></i>
                         Produtos
@@ -21,21 +27,6 @@
                         href="{{ route('memories.index') }}"><i class="fa fa-photo-video"></i>
                         Memórias
                     </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Páginas
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="{{ route('register') }}">Registro</a>
-                        </li>
-                        <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                    </ul>
                 </li>
             </ul>
 

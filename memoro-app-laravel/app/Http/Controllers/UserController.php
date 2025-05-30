@@ -38,8 +38,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        Gate::authorize('view', $user);
-
         return view('users.show', compact('user'));
     }
 

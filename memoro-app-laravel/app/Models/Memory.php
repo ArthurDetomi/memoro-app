@@ -20,6 +20,10 @@ class Memory extends Model
         'images'
     ];
 
+    protected $withCount = [
+        'likes'
+    ];
+
     public function images()
     {
         return $this->hasMany(ImageMemory::class);
@@ -33,5 +37,10 @@ class Memory extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, "products_memories", "memory_id", "product_id");
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'memory_like')->withTimestamps();
     }
 }

@@ -21,7 +21,7 @@ class MemoryPolicy
      */
     public function view(User $user, Memory $memory): bool
     {
-        return $user->id == $memory->user_id;
+        return false;
     }
 
     /**

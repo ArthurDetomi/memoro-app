@@ -17,27 +17,31 @@
                 </p>
             </div>
 
-            <div class="col-1">
-                <div class="dropdown dropstart">
-                    <a href="#" class="a-link" data-bs-toggle="dropdown" aria-expanded="false">
-                        ...
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" title="Edit"
-                                href="{{ route('memories.edit', $memory->id) }}">Edit</a>
-                        </li>
-                        <li>
-                            <form action="{{ route('memories.destroy', $memory->id) }}" method="POST">
-                                @csrf
-                                @method('delete')
+            @auth
+                @can('update', $memory)
+                    <div class="d-flex justify-content-end">
+                        <div class="dropdown">
+                            <button class="btn btn-sm" data-bs-toggle="dropdown" aria-expanded="false" title="Opções">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('memories.edit', $memory->id) }}">Editar</a>
+                                </li>
+                                <li>
+                                    <form action="{{ route('memories.destroy', $memory->id) }}" method="POST"
+                                        onsubmit="return confirm('Tem certeza que deseja deletar esta memória?')">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="dropdown-item">Excluir</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endcan
+            @endauth
 
-                                <button type="submit" class="dropdown-item" title="Delete">Delete</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <!-- Post Header Ends -->
 

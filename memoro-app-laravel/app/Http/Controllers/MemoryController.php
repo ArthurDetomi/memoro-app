@@ -108,8 +108,6 @@ class MemoryController extends Controller
      */
     public function show(Memory $memory)
     {
-        Gate::authorize('view', $memory);
-
         return view('memories.show', compact('memory'));
     }
 
