@@ -38,9 +38,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        Gate::authorize('view', $user);
+        $memories = $user->memories()->with(['products', 'user'])->orderBy('created_at', 'DESC')->get();
 
-        return view('users.show', compact('user'));
+        return view('users.show', compact('user', 'memories'));
     }
 
     /**

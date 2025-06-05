@@ -42,7 +42,7 @@
             </div>
 
             <div class="text-end">
-                <a href="{{ route('memories.index') }}" class="btn btn-secondary me-2" title="Voltar"><i
+                <a href="{{ route('dashboard') }}" class="btn btn-secondary me-2" title="Voltar"><i
                         class="fas fa-arrow-left"></i></a>
                 <button type="submit" class="btn btn-dark">Salvar
                     Informações</button>
@@ -236,7 +236,7 @@
             </div>
 
             <div class="text-end">
-                <a href="{{ route('memories.index') }}" class="btn btn-secondary me-2" title="Voltar"><i
+                <a href="{{ route('dashboard') }}" class="btn btn-secondary me-2" title="Voltar"><i
                         class="fas fa-arrow-left"></i></a>
                 <button type="submit" class="btn btn-dark">Salvar Imagens</button>
             </div>

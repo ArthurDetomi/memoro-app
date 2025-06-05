@@ -17,27 +17,31 @@
                 </p>
             </div>
 
-            <div class="col-1">
-                <div class="dropdown dropstart">
-                    <a href="#" class="a-link" data-bs-toggle="dropdown" aria-expanded="false">
-                        ...
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" title="Edit"
-                                href="{{ route('memories.edit', $memory->id) }}">Edit</a>
-                        </li>
-                        <li>
-                            <form action="{{ route('memories.destroy', $memory->id) }}" method="POST">
-                                @csrf
-                                @method('delete')
+            @auth
+                @can('update', $memory)
+                    <div class="d-flex justify-content-end">
+                        <div class="dropdown">
+                            <button class="btn btn-sm" data-bs-toggle="dropdown" aria-expanded="false" title="Opções">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('memories.edit', $memory->id) }}">Editar</a>
+                                </li>
+                                <li>
+                                    <form action="{{ route('memories.destroy', $memory->id) }}" method="POST"
+                                        onsubmit="return confirm('Tem certeza que deseja deletar esta memória?')">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="dropdown-item">Excluir</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endcan
+            @endauth
 
-                                <button type="submit" class="dropdown-item" title="Delete">Delete</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <!-- Post Header Ends -->
 
@@ -72,6 +76,8 @@
         </a>
         <!-- Post Content Ends -->
 
+
+
         <!-- Produtos relacionados -->
         @if ($memory->products->count() > 0)
             <h6 class="mt-4">Produtos relacionados:</h6>
@@ -101,19 +107,23 @@
         <!-- Fim produtos relacionados-->
 
         <!-- Post Footer Starts -->
-        <div class="row my-3">
-            <!-- No futuro pode adicionar comentários -->
-            <div class="col text-end">
+        <div class="col">
+            <div class="d-flex justify-content-end align-items-center gap-3">
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-calendar-event" viewBox="0 0 16 16">
                     <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                     <path
                         d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
                 </svg>
-                <small>Published Date: {{ $memory->created_at->toDateString() }}</small>
+
+                <small class="text-muted">Published: {{ $memory->created_at->diffForHumans() }}</small>
+                @include('memories.shared.like-button')
+
             </div>
         </div>
-        <!-- Post Footer Ends -->
+
+        @include('memories.shared.comments-box')
     </div>
 </div>
 <!-- Feed/Post Listing Section Ends -->

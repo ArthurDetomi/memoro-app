@@ -66,10 +66,35 @@
                                             </div>
                                         </div>
 
-                                        @if (Auth::id() == $user->id)
-                                            <a href="{{ route('users.edit', $user) }}"
-                                                class="btn btn-outline-danger btn-sm">Edit Profile</a>
-                                        @endif
+                                        <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+                                            @auth()
+                                                @if (Auth::user()->isNot($user))
+                                                    @csrf
+                                                    @if (Auth::user()->follows($user))
+                                                        <form method="POST" action="{{ route('users.unfollow', $user->id) }}">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                UnFollow</button>
+                                                        </form>
+                                                    @else
+                                                        <form method="POST" action="{{ route('users.follow', $user->id) }}">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                                Follow</button>
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            @endauth
+                                            @if (Auth::id() == $user->id)
+                                                <a href="{{ route('users.edit', $user) }}"
+                                                    class="btn btn-outline-danger btn-sm">
+                                                    Edit Profile
+                                                </a>
+                                            @endif
+
+                                            @include('users.shared.user-stats')
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -92,7 +117,7 @@
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('users.settings', parameters: $user->id) }}">Settings</a>
+                                                        href="{{ route('users.settings', $user->id) }}">Settings</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -124,10 +149,19 @@
                         </div>
                     </div>
                     <!-- Profile Section Ends -->
+
+                    @include('shared.success-message')
+
+                    @forelse ($memories as $memory)
+                        @include('memories.shared.memory-card')
+
+                    @empty
+                        <p>Que tal começar a registrar suas memórias agora? 🌟</p>
+                    @endforelse
                 </div>
                 <!-- Profile Detail Section Starts -->
 
-                <div class="col-md-4">...</div>
+                <div class="col-md-4"></div>
             </div>
         </div>
     </section>
