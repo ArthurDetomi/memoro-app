@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     /*
-     public function index()
+    public function index()
     {
         $ideas = Idea::when(request()->has('search'), function ($query) {
             $query->search(request('search', ''));
@@ -17,10 +17,11 @@ class DashboardController extends Controller
         return view("dashboard", ["ideas" => $ideas]);
     }
     */
-
     public function index()
     {
-        $memories = Memory::orderBy('created_at', 'DESC')->paginate(5);
+        $memories = Memory::when(request()->has('search'), function ($query) {
+            $query->search(request('search', ''));
+        })->orderBy('created_at', 'DESC')->paginate(5);
 
         return view("dashboard", compact('memories'));
     }
