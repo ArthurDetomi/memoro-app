@@ -121,8 +121,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        Gate::authorize('view', $product);
-
         $features = Feature::with('user')
             ->where('user_id', '=', Auth::id())
             ->where('type_id', $product->type_id)

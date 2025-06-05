@@ -45,10 +45,14 @@
                         <div class="col-12 col-sm-8">
                             <div class="d-flex align-items-center">
                                 <h3 class="fw-bold me-2">{{ $product->name }}</h3>
-                                <a href="{{ route('products.edit', $product->id) }}"
-                                    class="btn btn-link btn-sm text-primary" title="Editar">
-                                    <i class="fas fa-edit"></i>
-                                </a>
+                                @auth()
+                                    @can('update', $product)
+                                        <a href="{{ route('products.edit', $product->id) }}"
+                                            class="btn btn-link btn-sm text-primary" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    @endcan
+                                @endauth
                             </div>
                             <p class="text-muted">Tipo: {{ $product->type->name }}</p>
                             <p class="text-muted">Origem: {{ $product->region }}</p>

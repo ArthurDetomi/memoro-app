@@ -9,7 +9,7 @@
             <div class="row">
                 @include('users.shared.left-sidebar-user-profile')
 
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="d-flex align-items-center mb-3">
                         <h1 class="m-0"><i class="fa fa-box me-2"></i> Produtos</h1>
                         <div class="d-flex align-items-center ms-auto gap-2">
