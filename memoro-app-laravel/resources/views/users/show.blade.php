@@ -156,7 +156,8 @@
                         @include('memories.shared.memory-card')
 
                     @empty
-                        <p>Que tal começar a registrar suas memórias agora? 🌟</p>
+                        <hr />
+                        <p>Nenhuma memória foi registrada até o momento.</p>
                     @endforelse
                 </div>
                 <!-- Profile Detail Section Starts -->

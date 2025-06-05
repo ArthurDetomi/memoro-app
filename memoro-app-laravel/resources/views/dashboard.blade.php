@@ -26,7 +26,8 @@
                         @include('memories.shared.memory-card')
 
                     @empty
-                        <p>Que tal começar a postar suas memórias agora? 🌟</p>
+                        <hr />
+                        <p>Nenhuma memória foi registrada até o momento.</p>
                     @endforelse
 
                     <div class="mt-3 mb-5">
