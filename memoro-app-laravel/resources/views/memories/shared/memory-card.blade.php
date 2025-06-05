@@ -123,7 +123,7 @@
             </div>
         </div>
 
-        <!-- Post Footer Ends -->
+        @include('memories.shared.comments-box')
     </div>
 </div>
 <!-- Feed/Post Listing Section Ends -->

@@ -13,20 +13,20 @@
                 <!-- Feed Section Starts -->
                 <div class="col-md-6">
                     <div class="d-flex align-items-center mb-3">
-                        <h1><i class="fas fa-home"></i> Dashboard </h1>
-                        <a class="btn btn-dark rounded-circle ms-2" data-mdb-ripple-init href="{{ route('memories.create') }}"
-                            title="Cadastrar memória">
+                        <h1 class="h2"><i class="fa fa-photo-video"></i> Memórias</h1>
+
+                        <a class="btn btn-dark rounded-circle text-light ms-auto" data-mdb-ripple-init
+                            href="{{ route('memories.create') }}" title="Postar nova Memória">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
-
                     @include('shared.success-message')
 
                     @forelse ($memories as $memory)
                         @include('memories.shared.memory-card')
 
                     @empty
-                        <p>Que tal começar a registrar suas memórias agora? 🌟</p>
+                        <p>Que tal começar a postar suas memórias agora? 🌟</p>
                     @endforelse
 
                     <div class="mt-3 mb-5">

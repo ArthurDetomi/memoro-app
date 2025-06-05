@@ -118,7 +118,7 @@
             </div>
 
             <button type="submit" class="btn btn-dark">Salvar</button>
-            <a href="{{ route('memories.index') }}" class="btn btn-secondary">Cancelar</a>
+            <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </div>

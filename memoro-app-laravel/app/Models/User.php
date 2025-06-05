@@ -94,6 +94,11 @@ class User extends Authenticatable
         return $this->followings()->where('user_id', $user->id)->exists();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->latest();
+    }
+
 
     public function getImageUrl()
     {

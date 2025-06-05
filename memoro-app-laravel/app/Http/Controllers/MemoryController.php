@@ -16,18 +16,6 @@ use Illuminate\Support\Facades\Gate;
 class MemoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $user = Auth::user();
-
-        $memories = $user->memories()->with(['products', 'user'])->orderBy('created_at', 'DESC')->get();
-
-        return view('memories.index', compact('memories'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
@@ -97,6 +85,8 @@ class MemoryController extends Controller
             return redirect()->route('memories.show', $memory)->with('success', 'Memória cadastrada com sucesso!');
         } catch (\Exception $ex) {
             DB::rollBack();
+            dd($ex->getMessage());
+
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Ocorreu um erro ao cadastrar a memória. Tente novamente.');
@@ -169,10 +159,10 @@ class MemoryController extends Controller
 
             DB::commit();
 
-            return redirect()->route('memories.index')->with('success', 'Memory deleted successfully!');
+            return redirect()->back()->with('success', 'Memory deleted successfully!');
         } catch (\Exception $ex) {
             DB::rollBack();
-            return redirect()->route('memories.index')->withErrors(['error' => 'Error deleting memory']);
+            return redirect()->back()->withErrors(['error' => 'Error deleting memory']);
         }
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ImageMemoryController;
 use App\Http\Controllers\MemoryController;
@@ -64,3 +66,9 @@ Route::controller(UserController::class)->group(function () {
 
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+// Comment route
+Route::resource('memories.comments', CommentController::class)->only(['store'])->middleware('auth');
+
+// Feed route
+Route::get('/feed', FeedController::class)->middleware('auth')->name(name: 'feed');
