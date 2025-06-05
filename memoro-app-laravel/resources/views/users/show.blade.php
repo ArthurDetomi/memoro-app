@@ -71,6 +71,30 @@
                                                 class="btn btn-outline-danger btn-sm">Edit Profile</a>
                                         @endif
                                     </div>
+
+                                    @auth()
+                                        @if (Auth::user()->isNot($user))
+                                            <div class="mt-3">
+
+                                                @csrf
+                                                @if (Auth::user()->follows($user))
+                                                    <form method="POST" action="{{ route('users.unfollow', $user->id) }}">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm"> UnFollow</button>
+                                                    </form>
+                                                @else
+                                                    <form method="POST" action="{{ route('users.follow', $user->id) }}">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary btn-sm"> Follow</button>
+                                                    </form>
+                                                @endif
+
+                                            </div>
+                                        @endif
+                                    @endauth
+
+                                    @include('users.shared.user-stats')
+
                                 </div>
 
                                 @if (Auth::id() == $user->id)

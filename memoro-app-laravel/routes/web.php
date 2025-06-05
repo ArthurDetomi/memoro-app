@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ImageMemoryController;
 use App\Http\Controllers\MemoryController;
+use App\Http\Controllers\MemoryLikeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductFeatureController;
 use App\Http\Controllers\ProductMemoryController;
@@ -21,6 +23,9 @@ Route::resource('features', FeatureController::class)->middleware('auth');
 
 Route::get('/', [MemoryController::class, 'index'])->middleware('auth');
 
+// Like memories
+Route::post('memories/{memory}/like', [MemoryLikeController::class, 'like'])->middleware('auth')->name('memories.like');
+Route::post('memories/{memory}/unlike', [MemoryLikeController::class, 'unlike'])->middleware('auth')->name('memories.unlike');
 
 // Products routes
 Route::resource('products', ProductController::class)->middleware('auth');
@@ -43,6 +48,11 @@ Route::delete('/memories/{memory}/products/{product}', [ProductMemoryController:
 Route::resource('memories', MemoryController::class)->middleware('auth');
 
 Route::resource('users', UserController::class)->middleware('auth');
+
+// Follows routes
+Route::post('users/{user}/follow', [FollowerController::class, 'follow'])->middleware('auth')->name('users.follow');
+
+Route::post('users/{user}/unfollow', [FollowerController::class, 'unfollow'])->middleware('auth')->name('users.unfollow');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/users/{user}/changepassword', 'getUpdatePasswordPage')->name('users.password.edit');

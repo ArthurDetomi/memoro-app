@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Memory extends Model
 {
     protected $fillable = [
-        'user_id',
         'description',
         'title',
         'images'
@@ -17,7 +16,9 @@ class Memory extends Model
 
 
     protected $with = [
-        'images'
+        'images',
+        'user:id,name,image',
+        'products'
     ];
 
     protected $withCount = [

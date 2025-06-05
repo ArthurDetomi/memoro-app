@@ -68,6 +68,33 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    public function likes()
+    {
+        return $this->belongsToMany(Memory::class, 'memory_like')->withTimestamps();
+    }
+
+
+    public function likesMemory(Memory $memory)
+    {
+        return $this->likes()->where('memory_id', $memory->id)->exists();
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'follower_user', 'follower_id', 'user_id')->withTimestamps();
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follower_user', 'user_id', 'follower_id')->withTimestamps();
+    }
+
+    public function follows(User $user)
+    {
+        return $this->followings()->where('user_id', $user->id)->exists();
+    }
+
+
     public function getImageUrl()
     {
         if ($this->image) {
