@@ -65,7 +65,7 @@ Route::controller(UserController::class)->group(function () {
 })->middleware('auth');
 
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 // Comment route
 Route::resource('memories.comments', CommentController::class)->only(['store'])->middleware('auth');

@@ -21,33 +21,32 @@
   - Registro de experiências (texto ou fotos) relacionadas a momentos em que os produtos foram usados.
   - Relacionamento entre produtos e memórias marcantes.
 
+- 🌐 **Rede Social**
+  - Criação e gerenciamento de perfis de usuário.
+  - Conexão entre usuários (seguir e ser seguido).
+  - Curtidas e comentários em memórias compartilhadas.
+  - Feed de atualizações para acompanhar novidades da comunidade.
+
 ## 🛠️ Tecnologias
 
 - **Framework:** Laravel (com Blade Templates – renderização server-side)
 - **Linguagens:** PHP, HTML, CSS
 - **Banco de Dados:** MySQL
-- **Hospedagem:** _(adicione aqui, se quiser divulgar onde está hospedado, como Vercel, DigitalOcean, etc.)_
+- **Hospedagem:** Oracle Cloud
 
 ## 🚧 Status
 
-> O **Memoro** está em desenvolvimento ativo. As funcionalidades principais estão sendo implementadas progressivamente.
+> O **Memoro** está em desenvolvimento ativo. As funcionalidades principais de controle de estoque, avaliação e memórias já estão implementadas. A rede social foi recentemente adicionada e está em fase inicial de uso e testes.
 
 ## 🎯 Objetivo
 
 Proporcionar aos colecionadores uma plataforma elegante e funcional para registrar, organizar e reviver experiências com seus produtos mais preciosos — tornando o consumo um ritual e uma memória.
 
-📌 Planos Futuros
-O Memoro ainda está evoluindo, e algumas ideias para o futuro incluem:
+## 📌 Planos Futuros
 
-🌐 Rede Social Integrada
-Criar uma comunidade onde os usuários possam se conectar, seguir perfis, curtir e comentar memórias uns dos outros — tornando a experiência ainda mais social e compartilhável.
+- 🤖 **Inteligência Artificial**
 
-🤖 Inteligência Artificial
-Utilizar IA para identificar produtos automaticamente a partir de fotos, facilitando o cadastro e organização do estoque com o mínimo de esforço do usuário.
-
-Perfeito! Você pode adicionar esse link no seu README de forma clara e acessível, mostrando que há um pitch preparado para apresentação. Aqui vai a seção que você pode incluir, por exemplo logo após a introdução ou no final do README:
-
----
+  - Utilizar IA para identificar produtos automaticamente a partir de fotos, facilitando o cadastro e organização do estoque com o mínimo de esforço do usuário.
 
 ## 🗣️ Elevator Pitch
 
