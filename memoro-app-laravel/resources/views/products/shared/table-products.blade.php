@@ -19,7 +19,7 @@
                     <tr class="text-center">
                         <th>Nome</th>
                         <th>Descrição</th>
-                        <th>Volume</th>
+                        <th>Peso</th>
                         <th>Avaliação</th>
                         <th>Quantidade</th>
                         <th>Ações</th>
