@@ -5,7 +5,7 @@
                 {{-- Avatar do Usuário --}}
                 <a href="{{ route('users.show', $memory->user->id) }}">
                     <img src="{{ $memory->user->getImageUrl() }}" alt="{{ $memory->user->name }}" class="rounded-circle"
-                        style="height: 45px; width: 45px; object-fit: cover;" />
+                        style="height: auto; width: 45px; object-fit: cover;" />
                 </a>
 
                 {{-- Nome do Usuário --}}
