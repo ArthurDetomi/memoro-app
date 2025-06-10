@@ -35,7 +35,7 @@ class AuthController extends Controller
             ]
         );
 
-        return redirect()->route('register')->with('success', 'Account created successfully!');
+        return redirect()->route('register')->with('success', 'Conta criada com sucesso!');
     }
 
     public function login()
@@ -63,7 +63,7 @@ class AuthController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard')->with('success', 'Logged in successfully');
+            return redirect()->route('dashboard')->with('success', 'Logado com sucesso!');
         }
 
         return back()->withErrors([
@@ -79,6 +79,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Logged out successfully');
+        return redirect()->route('login')->with('success', 'Desconectado com sucesso!');
     }
 }

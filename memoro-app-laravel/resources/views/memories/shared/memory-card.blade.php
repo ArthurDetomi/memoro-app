@@ -1,53 +1,49 @@
-<!-- Feed/Post Listing Section Starts -->
 <div class="card mb-5">
     <div class="card-body">
-        <!-- Post Header Starts -->
-        <div class="row">
-            <div class="col-1">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                {{-- Avatar do Usuário --}}
                 <a href="{{ route('users.show', $memory->user->id) }}">
-                    <img src="{{ $memory->user->getImageUrl() }}" alt="{{ $memory->user->name }}" style="height: 45px" />
+                    <img src="{{ $memory->user->getImageUrl() }}" alt="{{ $memory->user->name }}" class="rounded-circle"
+                        style="height: 45px; width: 45px; object-fit: cover;" />
                 </a>
+
+                {{-- Nome do Usuário --}}
+                <div class="ms-3">
+                    <a href="{{ route('users.show', $memory->user->id) }}"
+                        class="fw-bolder a-link">{{ $memory->user->name }}</a>
+                    <p class="small text-body-secondary mb-0">
+                        {{ $memory->user->profession ?? '' }}
+                    </p>
+                </div>
             </div>
 
-            <div class="col-10">
-                <a href="{{ route('users.show', $memory->user->id) }}"
-                    class="fw-bolder a-link">{{ $memory->user->name }}</a>
-                <p class="small text-body-secondary">
-                    <!-- Pode colocar a profissão do usuário por exemplo futuramente-->
-                </p>
-            </div>
-
+            {{-- Menu de Opções --}}
             @auth
                 @can('update', $memory)
-                    <div class="d-flex justify-content-end">
-                        <div class="dropdown">
-                            <button class="btn btn-sm" data-bs-toggle="dropdown" aria-expanded="false" title="Opções">
-                                <i class="fas fa-ellipsis-h"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('memories.edit', $memory->id) }}">Editar</a>
-                                </li>
-                                <li>
-                                    <form action="{{ route('memories.destroy', $memory->id) }}" method="POST"
-                                        onsubmit="return confirm('Tem certeza que deseja deletar esta memória?')">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="dropdown-item">Excluir</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn btn-sm" data-bs-toggle="dropdown" aria-expanded="false" title="Opções">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('memories.edit', $memory->id) }}">Editar</a>
+                            </li>
+                            <li>
+                                <form action="{{ route('memories.destroy', $memory->id) }}" method="POST"
+                                    onsubmit="return confirm('Tem certeza que deseja deletar esta memória?')">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="dropdown-item">Excluir</button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 @endcan
             @endauth
-
         </div>
-        <!-- Post Header Ends -->
-
-        <!-- Post Content Starts -->
         <a href="{{ route('memories.show', $memory->id) }}" class="text-decoration-none">
-            <h6 class="card-title text-dark text-center">{{ $memory->title }}</h6>
+            <h6 class="card-title text-dark text-center mt-3">{{ $memory->title }}</h6>
             <p class="card-text small text-body-secondary">
                 {{ $memory->description }}
             </p>
@@ -74,11 +70,6 @@
                 </button>
             </div>
         </a>
-        <!-- Post Content Ends -->
-
-
-
-        <!-- Produtos relacionados -->
         @if ($memory->products->count() > 0)
             <h6 class="mt-4">Produtos relacionados:</h6>
 
@@ -104,9 +95,6 @@
             </div>
         @endif
 
-        <!-- Fim produtos relacionados-->
-
-        <!-- Post Footer Starts -->
         <div class="col">
             <div class="d-flex justify-content-end align-items-center gap-3">
 
@@ -126,4 +114,3 @@
         @include('memories.shared.comments-box')
     </div>
 </div>
-<!-- Feed/Post Listing Section Ends -->
