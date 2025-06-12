@@ -60,6 +60,7 @@
                             <p class="text-muted">Fabricação: {{ $product->production_date }}</p>
                             <p class="text-muted">Validade: {{ $product->expiration }}</p>
                             <p class="text-muted">Produtor: {{ $product->producer }}</p>
+                            <p class="text-muted">Descrição: {{ $product->description }}</p>
 
                             <p class="text-muted">
                                 Harmonização: {{ $product->pairing }}

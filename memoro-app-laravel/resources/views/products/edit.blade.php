@@ -42,6 +42,16 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label class="form-label fw-bold">Descrição</label>
+                                    <input type="text" class="form-control" name="description"
+                                        value="{{ $product->description }}">
+
+                                    @error('description')
+                                        <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
                                     <label class="form-label">Tipo</label>
                                     <select class="form-select" disabled>
                                         @foreach ($products_types as $type)

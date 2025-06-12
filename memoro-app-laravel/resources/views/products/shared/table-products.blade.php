@@ -1,32 +1,29 @@
 <!-- Products table Starts-->
 <div>
-
     @if ($hasProductsRegistered)
         <form action="{{ route('products.index') }}" method="GET">
             <div class="input-group mb-1">
                 <input name="search" type="text" class="form-control" id="advanced-search-input"
                     placeholder="Pesquise por nome do produto ou tipo..." value="{{ request('search') }}" />
-                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark text-light"
-                    id="advanced-search-button" type="submit">
+                <button class="btn btn-dark text-light" id="advanced-search-button" type="submit">
                     <i class="fa fa-search"></i>
                 </button>
             </div>
         </form>
 
-        <div class="table-responsive mb-5">
+        <div class="table-responsive-sm mb-5">
             <table class="table align-middle mb-0 bg-white">
                 <p class="text-muted mb-2">
                     Clique em um produto para ver mais detalhes e ações disponíveis.
                 </p>
-
                 <tbody class="text-center">
                     @forelse ($products as $product)
-                        <tr>
+                        <tr class="align-middle">
                             <td colspan="6">
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center py-3">
                                     <div class="d-flex align-items-center">
                                         <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}"
-                                            style="width: 45px; height: 45px" class="rounded-circle me-3" />
+                                            class="rounded-circle me-3" style="width: 45px; height: 45px;" />
                                         <div>
                                             <p class="fw-bold mb-0">{{ $product->name }}</p>
                                             <small class="text-muted">{{ $product->brand }}</small>
@@ -40,15 +37,15 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="collapse" id="collapseProduct{{ $product->id }}">
+                        <tr class="collapse align-middle" id="collapseProduct{{ $product->id }}">
                             <td colspan="6">
-                                <div class="row text-start p-3 bg-light rounded">
-                                    <div class="col-md-6 mb-2"><strong>Descrição:</strong> {{ $product->description }}
-                                    </div>
-                                    <div class="col-md-3 mb-2"><strong>Tipo:</strong> {{ $product->type->name }}</div>
-                                    <div class="col-md-3 mb-2"><strong>Peso:</strong> {{ $product->weight }}
+                                <div class="row g-2 bg-light rounded py-3 text-start">
+                                    <div class="col-md-6"><strong>Descrição:</strong> {{ $product->description }}</div>
+                                    <div class="col-md-3"><strong>Tipo:</strong> {{ $product->type->name }}</div>
+                                    <div class="col-md-3"><strong>Peso:</strong> {{ $product->weight }}
                                         {{ $product->unit_of_measure }}</div>
-                                    <div class="col-md-6 mb-2">
+
+                                    <div class="col-md-6">
                                         <strong>Avaliação:</strong>
                                         @if ($product->average_rating)
                                             @php $averageRating = round($product->average_rating); @endphp
@@ -63,11 +60,11 @@
                                             ---
                                         @endif
                                     </div>
-                                    <div class="col-md-3 mb-2"><strong>Quantidade:</strong> {{ $product->quantity }}
-                                    </div>
-                                    <div class="col-md-3 mb-2"><strong>Marca:</strong> {{ $product->brand }}
-                                    </div>
-                                    <div class="col-md-12 text-end">
+
+                                    <div class="col-md-3"><strong>Quantidade:</strong> {{ $product->quantity }}</div>
+                                    <div class="col-md-3"><strong>Marca:</strong> {{ $product->brand }}</div>
+
+                                    <div class="col-12 text-end">
                                         <a class="btn btn-link btn-sm text-dark" title="Avaliar"
                                             href="{{ route('products.review', $product->id) }}">
                                             <i class="fas fa fa-star"></i>
@@ -101,7 +98,6 @@
                         </tr>
                     @endforelse
                 </tbody>
-
             </table>
             <div class="mt-1">
                 {{ $products->links() }}
