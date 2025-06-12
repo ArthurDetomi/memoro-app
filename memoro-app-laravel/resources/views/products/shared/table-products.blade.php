@@ -20,7 +20,9 @@
                     @forelse ($products as $product)
                         <tr class="align-middle">
                             <td colspan="6">
-                                <div class="d-flex justify-content-between align-items-center py-3">
+                                <div class="d-flex justify-content-between align-items-center py-3"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseProduct{{ $product->id }}"
+                                    aria-expanded="false">
                                     <div class="d-flex align-items-center">
                                         <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}"
                                             class="rounded-circle me-3" style="width: 45px; height: 45px;" />
@@ -29,11 +31,7 @@
                                             <small class="text-muted">{{ $product->brand }}</small>
                                         </div>
                                     </div>
-                                    <button class="btn btn-sm btn-link" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseProduct{{ $product->id }}" aria-expanded="false"
-                                        aria-controls="collapseProduct{{ $product->id }}">
-                                        Ver detalhes <i class="fas fa-ellipsis-h"></i>
-                                    </button>
+                                    <i class="fas fa-caret-down me-3"></i>
                                 </div>
                             </td>
                         </tr>
