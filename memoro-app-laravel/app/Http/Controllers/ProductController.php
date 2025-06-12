@@ -107,9 +107,8 @@ class ProductController extends Controller
                         $productFeatures[] = [
                             'product_id' => $product->id,
                             'feature_id' => $feature->id,
-                            'value' => $request->get($nameFeatureForm)
+                            'value' => $value
                         ];
-                        dd($nameFeatureForm, $request->get(key: $nameFeatureForm));
                     }
                 }
             }
@@ -191,15 +190,19 @@ class ProductController extends Controller
 
 
                 if (request()->has($nameFeatureForm)) {
-                    ProductFeature::updateOrCreate(
-                        [
-                            'product_id' => $product->id,
-                            'feature_id' => $feature->id
-                        ],
-                        [
-                            'value' => request()->get($nameFeatureForm),
-                        ]
-                    );
+                    $value = request()->get($nameFeatureForm);
+
+                    if (isset($value)) {
+                        ProductFeature::updateOrCreate(
+                            [
+                                'product_id' => $product->id,
+                                'feature_id' => $feature->id
+                            ],
+                            [
+                                'value' => $value,
+                            ]
+                        );
+                    }
                 }
             }
 
