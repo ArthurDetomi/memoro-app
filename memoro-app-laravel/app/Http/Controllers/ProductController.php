@@ -101,15 +101,22 @@ class ProductController extends Controller
 
 
                 if (request()->has($nameFeatureForm)) {
-                    $productFeatures[] = [
-                        'product_id' => $product->id,
-                        'feature_id' => $feature->id,
-                        'value' => $request->get($nameFeatureForm)
-                    ];
+                    $value = $request->get($nameFeatureForm);
+
+                    if (isset($value)) {
+                        $productFeatures[] = [
+                            'product_id' => $product->id,
+                            'feature_id' => $feature->id,
+                            'value' => $request->get($nameFeatureForm)
+                        ];
+                        dd($nameFeatureForm, $request->get(key: $nameFeatureForm));
+                    }
                 }
             }
 
-            ProductFeature::insert($productFeatures);
+            if (!empty($productFeatures)) {
+                ProductFeature::insert($productFeatures);
+            }
         });
 
 
