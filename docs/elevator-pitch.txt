@@ -1,19 +1,11 @@
-Imagina que você tem produtos especiais em casa — um vinho raro, um café importado, um 
-queijo artesanal ou até aquele charuto que você guarda pra uma ocasião especial.
+Imagina que você tem produtos especiais em casa — um vinho raro, um café importado, um queijo artesanal ou até aquele charuto reservado pra uma ocasião única.
 
-O Memoro nasceu justamente pra isso: pra quem valoriza esses momentos e quer mais do que só 
-guardar os produtos — quer registrar as experiências.
+O Memoro nasceu justamente pra isso: pra quem valoriza esses momentos e quer mais do que só guardar os produtos — quer registrar as experiências.
 
-Com ele, você consegue organizar seu estoque, controlar o que já usou, avaliar cada item...
-E o mais legal: pode criar memórias. Sabe aquele jantar com vinho especial? 
-Ou o café que tomou num dia marcante? Você pode escrever sobre isso, postar uma foto, e relacionar tudo com os produtos que estavam ali.
+Com o Memoro, você organiza seu estoque, controla o que já usou, avalia cada item… e o melhor: transforma consumo em memória. Aquele jantar com vinho especial? O café de um dia marcante? Você pode escrever sobre isso, postar fotos e conectar tudo com os produtos que estavam lá.
 
-A ideia é transformar o consumo em lembrança.
+E agora o Memoro vai além: a rede social já está no ar. Os usuários podem se conectar, compartilhar suas memórias, descobrir novas experiências e trocar ideias com outros colecionadores e apreciadores.
 
-E no futuro, o Memoro vai além: queremos criar uma rede social para colecionadores — 
-onde as pessoas possam se conectar, compartilhar memórias e trocar experiências.
+Em breve, vamos incluir inteligência artificial no processo: basta tirar uma foto e o sistema identifica e cadastra o produto automaticamente.
 
-E também usar inteligência artificial pra facilitar tudo: você tira uma foto do produto e o 
-sistema identifica e cadastra automaticamente pra você.
-
-O projeto já está no ar, e você pode acessar em memoro.lat.
+O projeto já está no ar — acesse: memoro.lat
