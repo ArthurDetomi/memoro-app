@@ -1,6 +1,6 @@
 # 🍷 Memoro
 
-**Memoro** é um sistema pensado para colecionadores de produtos especiais e de alto valor — como cafés raros, queijos finos, vinhos selecionados e charutos premium. Ele oferece um ambiente completo para controlar o estoque, registrar experiências e valorizar momentos únicos relacionados ao consumo desses itens.
+**Memoro** é um sistema pensado para colecionadores de produtos especiais como cafés raros, queijos finos, vinhos selecionados e charutos premium. Ele oferece um ambiente completo para controlar o estoque, registrar experiências e valorizar momentos únicos relacionados ao consumo desses itens.
 
 🔗 **Acesse o site:** [https://memoro.lat](https://memoro.lat)
 
